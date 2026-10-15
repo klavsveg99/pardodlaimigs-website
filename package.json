@@ -1,0 +1,14 @@
+{
+  "name": "pardodlaimigs-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "build:staging": "vite build --base=/new/",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "vite": "^7.1.7"
+  }
+}
