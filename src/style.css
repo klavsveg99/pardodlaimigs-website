@@ -73,7 +73,7 @@ body.menu-locked { overflow: hidden; }
 .eyebrow { margin: 0 0 18px; color: rgb(255 255 255 / 72%); font-size: 11px; letter-spacing: .13em; line-height: 1.4; text-transform: uppercase; font-weight: 700; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 { font-family: var(--serif); }
-h1 { max-width: 580px; margin: 0; color: #fff; font-size: clamp(42px, 4.5vw, 60px); letter-spacing: -.055em; line-height: 1.05; font-weight: 600; white-space: normal; }
+.hero-copy h1 { max-width: 580px; margin: 0; color: #fff; font-size: clamp(42px, 4.5vw, 60px); letter-spacing: -.055em; line-height: 1.05; font-weight: 600; white-space: normal; }
 .hero-description { max-width: 470px; margin: 22px 0 29px; color: rgb(255 255 255 / 79%); font-size: 15px; line-height: 1.75; }
 .hero-actions { display: flex; align-items: center; gap: 25px; }
 .button { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 16px; border: 1px solid transparent; padding: 0 20px; cursor: pointer; font-size: 12px; font-weight: 700; transition: background .18s ease, color .18s ease, border-color .18s ease; }
@@ -436,7 +436,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .hero-layout { min-height: unset; grid-template-columns: 1fr; gap: 29px; }
   .hero-copy { padding-top: 0; }
   .eyebrow { margin-bottom: 13px; font-size: 9px; }
-  h1 { max-width: 420px; font-size: clamp(39px, 12vw, 55px); }
+  .hero-copy h1 { max-width: 420px; font-size: clamp(39px, 12vw, 55px); }
   .hero-description { margin: 16px 0 22px; font-size: 13px; }
   .hero-actions { gap: 15px; }
   .button { min-height: 46px; padding-inline: 15px; font-size: 11px; }
@@ -565,3 +565,65 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .article-card { grid-template-columns: 34% 1fr; }
   .agent-card > img { height: 160px; }
 }
+
+/* ── Detail pages: property, blog post, content page, agent, listings ── */
+/* The site's h1 is the hero's white display type (see .hero-copy h1), so the
+   pages below the fold set their own ink colour. */
+.property-page h1, .post-page h1, .content-page h1, .blog-index h1, .agent-page h1 { color: var(--ink); }: property detail, blog, content, agent ───── */
+.breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; color: var(--muted); font-size: 11px; }
+.breadcrumb a { color: var(--brand); font-weight: 600; }
+.property-page { padding: 96px 0 40px; }
+.property-page-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 46px; align-items: start; }
+.property-page-media { position: relative; background: #122924; }
+.property-page-media > img { width: 100%; height: 520px; object-fit: cover; }
+.property-page-copy h1 { margin: 0 0 12px; font-size: clamp(26px, 3vw, 38px); line-height: 1.16; letter-spacing: -.045em; }
+.property-page-copy .property-detail-text { margin-bottom: 22px; }
+.property-page-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; margin-top: 18px; }
+.property-page-thumbs .property-thumb { flex: none; width: 100%; height: 68px; border-color: var(--line); }
+.property-page-thumbs .property-thumb.is-active { border-color: var(--brand); }
+.content-page, .post-page { padding: 96px 0; }
+.content-layout, .post-layout { max-width: 780px; }
+.content-page h1, .post-page h1 { margin: 0 0 12px; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15; letter-spacing: -.045em; }
+.post-date { margin: 0 0 26px; color: var(--accent); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.post-cover { width: 100%; max-height: 420px; object-fit: cover; margin-bottom: 30px; }
+.post-body { color: #3c4744; font-size: 15px; line-height: 1.8; }
+.post-body h2 { margin: 34px 0 12px; font-size: 22px; letter-spacing: -.02em; }
+.post-body h3 { margin: 26px 0 10px; font-size: 18px; }
+.post-body p { margin: 0 0 16px; }
+.post-body ul, .post-body ol { margin: 0 0 16px; padding-left: 20px; }
+.post-body li { margin-bottom: 8px; }
+.post-body img { margin: 18px 0; width: 100%; height: auto; }
+.post-body a { color: var(--brand); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.post-body blockquote { margin: 20px 0; padding: 4px 0 4px 18px; border-left: 2px solid var(--accent); color: var(--muted); }
+.post-body video { width: 100%; margin: 18px 0; }
+.site-video-link a { color: var(--brand); font-weight: 600; }
+.agent-page { padding: 96px 0 40px; }
+.agent-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 46px; align-items: center; }
+.agent-portrait { width: 100%; max-height: 460px; object-fit: cover; object-position: center 30%; }
+.agent-copy h1 { margin: 0 0 14px; font-size: clamp(28px, 3.2vw, 42px); letter-spacing: -.045em; }
+.agent-description { max-width: 560px; margin-bottom: 24px; color: var(--muted); font-size: 14px; line-height: 1.8; }
+.listings-page { padding-top: 96px; }
+.listings-filters { grid-template-columns: 1fr 1fr 1.25fr auto; margin-bottom: 26px; }
+.listings-filters .button { min-height: 43px; padding: 0 16px; }
+.property-card[hidden] { display: none; }
+.language-option a { display: flex; align-items: center; gap: 10px; width: 100%; color: inherit; }
+.mobile-menu-lang { text-decoration: none; }
+@media (max-width: 1000px) {
+  .property-page-layout, .agent-layout { grid-template-columns: 1fr; gap: 30px; }
+  .property-page-media > img { height: 380px; }
+  .listings-filters { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .property-page, .content-page, .post-page, .agent-page, .listings-page { padding: 72px 0 24px; }
+  .property-page-media > img { height: 260px; }
+  .property-page-thumbs { grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); }
+  .property-page-thumbs .property-thumb { height: 54px; }
+  .listings-filters { grid-template-columns: 1fr 1fr; }
+  .listings-filters .search-keyword { grid-column: span 2; }
+  .listings-filters .button { grid-column: span 2; }
+}
+
+/* The property page reuses the dialog's detail markup, but on a page nothing
+   may clip it or scroll inside a column. */
+.property-page .property-detail { max-height: none; }
+.property-page .property-detail-copy { overflow: visible; }

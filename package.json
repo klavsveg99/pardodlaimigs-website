@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
-    "build:staging": "vite build --base=/new/",
+    "build": "vite build && node scripts/routes.mjs",
+    "build:staging": "vite build --base=/new/ && node scripts/routes.mjs",
     "preview": "vite preview --host 0.0.0.0"
   },
   "devDependencies": {

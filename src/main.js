@@ -226,7 +226,8 @@ const agents = {
 const state = {
   language: localStorage.getItem('site-language') || 'lv',
   properties: [],
-  articles: [],
+  posts: [],
+  pages: [],
   visibleCount: 6,
   showAll: false,
   review: 0,
@@ -248,99 +249,310 @@ const assetUrl = (path) => {
 const BRAND_LOGO = `${assetUrl('/images/brand/logo.svg')}?v=2`;
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
-function renderShell() {
+/**
+ * The preview keeps the URL shapes of the site it is migrating to -
+ * /ipasums/<slug>/, /<post-slug>/, /blog/ and /<page-slug>/ - so links and
+ * bookmarks survive the move off WordPress. Every route is emitted as its own
+ * index.html at build time (see scripts/routes.mjs), which is what makes a
+ * direct hit or a refresh work on plain static hosting.
+ */
+const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const siteUrl = (path = '') => `${base}${String(path).replace(/^\/+/, '')}`;
+
+function currentPath() {
+  const path = window.location.pathname;
+  const relative = path.startsWith(base) ? path.slice(base.length) : path.replace(/^\//, '');
+  return decodeURIComponent(relative).replace(/^\/+|\/+$/g, '');
+}
+
+function currentRoute() {
+  const relative = currentPath();
+  if (!relative) return { name: 'home' };
+  const property = relative.match(/^ipasums\/(.+)$/);
+  if (property) return { name: 'property', slug: property[1] };
+  if (relative === 'blog') return { name: 'blog' };
+  if (state.pages.some((page) => page.slug === relative)) return { name: 'page', slug: relative };
+  if (state.posts.some((post) => post.slug === relative)) return { name: 'post', slug: relative };
+  return { name: 'home' };
+}
+
+/** Section anchors live on the home page, so they lead home from anywhere else. */
+function homeAnchor(anchor) {
+  return currentPath() === '' ? `#${anchor}` : `${siteUrl()}#${anchor}`;
+}
+
+function pageTitle(route) {
+  const suffix = 'Pārdod Laimīgs';
+  if (route.name === 'property') {
+    const property = propertyBySlug(route.slug);
+    return property ? `${property.title} - ${suffix}` : suffix;
+  }
+  if (route.name === 'post') {
+    const post = postBySlug(route.slug);
+    return post ? `${postTitle(post)} - ${suffix}` : suffix;
+  }
+  if (route.name === 'page') {
+    const page = state.pages.find((item) => item.slug === route.slug);
+    return page ? `${page.translations[state.language]?.title ?? suffix} - ${suffix}` : suffix;
+  }
+  if (route.name === 'blog') return `${t('blogTitle')} - ${suffix}`;
+  return state.language === 'lv' ? `${suffix} - nekustamā īpašuma pārdošana` : `${suffix} - ${t('navSell')}`;
+}
+
+function propertyBySlug(slug) {
+  return state.properties.find((property) => property.slug === slug);
+}
+
+function postBySlug(slug) {
+  return state.posts.find((post) => post.slug === slug);
+}
+
+/** Post copy, falling back to Latvian when a translation is missing. */
+function postTranslation(post) {
+  return post.translations[state.language] ?? post.translations.lv;
+}
+
+function postTitle(post) {
+  return postTranslation(post).title;
+}
+
+function galleryOf(property) {
+  return (property.gallery?.length ? property.gallery : [property.image_local || property.image]).filter(Boolean);
+}
+
+/** Header, gallery and copy of a property. Shared by the dialog and the page. */
+function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {}) {
+  const images = galleryOf(property);
+  const agent = agents[property.agent] ?? { phone: '+371 2492 2942' };
+  const hasLocation = Number.isFinite(property.lat) && Number.isFinite(property.lng);
+  return `
+    <div class="property-detail">
+      <div class="property-detail-media">
+        <img id="property-detail-image" src="${escapeHtml(assetUrl(images[0]))}" alt="${escapeHtml(property.title)}">
+        ${images.length > 1 ? `
+          <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}">←</button>
+          <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}">→</button>
+          <span class="property-gallery-position" id="property-gallery-position">1 / ${images.length}</span>
+          <div class="property-detail-thumbs" role="group" aria-label="${escapeHtml(t('galleryLabel'))}">
+            ${images.map((image, index) => `<button type="button" class="property-thumb${index === 0 ? ' is-active' : ''}" data-gallery-index="${index}" aria-label="${escapeHtml(`${t('photo')} ${index + 1}`)}"><img src="${escapeHtml(assetUrl(image))}" alt="" loading="lazy"></button>`).join('')}
+          </div>` : ''}
+      </div>
+      <div class="property-detail-copy">
+        <div class="property-type"><span class="property-type-blob">${escapeHtml(categoryLabel(property.category) || t('priceFrom'))}</span>${images.length > 1 ? `<span class="property-photo-count">${images.length} ${escapeHtml(t('photos'))}</span>` : ''}</div>
+        <${heading} id="property-detail-title">${escapeHtml(property.title)}</${heading}>
+        <div class="property-detail-place">
+          <p class="property-detail-address">${escapeHtml(property.address)}</p>
+          ${hasLocation ? `<button class="property-map-toggle" type="button" id="property-map-toggle" aria-expanded="false" aria-controls="property-map"><span>${escapeHtml(t('preciseLocation'))}</span><span aria-hidden="true">↗</span></button>` : ''}
+        </div>
+        ${hasLocation ? '<div class="property-map" id="property-map" hidden></div>' : ''}
+        <p class="property-detail-price">${escapeHtml(property.price || t('priceFrom'))}</p>
+        ${property.facts?.length ? `<ul class="property-detail-facts">${property.facts.map((fact) => `<li><strong>${escapeHtml(fact.value)}</strong><span>${escapeHtml(factLabel(fact.label))}</span></li>`).join('')}</ul>` : ''}
+        <p class="property-detail-text">${escapeHtml(fullText ? propertyDescription(property) : propertySummary(property))}</p>
+        <div class="property-detail-agent"><span>${escapeHtml(t('agent'))}</span><strong>${escapeHtml(property.agent)}</strong><a href="tel:${escapeHtml(agent.phone.replace(/\s/g, ''))}">${escapeHtml(agent.phone)}</a></div>
+        <div class="property-detail-actions">
+          <button class="button button-dark" type="button" id="property-enquire">${escapeHtml(t('enquire'))}</button>
+          ${currentRoute().name === 'property' ? '' : `<a class="button button-outline" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}">${escapeHtml(t('fullListing'))}<span aria-hidden="true">↗</span></a>`}
+        </div>
+      </div>
+    </div>`;
+}
+
+/** Wires the gallery, the swipe and the map toggle of a detail block. */
+function bindPropertyDetail(property, { keyboard = false } = {}) {
+  const images = galleryOf(property);
+  const main = document.querySelector('#property-detail-image');
+  if (!main) return;
+
+  const counter = document.querySelector('#property-gallery-position');
+  const thumbs = [...document.querySelectorAll('[data-gallery-index]')];
+  let index = 0;
+
+  const show = (next) => {
+    index = ((next % images.length) + images.length) % images.length;
+    main.src = assetUrl(images[index]);
+    if (counter) counter.textContent = `${index + 1} / ${images.length}`;
+    thumbs.forEach((thumb, position) => thumb.classList.toggle('is-active', position === index));
+  };
+
+  thumbs.forEach((thumb) => thumb.addEventListener('click', () => show(Number(thumb.dataset.galleryIndex))));
+  document.querySelectorAll('[data-gallery-step]').forEach((button) => button.addEventListener('click', () => show(index + Number(button.dataset.galleryStep))));
+  galleryState = images.length > 1 ? { step: (delta) => show(index + delta) } : null;
+
+  if (keyboard && images.length > 1) {
+    document.addEventListener('keydown', (event) => {
+      if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable]')) return;
+      if (event.key === 'ArrowRight') show(index + 1);
+      else if (event.key === 'ArrowLeft') show(index - 1);
+    });
+  }
+
+  const media = document.querySelector('.property-detail-media');
+  let touchStart = null;
+  media.addEventListener('touchstart', (event) => { touchStart = event.changedTouches[0].clientX; }, { passive: true });
+  media.addEventListener('touchend', (event) => {
+    if (touchStart === null) return;
+    const delta = event.changedTouches[0].clientX - touchStart;
+    touchStart = null;
+    if (images.length > 1 && Math.abs(delta) > 40) show(index + (delta < 0 ? 1 : -1));
+  });
+
+  const mapToggle = document.querySelector('#property-map-toggle');
+  mapToggle?.addEventListener('click', () => {
+    const map = document.querySelector('#property-map');
+    const open = mapToggle.getAttribute('aria-expanded') !== 'true';
+    mapToggle.setAttribute('aria-expanded', String(open));
+    map.hidden = !open;
+    if (open && !map.querySelector('iframe')) {
+      const query = `${property.lat},${property.lng}`;
+      map.innerHTML = `<iframe title="${escapeHtml(t('preciseLocation'))}: ${escapeHtml(property.title)}" src="https://www.google.com/maps?q=${query}&z=16&hl=${state.language}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a class="property-map-link" href="https://www.google.com/maps?q=${query}" target="_blank" rel="noreferrer"><span>${escapeHtml(t('openInMaps'))}</span><span aria-hidden="true">↗</span></a>`;
+    }
+    if (open) map.scrollIntoView({ block: 'nearest' });
+  });
+
+  document.querySelector('#property-enquire')?.addEventListener('click', () => {
+    document.querySelector('#property-enquire').closest('dialog')?.close();
+    document.querySelector('#kontakti')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+function propertyView(slug) {
+  const property = propertyBySlug(slug);
+  if (!property) return notFoundView();
+  return `
+      <section class="property-page">
+        <div class="container">
+          <p class="breadcrumb"><a href="${homeAnchor('ipasumi')}">${escapeHtml(t('navProperties'))}</a><span aria-hidden="true">/</span><span>${escapeHtml(property.title)}</span></p>
+          ${propertyDetailHtml(property, { heading: 'h1', fullText: true })}
+        </div>
+      </section>
+      ${contactSection()}`;
+}
+
+function postView(slug) {
+  const post = postBySlug(slug);
+  if (!post) return notFoundView();
+  const copy = postTranslation(post);
+  return `
+      <article class="section post-page">
+        <div class="container post-layout">
+          <p class="breadcrumb"><a href="${escapeHtml(siteUrl('blog/'))}">${escapeHtml(t('navBlog'))}</a><span aria-hidden="true">/</span><span>${escapeHtml(copy.title)}</span></p>
+          <h1>${escapeHtml(copy.title)}</h1>
+          <p class="post-date">${escapeHtml(post.date)}</p>
+          ${post.image ? `<img class="post-cover" src="${escapeHtml(assetUrl(post.image))}" alt="">` : ''}
+          <div class="post-body">${copy.html}</div>
+        </div>
+      </article>
+      ${contactSection()}`;
+}
+
+function blogView() {
+  return `
+      <section class="section blog-section blog-index" id="blog" aria-labelledby="blog-title">
+        <div class="container">
+          <div class="section-heading"><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h1 id="blog-title" data-i18n="blogTitle"></h1></div>
+          <div class="article-grid">
+            ${state.posts.map((post) => `
+              <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}"><img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy"><div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h2>${escapeHtml(postTitle(post))}</h2><span class="article-link">${escapeHtml(t('readArticle'))}<span aria-hidden="true">↗</span></span></div></a></article>`).join('')}
+          </div>
+        </div>
+      </section>
+      ${contactSection()}`;
+}
+
+function pageView(slug) {
+  const page = state.pages.find((item) => item.slug === slug);
+  const copy = page?.translations[state.language] ?? page?.translations.lv;
+  if (!copy) return notFoundView();
+  return `
+      <section class="section content-page">
+        <div class="container content-layout">
+          <h1>${escapeHtml(copy.title)}</h1>
+          <div class="post-body">${copy.html}</div>
+        </div>
+      </section>`;
+}
+
+function notFoundView() {
+  return `
+      <section class="section content-page">
+        <div class="container content-layout">
+          <h1>404</h1>
+          <p><a href="${escapeHtml(siteUrl())}">${escapeHtml(t('navProperties'))}</a></p>
+        </div>
+      </section>`;
+}
+
+/**
+ * Client-side navigation between the preview's own pages. Anything the preview
+ * does not own (external sites, tel:, mailto:, same-page anchors) keeps its
+ * native behaviour.
+ */
+function bindNavigation() {
+  document.addEventListener('click', (event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const link = event.target.closest('a[href]');
+    if (!link || link.target === '_blank' || link.hasAttribute('download')) return;
+    if (!link.getAttribute('href').startsWith(base)) return;
+
+    const url = new URL(link.href);
+    const target = url.pathname.slice(base.length).replace(/^\/+|\/+$/g, '');
+    const owned = target === '' || target === 'blog' || /^ipasums\/.+/.test(target)
+      || state.posts.some((post) => post.slug === target)
+      || state.pages.some((page) => page.slug === target);
+    if (!owned) return;
+
+    event.preventDefault();
+    if (target === currentPath() && !url.hash) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    history.pushState({}, '', `${siteUrl(target)}${url.hash}`);
+    renderRoute();
+    if (url.hash) document.querySelector(url.hash)?.scrollIntoView({ block: 'start' });
+  });
+
+  window.addEventListener('popstate', () => renderRoute());
+}
+
+/** Re-render whatever route the URL points at. */
+function renderRoute({ keepScroll = false } = {}) {
+  const offset = keepScroll ? window.scrollY : 0;
+  renderShell();
+  if (keepScroll) window.scrollTo({ top: offset, behavior: 'auto' });
+}
+
+function contactSection() {
+  return `      <section class="contact-section" id="kontakti" aria-labelledby="contact-title">
+        <div class="container contact-layout">
+          <div class="contact-copy"><p class="eyebrow" data-i18n="contactEyebrow"></p><h2 id="contact-title" data-i18n="contactTitle"></h2><p data-i18n="contactBody"></p><div class="contact-direct"><a href="tel:+37124922942"><span class="contact-label">Roberts</span><strong>+371 2492 2942</strong></a></div></div>
+          <form id="contact-form" class="contact-form">
+            <div class="form-row"><label><span data-i18n="formType"></span><select name="property_type" required><option value="" selected disabled data-i18n="formChoose"></option><option value="apartment" data-i18n="formApartment"></option><option value="house" data-i18n="formHouse"></option><option value="land" data-i18n="formLand"></option><option value="forest" data-i18n="formForest"></option></select></label><label><span data-i18n="formArea"></span><input name="area" inputmode="decimal" required></label></div>
+            <label><span data-i18n="formLocation"></span><input name="location" required></label>
+            <div class="form-row"><label><span data-i18n="formCadastre"></span><input name="cadastre" required></label><label><span data-i18n="formDesiredPrice"></span><input name="desired_price" inputmode="decimal"></label></div>
+            <label><span data-i18n="formDescription"></span><textarea name="description" rows="3" required></textarea></label>
+            <label class="form-check"><input name="urgent" type="checkbox"><span data-i18n="urgentCheckbox"></span></label>
+            <div class="form-row"><label><span data-i18n="formName"></span><input name="name" autocomplete="name" required></label><label><span data-i18n="formPhone"></span><input name="phone" type="tel" autocomplete="tel" required></label></div>
+            <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required></label>
+            <label><span data-i18n="formComment"></span><textarea name="comment" rows="2"></textarea></label>
+            <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><span aria-hidden="true">↗</span></button></div>
+            <p class="form-feedback" id="form-feedback" role="status" hidden></p>
+          </form>
+        </div>
+      </section>`;
+}
+
+function homeView() {
   const heroSlides = state.properties.filter((property) => property.hero_image);
-  // The shell is always rebuilt with the menu closed, so a lock left over from
-  // an open drawer (for example when the language changed inside it) must go.
-  document.body.classList.remove('menu-locked');
-  document.documentElement.lang = state.language;
-  document.title = state.language === 'lv' ? 'Pārdod Laimīgs - nekustamā īpašuma pārdošana' : `Pārdod Laimīgs - ${t('navSell')}`;
-  document.querySelector('#app').innerHTML = `
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="Pārdod Laimīgs - sākums"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="${escapeHtml(t('menuOpen'))}"><span></span><span></span><span></span></button>
-        <nav class="main-navigation" id="main-navigation" aria-label="${escapeHtml(t('mainMenu'))}">
-          <a href="#ipasumi" data-i18n="navProperties"></a>
-          <a href="#pardot" data-i18n="navSell"></a>
-          <a href="#komanda" data-i18n="navAbout"></a>
-          <a href="#blog" data-i18n="navBlog"></a>
-          <a href="#kontakti" data-i18n="navContact"></a>
-          <a href="#buj" data-i18n="navFaq"></a>
-        </nav>
-        <div class="header-actions">
-          <div class="language-switcher">
-            <button class="language-picker" type="button" id="language-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="${escapeHtml(t('languageLabel'))}">
-              <img class="language-flag" src="${assetUrl(flags[state.language])}" alt="" width="18" height="12">
-              <span class="language-name">${escapeHtml(languages[state.language].name)}</span>
-              <span class="language-caret" aria-hidden="true"></span>
-            </button>
-            <ul class="language-menu" id="language-menu" role="listbox" aria-label="${escapeHtml(t('languageLabel'))}" hidden>
-              ${Object.entries(languages).map(([code, lang]) => `
-                <li class="language-option${state.language === code ? ' is-active' : ''}" role="option" data-language="${code}" aria-selected="${state.language === code}" tabindex="${state.language === code ? '0' : '-1'}">
-                  <img class="language-flag" src="${assetUrl(flags[code])}" alt="" width="18" height="12">
-                  <span>${escapeHtml(lang.name)}</span>
-                  <span class="language-check" aria-hidden="true">✓</span>
-                </li>`).join('')}
-            </ul>
-          </div>
-          <a class="header-phone" href="tel:+37124922942">+371 2492 2942</a>
-        </div>
-      </div>
-    </header>
-
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <div class="mobile-menu-overlay" data-menu-close></div>
-      <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="${escapeHtml(t('mainMenu'))}">
-        <div class="mobile-menu-head">
-          <img class="mobile-menu-logo" src="${BRAND_LOGO}" alt="Pārdod Laimīgs">
-          <button class="mobile-menu-close" type="button" data-menu-close aria-label="${escapeHtml(t('close'))}">
-            <span aria-hidden="true"></span><span aria-hidden="true"></span>
-          </button>
-        </div>
-
-        <nav class="mobile-menu-nav" aria-label="${escapeHtml(t('mainMenu'))}">
-          ${[['#ipasumi', t('navProperties')], ['#pardot', t('navSell')], ['#komanda', t('navAbout')], ['#blog', t('navBlog')], ['#kontakti', t('navContact')], ['#buj', t('navFaq')]]
-            .map(([href, label], index) => `<a href="${href}"><span class="mobile-menu-index">${String(index + 1).padStart(2, '0')}</span><span class="mobile-menu-label-text">${escapeHtml(label)}</span><span class="mobile-menu-arrow" aria-hidden="true">↗</span></a>`).join('')}
-        </nav>
-
-        <div class="mobile-menu-block">
-          <p class="mobile-menu-label" data-i18n="quickContact"></p>
-          <a class="mobile-menu-contact" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+371 2492 2942</strong></a>
-          <a class="mobile-menu-contact" href="tel:+37124922942"><span>Roberts</span><strong>+371 2492 2942</strong></a>
-        </div>
-
-        <div class="mobile-menu-foot">
-          <div class="mobile-menu-social">
-            <a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a>
-            <a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a>
-            <a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a>
-            <a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a>
-          </div>
-        </div>
-
-        <div class="mobile-menu-block mobile-menu-language">
-          <p class="mobile-menu-label" data-i18n="languageLabel"></p>
-          <div class="mobile-menu-langs" role="group" aria-label="${escapeHtml(t('languageLabel'))}">
-            ${Object.entries(languages).map(([code, lang]) => `
-              <button type="button" class="mobile-menu-lang${state.language === code ? ' is-active' : ''}" data-language="${code}" aria-pressed="${state.language === code}">
-                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}<span class="language-check" aria-hidden="true">✓</span>
-              </button>`).join('')}
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <main id="top">
-      <section class="hero-section">
+  return `      <section class="hero-section">
         <div class="container hero-layout">
           <div class="hero-copy">
             <p class="eyebrow" data-i18n="eyebrow"></p>
             <h1 data-i18n="heroTitle"></h1>
             <p class="hero-description" data-i18n="heroBody"></p>
             <div class="hero-actions">
-              <a class="button button-light" href="#kontakti"><span data-i18n="heroAction"></span><span aria-hidden="true">↗</span></a>
-              <a class="video-link" href="https://pardodlaimigs.lv/wp-content/uploads/2023/10/pardod-laimigs-intro.mp4" target="_blank" rel="noreferrer"><span class="play-icon" aria-hidden="true">▶</span><span data-i18n="videoAction"></span></a>
+              <a class="button button-light" href="${homeAnchor('kontakti')}"><span data-i18n="heroAction"></span><span aria-hidden="true">↗</span></a>
+              <a class="video-link" href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><span class="play-icon" aria-hidden="true">▶</span><span data-i18n="videoAction"></span></a>
             </div>
             <div class="hero-proof"><span class="proof-stars" aria-hidden="true">★★★★★</span><span data-i18n="heroNote"></span></div>
           </div>
@@ -389,9 +601,9 @@ function renderShell() {
         <div class="container">
           <div class="section-heading section-heading-centered"><p class="eyebrow eyebrow-green" data-i18n="sellEyebrow"></p><h2 id="selling-title" data-i18n="sellTitle"></h2><p class="section-lead" data-i18n="sellLead"></p></div>
           <div class="selling-grid">
-            <article class="selling-item"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="#kontakti"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
-            <article class="selling-item"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="#kontakti"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
-            <article class="selling-item"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="#kontakti"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
+            <article class="selling-item"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
+            <article class="selling-item"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
+            <article class="selling-item"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
           </div>
         </div>
       </section>
@@ -400,7 +612,7 @@ function renderShell() {
         <div class="container">
           <div class="section-heading section-heading-centered"><p class="eyebrow eyebrow-green" data-i18n="urgentEyebrow"></p><h2 id="urgent-title" data-i18n="urgentTitle"></h2><p class="section-lead" data-i18n="urgentLead"></p></div>
           <ol class="urgent-steps" id="urgent-steps"></ol>
-          <div class="section-action"><a class="button button-dark" href="#kontakti"><span data-i18n="urgentAction"></span><span aria-hidden="true">↗</span></a></div>
+          <div class="section-action"><a class="button button-dark" href="${homeAnchor('kontakti')}"><span data-i18n="urgentAction"></span><span aria-hidden="true">↗</span></a></div>
         </div>
       </section>
 
@@ -413,7 +625,7 @@ function renderShell() {
 
       <section class="section blog-section" id="blog" aria-labelledby="blog-title">
         <div class="container">
-          <div class="section-heading section-heading-row"><div><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h2 id="blog-title" data-i18n="blogTitle"></h2></div><a class="text-link desktop-link" href="https://pardodlaimigs.lv/blog/" target="_blank" rel="noreferrer">Visi raksti <span aria-hidden="true">↗</span></a></div>
+          <div class="section-heading section-heading-row"><div><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h2 id="blog-title" data-i18n="blogTitle"></h2></div><a class="text-link desktop-link" href="${siteUrl('blog/')}"><span data-i18n="allArticles"></span><span aria-hidden="true">↗</span></a></div>
           <div class="article-grid" id="article-grid"></div>
         </div>
       </section>
@@ -443,50 +655,137 @@ function renderShell() {
         </div>
       </section>
 
-      <section class="contact-section" id="kontakti" aria-labelledby="contact-title">
-        <div class="container contact-layout">
-          <div class="contact-copy"><p class="eyebrow" data-i18n="contactEyebrow"></p><h2 id="contact-title" data-i18n="contactTitle"></h2><p data-i18n="contactBody"></p><div class="contact-direct"><a href="tel:+37124922942"><span class="contact-label">Roberts</span><strong>+371 2492 2942</strong></a></div></div>
-          <form id="contact-form" class="contact-form">
-            <div class="form-row"><label><span data-i18n="formType"></span><select name="property_type" required><option value="" selected disabled data-i18n="formChoose"></option><option value="apartment" data-i18n="formApartment"></option><option value="house" data-i18n="formHouse"></option><option value="land" data-i18n="formLand"></option><option value="forest" data-i18n="formForest"></option></select></label><label><span data-i18n="formArea"></span><input name="area" inputmode="decimal" required></label></div>
-            <label><span data-i18n="formLocation"></span><input name="location" required></label>
-            <div class="form-row"><label><span data-i18n="formCadastre"></span><input name="cadastre" required></label><label><span data-i18n="formDesiredPrice"></span><input name="desired_price" inputmode="decimal"></label></div>
-            <label><span data-i18n="formDescription"></span><textarea name="description" rows="3" required></textarea></label>
-            <label class="form-check"><input name="urgent" type="checkbox"><span data-i18n="urgentCheckbox"></span></label>
-            <div class="form-row"><label><span data-i18n="formName"></span><input name="name" autocomplete="name" required></label><label><span data-i18n="formPhone"></span><input name="phone" type="tel" autocomplete="tel" required></label></div>
-            <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required></label>
-            <label><span data-i18n="formComment"></span><textarea name="comment" rows="2"></textarea></label>
-            <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><span aria-hidden="true">↗</span></button></div>
-            <p class="form-feedback" id="form-feedback" role="status" hidden></p>
-          </form>
-        </div>
-      </section>
+      ${contactSection()}
 
-      <section class="section faq-section" id="buj" aria-labelledby="faq-title"><div class="container faq-layout"><div><p class="eyebrow eyebrow-green" data-i18n="faqEyebrow"></p><h2 id="faq-title" data-i18n="faqTitle"></h2></div><div class="faq-list" id="faq-list"></div></div></section>
+      <section class="section faq-section" id="buj" aria-labelledby="faq-title"><div class="container faq-layout"><div><p class="eyebrow eyebrow-green" data-i18n="faqEyebrow"></p><h2 id="faq-title" data-i18n="faqTitle"></h2></div><div class="faq-list" id="faq-list"></div></div></section>`;
+}
+
+function viewMarkup() {
+  const route = currentRoute();
+  if (route.name === 'property') return propertyView(route.slug);
+  if (route.name === 'post') return postView(route.slug);
+  if (route.name === 'blog') return blogView();
+  if (route.name === 'page') return pageView(route.slug);
+  return homeView();
+}
+
+function renderShell() {
+  const route = currentRoute();
+  // The shell is always rebuilt with the menu closed, so a lock left over from
+  // an open drawer (for example when the language changed inside it) must go.
+  document.body.classList.remove('menu-locked');
+  document.documentElement.lang = state.language;
+  document.title = pageTitle(route);
+  document.querySelector('#app').innerHTML = `
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="Pārdod Laimīgs - sākums"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="${escapeHtml(t('menuOpen'))}"><span></span><span></span><span></span></button>
+        <nav class="main-navigation" id="main-navigation" aria-label="${escapeHtml(t('mainMenu'))}">
+          <a href="${homeAnchor('ipasumi')}" data-i18n="navProperties"></a>
+          <a href="${homeAnchor('pardot')}" data-i18n="navSell"></a>
+          <a href="${homeAnchor('komanda')}" data-i18n="navAbout"></a>
+          <a href="${homeAnchor('blog')}" data-i18n="navBlog"></a>
+          <a href="${homeAnchor('kontakti')}" data-i18n="navContact"></a>
+          <a href="${homeAnchor('buj')}" data-i18n="navFaq"></a>
+        </nav>
+        <div class="header-actions">
+          <div class="language-switcher">
+            <button class="language-picker" type="button" id="language-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="${escapeHtml(t('languageLabel'))}">
+              <img class="language-flag" src="${assetUrl(flags[state.language])}" alt="" width="18" height="12">
+              <span class="language-name">${escapeHtml(languages[state.language].name)}</span>
+              <span class="language-caret" aria-hidden="true"></span>
+            </button>
+            <ul class="language-menu" id="language-menu" role="listbox" aria-label="${escapeHtml(t('languageLabel'))}" hidden>
+              ${Object.entries(languages).map(([code, lang]) => `
+                <li class="language-option${state.language === code ? ' is-active' : ''}" role="option" data-language="${code}" aria-selected="${state.language === code}" tabindex="${state.language === code ? '0' : '-1'}">
+                  <img class="language-flag" src="${assetUrl(flags[code])}" alt="" width="18" height="12">
+                  <span>${escapeHtml(lang.name)}</span>
+                  <span class="language-check" aria-hidden="true">✓</span>
+                </li>`).join('')}
+            </ul>
+          </div>
+          <a class="header-phone" href="tel:+37124922942">+371 2492 2942</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu-overlay" data-menu-close></div>
+      <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="${escapeHtml(t('mainMenu'))}">
+        <div class="mobile-menu-head">
+          <img class="mobile-menu-logo" src="${BRAND_LOGO}" alt="Pārdod Laimīgs">
+          <button class="mobile-menu-close" type="button" data-menu-close aria-label="${escapeHtml(t('close'))}">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <nav class="mobile-menu-nav" aria-label="${escapeHtml(t('mainMenu'))}">
+          ${[['ipasumi', t('navProperties')], ['pardot', t('navSell')], ['komanda', t('navAbout')], ['blog', t('navBlog')], ['kontakti', t('navContact')], ['buj', t('navFaq')]]
+            .map(([anchor, label], index) => `<a href="${homeAnchor(anchor)}"><span class="mobile-menu-index">${String(index + 1).padStart(2, '0')}</span><span class="mobile-menu-label-text">${escapeHtml(label)}</span><span class="mobile-menu-arrow" aria-hidden="true">↗</span></a>`).join('')}
+        </nav>
+
+        <div class="mobile-menu-block">
+          <p class="mobile-menu-label" data-i18n="quickContact"></p>
+          <a class="mobile-menu-contact" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+371 2492 2942</strong></a>
+          <a class="mobile-menu-contact" href="tel:+37124922942"><span>Roberts</span><strong>+371 2492 2942</strong></a>
+        </div>
+
+        <div class="mobile-menu-foot">
+          <div class="mobile-menu-social">
+            <a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a>
+            <a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a>
+          </div>
+        </div>
+
+        <div class="mobile-menu-block mobile-menu-language">
+          <p class="mobile-menu-label" data-i18n="languageLabel"></p>
+          <div class="mobile-menu-langs" role="group" aria-label="${escapeHtml(t('languageLabel'))}">
+            ${Object.entries(languages).map(([code, lang]) => `
+              <button type="button" class="mobile-menu-lang${state.language === code ? ' is-active' : ''}" data-language="${code}" aria-pressed="${state.language === code}">
+                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}<span class="language-check" aria-hidden="true">✓</span>
+              </button>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <main id="top">
+${viewMarkup()}
     </main>
 
-    <footer class="site-footer"><div class="container footer-main"><a class="brand footer-brand" href="#top"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a><p data-i18n="footerLine"></p><div class="footer-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a><a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a><a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a><a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a></div><a class="footer-phone" href="tel:+37124922942">+371 2492 2942</a></div><div class="container footer-bottom"><span>© <span id="current-year"></span> Pārdod Laimīgs</span><button type="button" class="footer-cookie-link" id="manage-cookies">Sīkdatņu iestatījumi</button><a href="https://pardodlaimigs.lv/privatuma-politika/" target="_blank" rel="noreferrer" data-i18n="privacyLabel"></a></div></footer>
+    <footer class="site-footer"><div class="container footer-main"><a class="brand footer-brand" href="#top"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a><p data-i18n="footerLine"></p><div class="footer-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a><a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a><a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a><a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a></div><a class="footer-phone" href="tel:+37124922942">+371 2492 2942</a></div><div class="container footer-bottom"><span>© <span id="current-year"></span> Pārdod Laimīgs</span><button type="button" class="footer-cookie-link" id="manage-cookies">Sīkdatņu iestatījumi</button><a href="${siteUrl('privatuma-politika/')}" data-i18n="privacyLabel"></a></div></footer>
 
     <button class="quick-contact-button" id="quick-contact-toggle" type="button" aria-label="${escapeHtml(t('quickContact'))}" aria-expanded="false" aria-controls="quick-contact-panel"><i class="fa-solid fa-headset" aria-hidden="true"></i><span data-i18n="quickContact"></span></button>
     <div class="quick-contact-panel" id="quick-contact-panel" hidden><a class="quick-contact-single" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span></a><a href="tel:+37124922942"><span data-i18n="call"></span><strong>+371 2492 2942</strong></a></div>
 
     <div class="cookie-banner" id="cookie-banner" hidden><div class="cookie-copy"><strong data-i18n="cookiesTitle"></strong><p data-i18n="cookiesText"></p></div><div class="cookie-actions"><button type="button" class="button button-dark" id="accept-cookies" data-i18n="acceptCookies"></button><button type="button" class="button button-quiet" id="reject-cookies" data-i18n="rejectCookies"></button><button type="button" class="cookie-settings" id="open-cookie-settings" data-i18n="cookieSettings"></button></div></div>
 
-    <dialog class="property-dialog" id="property-dialog" aria-labelledby="property-dialog-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button><div id="property-dialog-content"></div></dialog>
+    <dialog class="property-dialog" id="property-dialog" aria-labelledby="property-detail-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button><div id="property-dialog-content"></div></dialog>
     <dialog class="cookie-dialog" id="cookie-dialog" aria-labelledby="cookie-dialog-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button><h2 id="cookie-dialog-title" data-i18n="cookiesTitle"></h2><p data-i18n="cookiesText"></p><label class="cookie-option"><span data-i18n="cookieNecessary"></span><input type="checkbox" checked disabled></label><label class="cookie-option"><span data-i18n="cookieAnalytics"></span><input id="analytics-cookies" type="checkbox"></label><button class="button button-dark" id="save-cookie-settings" type="button" data-i18n="saveChoices"></button></dialog>
   `;
 
   applyTranslations();
-  renderUrgentSteps();
-  renderFaq();
-  fillCategories();
-  renderProperties();
-  renderArticles();
-  renderReview();
-  renderLegalList();
+  if (route.name === 'home') {
+    renderUrgentSteps();
+    renderFaq();
+    fillCategories();
+    renderProperties();
+    renderArticles();
+    renderReview();
+    renderLegalList();
+    setupHero();
+  }
+  if (route.name === 'property') {
+    const property = propertyBySlug(route.slug);
+    if (property) bindPropertyDetail(property, { keyboard: true });
+  }
   bindEvents();
-  setupHero();
   setupCookies();
-  document.querySelector('#current-year').textContent = new Date().getFullYear();
+  const year = document.querySelector('#current-year');
+  if (year) year.textContent = new Date().getFullYear();
 }
 
 function applyTranslations() {
@@ -496,21 +795,21 @@ function applyTranslations() {
     if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') element.placeholder = value;
     else element.textContent = value;
   });
-  const title = document.querySelector('[data-i18n="heroTitle"]');
-  title.innerHTML = escapeHtml(t('heroTitle')).replaceAll('\n', '<br>');
+  const heroTitle = document.querySelector('[data-i18n="heroTitle"]');
+  if (heroTitle) heroTitle.innerHTML = escapeHtml(t('heroTitle')).replaceAll('\n', '<br>');
   document.querySelector('#search-category option[value=""]')?.replaceChildren(t('allTypes'));
   document.querySelector('#search-price option[value=""]')?.replaceChildren(t('allPrices'));
-  document.querySelector('.menu-toggle').setAttribute('aria-label', t('menuOpen'));
-  document.querySelector('.main-navigation').setAttribute('aria-label', t('mainMenu'));
-  document.querySelector('#language-toggle').setAttribute('aria-label', t('languageLabel'));
-  document.querySelector('#language-menu').setAttribute('aria-label', t('languageLabel'));
-  document.querySelector('#review-prev').setAttribute('aria-label', t('previousReview'));
-  document.querySelector('#review-next').setAttribute('aria-label', t('nextReview'));
-  document.querySelector('#quick-contact-toggle').setAttribute('aria-label', t('quickContact'));
+  document.querySelector('.menu-toggle')?.setAttribute('aria-label', t('menuOpen'));
+  document.querySelector('.main-navigation')?.setAttribute('aria-label', t('mainMenu'));
+  document.querySelector('#language-toggle')?.setAttribute('aria-label', t('languageLabel'));
+  document.querySelector('#language-menu')?.setAttribute('aria-label', t('languageLabel'));
+  document.querySelector('#review-prev')?.setAttribute('aria-label', t('previousReview'));
+  document.querySelector('#review-next')?.setAttribute('aria-label', t('nextReview'));
+  document.querySelector('#quick-contact-toggle')?.setAttribute('aria-label', t('quickContact'));
   document.querySelectorAll('[data-close-dialog]').forEach((button) => button.setAttribute('aria-label', t('close')));
-  document.querySelector('#view-all-top span').textContent = t('viewAll');
+  const viewAllTop = document.querySelector('#view-all-top span');
+  if (viewAllTop) viewAllTop.textContent = t('viewAll');
   document.querySelector('#manage-cookies').textContent = state.language === 'lv' ? 'Sīkdatņu iestatījumi' : t('cookieSettings');
-  document.querySelector('.desktop-link[href*="/blog/"]').firstChild.textContent = `${t('allArticles')} `;
 }
 
 function fillCategories() {
@@ -525,12 +824,23 @@ function priceNumber(value) {
 }
 
 function propertySummary(property) {
-  let summary = (property.description || '').replace(/^\[LV\]/, '').trim();
+  const summary = propertyDescription(property);
+  return summary.length > 260 ? `${summary.slice(0, 257).replace(/\s+\S*$/, '')}…` : summary;
+}
+
+/**
+ * The listing text as the CRM holds it: a "[LV]" prefix, then the prose, then a
+ * glued-together parameter dump ("Galvenie parametri:Kategorija: ...") that the
+ * facts block already shows. The page uses the prose, the dialog a teaser.
+ */
+function propertyDescription(property) {
+  let text = (property.description || '').replace(/^\[LV\]/, '').split(/Galvenie parametri/i)[0].trim();
   const title = property.title.trim();
-  if (summary.endsWith(title)) summary = summary.slice(0, -title.length).trim();
-  summary = summary.replace(/([a-zāčēģīķļņšūž0-9])([A-ZĀČĒĢĪĶĻŅŠŪŽ])/g, '$1 $2').replace(/\s+/g, ' ').trim();
-  if (summary.length > 260) summary = `${summary.slice(0, 257).replace(/\s+\S*$/, '')}…`;
-  return summary;
+  if (text.endsWith(title)) text = text.slice(0, -title.length).trim();
+  return text
+    .replace(/([a-zāčēģīķļņšūž0-9])([A-ZĀČĒĢĪĶĻŅŠŪŽ])/g, '$1 $2')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function filteredProperties() {
@@ -549,6 +859,7 @@ function renderProperties() {
   const results = filteredProperties();
   const shown = state.showAll ? results : results.slice(0, state.visibleCount);
   const grid = document.querySelector('#property-grid');
+  if (!grid) return;
   grid.innerHTML = shown.map((property, index) => `
     <article class="property-card" style="--card-index:${index}">
       <button class="property-image-button" type="button" data-property="${escapeHtml(property.slug)}" aria-label="${escapeHtml(t('details'))}: ${escapeHtml(property.title)}">
@@ -561,7 +872,7 @@ function renderProperties() {
         <h3><button class="property-title-button" type="button" data-property="${escapeHtml(property.slug)}">${escapeHtml(property.title)}</button></h3>
         <p class="property-address">${escapeHtml(property.address)}</p>
         ${property.facts?.length ? `<div class="property-facts">${property.facts.slice(0, 3).map((fact) => `<span>${escapeHtml(fact.value)} <small>${escapeHtml(factLabel(fact.label))}</small></span>`).join('')}</div>` : ''}
-        <div class="property-card-bottom"><strong class="property-price">${escapeHtml(property.price || t('priceFrom'))}</strong><button class="arrow-button" type="button" data-property="${escapeHtml(property.slug)}" aria-label="${escapeHtml(t('details'))}">↗</button></div>
+        <div class="property-card-bottom"><strong class="property-price">${escapeHtml(property.price || t('priceFrom'))}</strong><a class="arrow-button" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}" aria-label="${escapeHtml(t('details'))}">↗</a></div>
       </div>
     </article>`).join('');
   document.querySelector('#property-count').textContent = `${results.length} ${t('propertyCount')}`;
@@ -572,94 +883,20 @@ function renderProperties() {
 }
 
 function openProperty(slug) {
-  const property = state.properties.find((item) => item.slug === slug);
+  const property = propertyBySlug(slug);
   if (!property) return;
   const dialog = document.querySelector('#property-dialog');
-  const images = (property.gallery?.length ? property.gallery : [property.image_local || property.image]).filter(Boolean);
-  const agent = agents[property.agent] ?? { phone: '+371 2492 2942' };
-  const hasLocation = Number.isFinite(property.lat) && Number.isFinite(property.lng);
-  document.querySelector('#property-dialog-content').innerHTML = `
-    <div class="property-detail">
-      <div class="property-detail-media">
-      <img id="property-detail-image" src="${escapeHtml(assetUrl(images[0]))}" alt="${escapeHtml(property.title)}">
-        ${images.length > 1 ? `
-          <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}">←</button>
-          <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}">→</button>
-          <span class="property-gallery-position" id="property-gallery-position">1 / ${images.length}</span>
-          <div class="property-detail-thumbs" role="group" aria-label="${escapeHtml(t('galleryLabel'))}">
-            ${images.map((image, index) => `<button type="button" class="property-thumb${index === 0 ? ' is-active' : ''}" data-gallery-index="${index}" aria-label="${escapeHtml(`${t('photo')} ${index + 1}`)}"><img src="${escapeHtml(assetUrl(image))}" alt="" loading="lazy"></button>`).join('')}
-          </div>` : ''}
-      </div>
-      <div class="property-detail-copy">
-        <div class="property-type"><span class="property-type-blob">${escapeHtml(categoryLabel(property.category) || t('priceFrom'))}</span>${images.length > 1 ? `<span class="property-photo-count">${images.length} ${escapeHtml(t('photos'))}</span>` : ''}</div>
-        <h2 id="property-dialog-title">${escapeHtml(property.title)}</h2>
-        <div class="property-detail-place">
-          <p class="property-detail-address">${escapeHtml(property.address)}</p>
-          ${hasLocation ? `<button class="property-map-toggle" type="button" id="property-map-toggle" aria-expanded="false" aria-controls="property-map"><span>${escapeHtml(t('preciseLocation'))}</span><span aria-hidden="true">↗</span></button>` : ''}
-        </div>
-        ${hasLocation ? `<div class="property-map" id="property-map" hidden></div>` : ''}
-        <p class="property-detail-price">${escapeHtml(property.price || t('priceFrom'))}</p>
-        ${property.facts?.length ? `<ul class="property-detail-facts">${property.facts.map((fact) => `<li><strong>${escapeHtml(fact.value)}</strong><span>${escapeHtml(factLabel(fact.label))}</span></li>`).join('')}</ul>` : ''}
-        <p class="property-detail-text">${escapeHtml(propertySummary(property))}</p>
-        <div class="property-detail-agent"><span>${escapeHtml(t('agent'))}</span><strong>${escapeHtml(property.agent)}</strong><a href="tel:${escapeHtml(agent.phone.replace(/\s/g, ''))}">${escapeHtml(agent.phone)}</a></div>
-        <div class="property-detail-actions">
-          <button class="button button-dark" type="button" id="property-enquire">${escapeHtml(t('enquire'))}</button>
-          <a class="button button-outline" href="${escapeHtml(property.url)}" target="_blank" rel="noreferrer">${escapeHtml(t('fullListing'))}<span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </div>`;
-
-  const main = document.querySelector('#property-detail-image');
-  const counter = document.querySelector('#property-gallery-position');
-  const thumbs = [...document.querySelectorAll('[data-gallery-index]')];
-  let index = 0;
-
-  const show = (next) => {
-    index = ((next % images.length) + images.length) % images.length;
-    main.src = assetUrl(images[index]);
-    if (counter) counter.textContent = `${index + 1} / ${images.length}`;
-    thumbs.forEach((thumb, position) => thumb.classList.toggle('is-active', position === index));
-  };
-
-  thumbs.forEach((thumb) => thumb.addEventListener('click', () => show(Number(thumb.dataset.galleryIndex))));
-  document.querySelectorAll('[data-gallery-step]').forEach((button) => button.addEventListener('click', () => show(index + Number(button.dataset.galleryStep))));
-  galleryState = images.length > 1 ? { step: (delta) => show(index + delta) } : null;
-
-  const media = document.querySelector('.property-detail-media');
-  let touchStart = null;
-  media.addEventListener('touchstart', (event) => { touchStart = event.changedTouches[0].clientX; }, { passive: true });
-  media.addEventListener('touchend', (event) => {
-    if (touchStart === null) return;
-    const delta = event.changedTouches[0].clientX - touchStart;
-    touchStart = null;
-    if (images.length > 1 && Math.abs(delta) > 40) show(index + (delta < 0 ? 1 : -1));
-  });
-
-  const mapToggle = document.querySelector('#property-map-toggle');
-  mapToggle?.addEventListener('click', () => {
-    const map = document.querySelector('#property-map');
-    const open = mapToggle.getAttribute('aria-expanded') !== 'true';
-    mapToggle.setAttribute('aria-expanded', String(open));
-    map.hidden = !open;
-    if (open && !map.querySelector('iframe')) {
-      const query = `${property.lat},${property.lng}`;
-      map.innerHTML = `<iframe title="${escapeHtml(t('preciseLocation'))}: ${escapeHtml(property.title)}" src="https://www.google.com/maps?q=${query}&z=16&hl=${state.language}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a class="property-map-link" href="https://www.google.com/maps?q=${query}" target="_blank" rel="noreferrer"><span>${escapeHtml(t('openInMaps'))}</span><span aria-hidden="true">↗</span></a>`;
-    }
-    if (open) map.scrollIntoView({ block: 'nearest' });
-  });
-
-  document.querySelector('#property-enquire').addEventListener('click', () => {
-    dialog.close();
-    document.querySelector('#kontakti').scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-  document.querySelector('#property-dialog-content').scrollTop = 0;
+  const content = document.querySelector('#property-dialog-content');
+  content.innerHTML = propertyDetailHtml(property);
+  bindPropertyDetail(property);
+  content.scrollTop = 0;
   dialog.showModal();
 }
-
 function renderArticles() {
-  document.querySelector('#article-grid').innerHTML = state.articles.map((article, index) => `
-    <article class="article-card"><a href="${escapeHtml(article.url)}" target="_blank" rel="noreferrer"><img src="${escapeHtml(assetUrl(article.image))}" alt="" loading="lazy"><div class="article-copy"><span class="article-date">${escapeHtml(article.date)}</span><h3>${escapeHtml(t('articleTitles')?.[index] ?? article.title)}</h3><span class="article-link">${escapeHtml(t('readArticle'))}<span aria-hidden="true">↗</span></span></div></a></article>`).join('');
+  const grid = document.querySelector('#article-grid');
+  if (!grid) return;
+  grid.innerHTML = state.posts.map((post, index) => `
+    <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}"><img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy"><div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h3>${escapeHtml(t('articleTitles')?.[index] ?? postTitle(post))}</h3><span class="article-link">${escapeHtml(t('readArticle'))}<span aria-hidden="true">↗</span></span></div></a></article>`).join('');
 }
 
 function renderReview() {
@@ -799,7 +1036,7 @@ function setLanguage(code) {
   if (!languages[code] || code === state.language) return;
   state.language = code;
   localStorage.setItem('site-language', code);
-  renderShell();
+  renderRoute({ keepScroll: true });
 }
 
 /**
@@ -894,24 +1131,28 @@ function setupLanguageSwitcher() {
   document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
 }
 
+/** Bind a handler when this route has the element; not every page has every control. */
+function on(selector, event, handler) {
+  document.querySelector(selector)?.addEventListener(event, handler);
+}
+
 function bindEvents() {
   setupLanguageSwitcher();
   setupMobileMenu();
 
-  document.querySelector('#property-search').addEventListener('submit', (event) => {
+  on('#property-search', 'submit', (event) => {
     event.preventDefault();
     state.showAll = true;
     renderProperties();
-    document.querySelector('#ipasumi').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelector('#ipasumi')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-  document.querySelector('#search-category').addEventListener('change', () => { state.showAll = true; renderProperties(); });
-  document.querySelector('#search-price').addEventListener('change', () => { state.showAll = true; renderProperties(); });
-  document.querySelector('#search-query').addEventListener('input', () => { state.showAll = true; renderProperties(); });
-  document.querySelector('#view-all').addEventListener('click', () => { state.showAll = true; renderProperties(); });
-  document.querySelector('#view-all-top').addEventListener('click', (event) => { event.preventDefault(); state.showAll = true; renderProperties(); document.querySelector('#ipasumi').scrollIntoView({ behavior: 'smooth' }); });
+  ['#search-category', '#search-price'].forEach((selector) => on(selector, 'change', () => { state.showAll = true; renderProperties(); }));
+  on('#search-query', 'input', () => { state.showAll = true; renderProperties(); });
+  on('#view-all', 'click', () => { state.showAll = true; renderProperties(); });
+  on('#view-all-top', 'click', (event) => { event.preventDefault(); state.showAll = true; renderProperties(); document.querySelector('#ipasumi')?.scrollIntoView({ behavior: 'smooth' }); });
 
-  document.querySelector('#review-prev').addEventListener('click', () => { state.review = (state.review + reviews.length - 1) % reviews.length; renderReview(); });
-  document.querySelector('#review-next').addEventListener('click', () => { state.review = (state.review + 1) % reviews.length; renderReview(); });
+  on('#review-prev', 'click', () => { state.review = (state.review + reviews.length - 1) % reviews.length; renderReview(); });
+  on('#review-next', 'click', () => { state.review = (state.review + 1) % reviews.length; renderReview(); });
 
   document.querySelectorAll('[data-close-dialog]').forEach((button) => button.addEventListener('click', () => button.closest('dialog').close()));
   document.querySelectorAll('dialog').forEach((dialog) => dialog.addEventListener('click', (event) => {
@@ -919,33 +1160,33 @@ function bindEvents() {
   }));
 
   const propertyDialog = document.querySelector('#property-dialog');
-  propertyDialog.addEventListener('keydown', (event) => {
+  propertyDialog?.addEventListener('keydown', (event) => {
     if (!galleryState || (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')) return;
     event.preventDefault();
     galleryState.step(event.key === 'ArrowRight' ? 1 : -1);
   });
-  propertyDialog.addEventListener('close', () => { galleryState = null; });
+  propertyDialog?.addEventListener('close', () => { galleryState = null; });
 
   const quickToggle = document.querySelector('#quick-contact-toggle');
-  quickToggle.addEventListener('click', () => {
+  quickToggle?.addEventListener('click', () => {
     const panel = document.querySelector('#quick-contact-panel');
     const open = quickToggle.getAttribute('aria-expanded') !== 'true';
     quickToggle.setAttribute('aria-expanded', String(open));
     panel.hidden = !open;
   });
 
-  document.querySelector('#contact-form').addEventListener('submit', (event) => {
+  on('#contact-form', 'submit', (event) => {
     event.preventDefault();
     const feedback = document.querySelector('#form-feedback');
     feedback.textContent = t('localNote');
     feedback.hidden = false;
   });
 
-  document.querySelector('#accept-cookies').addEventListener('click', () => saveCookieConsent(true));
-  document.querySelector('#reject-cookies').addEventListener('click', () => saveCookieConsent(false));
-  document.querySelector('#open-cookie-settings').addEventListener('click', openCookieSettings);
-  document.querySelector('#manage-cookies').addEventListener('click', openCookieSettings);
-  document.querySelector('#save-cookie-settings').addEventListener('click', () => saveCookieConsent(document.querySelector('#analytics-cookies').checked));
+  on('#accept-cookies', 'click', () => saveCookieConsent(true));
+  on('#reject-cookies', 'click', () => saveCookieConsent(false));
+  on('#open-cookie-settings', 'click', openCookieSettings);
+  on('#manage-cookies', 'click', openCookieSettings);
+  on('#save-cookie-settings', 'click', () => saveCookieConsent(document.querySelector('#analytics-cookies').checked));
 }
 
 function setupCookies() {
@@ -1001,13 +1242,16 @@ function trackStickyHeader() {
 
 async function start() {
   try {
-    const [properties, articles] = await Promise.all([
+    const [properties, posts, pages] = await Promise.all([
       fetch(assetUrl('/data/properties.json')).then((response) => response.json()),
-      fetch(assetUrl('/data/articles.json')).then((response) => response.json()),
+      fetch(assetUrl('/data/posts.json')).then((response) => response.json()),
+      fetch(assetUrl('/data/pages.json')).then((response) => response.json()),
     ]);
     state.properties = properties;
-    state.articles = articles;
-    renderShell();
+    state.posts = posts;
+    state.pages = pages;
+    renderRoute();
+    bindNavigation();
     trackStickyHeader();
   } catch (error) {
     document.querySelector('#app').innerHTML = '<main class="load-error">Could not load local content. Run the project using <code>npm run dev</code>.</main>';
