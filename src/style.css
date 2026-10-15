@@ -33,7 +33,7 @@ img { display: block; max-width: 100%; }
 .site-header { position: sticky; z-index: 20; top: 0; background: var(--brand); color: #fff; }
 .header-inner { min-height: 82px; display: flex; align-items: center; gap: 34px; }
 .brand { display: inline-flex; align-items: center; flex: 0 0 180px; }
-.brand img { width: 178px; max-height: 48px; filter: brightness(0) invert(1); }
+.brand img { width: 178px; max-height: 54px; filter: brightness(0) invert(1); }
 .main-navigation { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 34px); margin-left: auto; }
 .main-navigation a, .header-phone { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; }
 .main-navigation a { opacity: .88; transition: opacity .18s ease; }
