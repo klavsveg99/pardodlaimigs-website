@@ -46,7 +46,7 @@ const languages = {
     reviewsTitle: 'Labi darījumi sākas ar uzticēšanos',
     reviewCount: '150+ laimīgu klientu',
     blogEyebrow: 'Padomi, ieteikumi un vērtīgs materiāls',
-    blogTitle: 'Noderīga informācija',
+    blogTitle: 'Bloga raksti',
     readArticle: 'Lasīt rakstu',
     teamEyebrow: 'Cilvēki, kuri būs tavā pusē',
     teamTitle: 'Mūsu komanda',
@@ -105,7 +105,7 @@ const languages = {
     searchTitle: 'Find your next property', searchType: 'Property type', searchPrice: 'Maximum price', searchPlace: 'Place or keyword', searchAction: 'Search', allTypes: 'All types', allPrices: 'Any price',
     propertiesEyebrow: 'Land and homes for sale', propertiesTitle: 'Properties worth a closer look', propertiesLead: 'Browse current listings and get in touch to find out more.', viewAll: 'View all properties', propertyCount: 'properties', details: 'View property',
     sellEyebrow: 'A smoother way to sell', sellTitle: 'A considered approach for every property', sellLead: 'An accurate valuation and a clear plan help you make better decisions.', apartment: 'Apartment', apartmentText: 'We assess the market, prepare the listing, and find the right buyer.', house: 'House', houseText: 'We guide the sale even when the situation is not straightforward.', land: 'Land or forest', landText: 'We compare similar sales to find a realistic price and the right options.', sellAction: 'Request a consultation',
-    reviewsEyebrow: 'What our clients say', reviewsTitle: 'Good deals start with trust', reviewCount: '150+ happy clients', blogEyebrow: 'Advice, ideas and useful resources', blogTitle: 'Useful information', readArticle: 'Read article', teamEyebrow: 'People on your side', teamTitle: 'Our team', agent: 'Real estate agent',
+    reviewsEyebrow: 'What our clients say', reviewsTitle: 'Good deals start with trust', reviewCount: '150+ happy clients', blogEyebrow: 'Advice, ideas and useful resources', blogTitle: 'Blog articles', readArticle: 'Read article', teamEyebrow: 'People on your side', teamTitle: 'Our team', agent: 'Real estate agent',
     contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', localNote: 'Preview form - your request is not sent.', formConsent: 'I agree to the processing of my personal data under the privacy policy', loadMore: 'Show more articles', formPhoneCode: 'Country code', formPhoneInvalid: 'Enter a valid phone number.', formEmailInvalid: 'Enter a valid email address.', formCaptchaFailed: 'The security check failed. Please try again.', termsLabel: 'Terms of Service', recaptchaNote: 'This site is protected by reCAPTCHA and the Google [privacy] and [terms] apply.',
     legalTitle: 'Legal support', legalItems: ['Purchase of properties with legal encumbrances', 'Subdivision and naming of properties', 'Inheritance matters', 'Debt recovery matters', 'Preparation and review of purchase agreements'], footerLine: 'Quick, easy, happy.', quickContact: 'Quick contact', call: 'Call', email: 'Send an email', cookiesTitle: 'Your privacy choices', cookiesText: 'We use essential cookies to run this site. With your permission, we may also use analytics cookies.', acceptCookies: 'Accept all', rejectCookies: 'Essential only', cookieSettings: 'Settings', cookieNecessary: 'Essential', cookieAnalytics: 'Analytics', saveChoices: 'Save choices', close: 'Close', noResults: 'No properties match these filters.', priceFrom: 'Price on request',
   },
@@ -115,7 +115,7 @@ const languages = {
     searchTitle: 'Найдите свою недвижимость', searchType: 'Тип недвижимости', searchPrice: 'Максимальная цена', searchPlace: 'Место или ключевое слово', searchAction: 'Искать', allTypes: 'Все типы', allPrices: 'Любая цена',
     propertiesEyebrow: 'Земля и недвижимость на продажу', propertiesTitle: 'Объекты, заслуживающие внимания', propertiesLead: 'Посмотрите актуальные предложения и свяжитесь с нами, чтобы узнать подробности.', viewAll: 'Все объекты', propertyCount: 'объектов', details: 'Посмотреть объект',
     sellEyebrow: 'Продажа без лишнего стресса', sellTitle: 'Индивидуальный подход к каждому объекту', sellLead: 'Точная оценка и понятный план помогают принимать верные решения.', apartment: 'Квартира', apartmentText: 'Оценим рынок, подготовим объявление и найдем подходящего покупателя.', house: 'Дом', houseText: 'Поможем пройти процесс продажи, даже если ситуация нестандартная.', land: 'Земля или лес', landText: 'Сравним похожие сделки, чтобы определить обоснованную цену и возможности.', sellAction: 'Записаться на консультацию',
-    reviewsEyebrow: 'Отзывы наших клиентов', reviewsTitle: 'Хорошие сделки начинаются с доверия', reviewCount: 'Более 150 довольных клиентов', blogEyebrow: 'Советы и полезные материалы', blogTitle: 'Полезная информация', readArticle: 'Читать статью', teamEyebrow: 'Люди на вашей стороне', teamTitle: 'Наша команда', agent: 'Агент по недвижимости',
+    reviewsEyebrow: 'Отзывы наших клиентов', reviewsTitle: 'Хорошие сделки начинаются с доверия', reviewCount: 'Более 150 довольных клиентов', blogEyebrow: 'Советы и полезные материалы', blogTitle: 'Статьи в блогах', readArticle: 'Читать статью', teamEyebrow: 'Люди на вашей стороне', teamTitle: 'Наша команда', agent: 'Агент по недвижимости',
     contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', localNote: 'Демонстрационная форма - заявка не отправляется.', formConsent: 'Я согласен на обработку персональных данных согласно политике конфиденциальности', loadMore: 'Показать больше статей', formPhoneCode: 'Код страны', formPhoneInvalid: 'Введите корректный номер телефона.', formEmailInvalid: 'Введите корректный адрес эл. почты.', formCaptchaFailed: 'Проверка безопасности не удалась. Попробуйте ещё раз.', termsLabel: 'Условия использования', recaptchaNote: 'Этот сайт защищён reCAPTCHA. Применяются [privacy] и [terms] Google.',
     legalTitle: 'Юридическая поддержка', legalItems: ['Выкуп объектов с юридическими обременениями', 'Раздел недвижимости и присвоение названий', 'Вопросы наследства', 'Вопросы взыскания долгов', 'Подготовка и проверка договоров купли-продажи'], footerLine: 'Быстро, удобно, счастливо.', quickContact: 'Быстрая связь', call: 'Позвонить', email: 'Написать', cookiesTitle: 'Настройки конфиденциальности', cookiesText: 'Для работы сайта используются необходимые cookie. С вашего разрешения также могут использоваться аналитические cookie.', acceptCookies: 'Разрешить все', rejectCookies: 'Только необходимые', cookieSettings: 'Настройки', cookieNecessary: 'Необходимые', cookieAnalytics: 'Аналитика', saveChoices: 'Сохранить выбор', close: 'Закрыть', noResults: 'По этим критериям объекты не найдены.', priceFrom: 'Цена по запросу',
   },
@@ -125,7 +125,7 @@ const languages = {
     searchTitle: 'Finden Sie Ihre nächste Immobilie', searchType: 'Immobilientyp', searchPrice: 'Höchstpreis', searchPlace: 'Ort oder Stichwort', searchAction: 'Suchen', allTypes: 'Alle Typen', allPrices: 'Jeder Preis',
     propertiesEyebrow: 'Grundstücke und Immobilien zum Verkauf', propertiesTitle: 'Immobilien, die einen Blick wert sind', propertiesLead: 'Entdecken Sie aktuelle Angebote und fragen Sie uns nach weiteren Informationen.', viewAll: 'Alle Immobilien ansehen', propertyCount: 'Immobilien', details: 'Immobilie ansehen',
     sellEyebrow: 'Verkaufen ohne unnötigen Stress', sellTitle: 'Ein passender Weg für jede Immobilie', sellLead: 'Eine genaue Bewertung und ein klarer Plan helfen bei guten Entscheidungen.', apartment: 'Wohnung', apartmentText: 'Wir bewerten den Markt, erstellen das Angebot und finden den passenden Käufer.', house: 'Haus', houseText: 'Wir begleiten den Verkauf auch in besonderen Situationen.', land: 'Grundstück oder Wald', landText: 'Wir vergleichen ähnliche Verkäufe, um einen fairen Preis und Möglichkeiten zu finden.', sellAction: 'Beratung anfragen',
-    reviewsEyebrow: 'Das sagen unsere Kunden', reviewsTitle: 'Gute Geschäfte beginnen mit Vertrauen', reviewCount: 'Mehr als 150 zufriedene Kunden', blogEyebrow: 'Tipps und hilfreiche Informationen', blogTitle: 'Nützliche Informationen', readArticle: 'Artikel lesen', teamEyebrow: 'Menschen an Ihrer Seite', teamTitle: 'Unser Team', agent: 'Immobilienmakler',
+    reviewsEyebrow: 'Das sagen unsere Kunden', reviewsTitle: 'Gute Geschäfte beginnen mit Vertrauen', reviewCount: 'Mehr als 150 zufriedene Kunden', blogEyebrow: 'Tipps und hilfreiche Informationen', blogTitle: 'Blog-Artikel', readArticle: 'Artikel lesen', teamEyebrow: 'Menschen an Ihrer Seite', teamTitle: 'Unser Team', agent: 'Immobilienmakler',
     contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', localNote: 'Vorschauformular - die Anfrage wird nicht gesendet.', formConsent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzerklärung zu', loadMore: 'Mehr Artikel anzeigen', formPhoneCode: 'Ländervorwahl', formPhoneInvalid: 'Bitte eine gültige Telefonnummer eingeben.', formEmailInvalid: 'Bitte eine gültige E-Mail-Adresse eingeben.', formCaptchaFailed: 'Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.', termsLabel: 'Nutzungsbedingungen', recaptchaNote: 'Diese Website ist durch reCAPTCHA geschützt. Es gelten die [privacy] und die [terms] von Google.',
     legalTitle: 'Rechtliche Unterstützung', legalItems: ['Ankauf rechtlich belasteter Immobilien', 'Teilung und Benennung von Grundstücken', 'Erbschaftsangelegenheiten', 'Fragen zur Forderungsvollstreckung', 'Vorbereitung und Prüfung von Kaufverträgen'], footerLine: 'Schnell, einfach, glücklich.', quickContact: 'Schnellkontakt', call: 'Anrufen', email: 'E-Mail senden', cookiesTitle: 'Ihre Datenschutzeinstellungen', cookiesText: 'Für den Betrieb der Website verwenden wir notwendige Cookies. Mit Ihrer Einwilligung können auch Analyse-Cookies eingesetzt werden.', acceptCookies: 'Alle akzeptieren', rejectCookies: 'Nur notwendige', cookieSettings: 'Einstellungen', cookieNecessary: 'Notwendig', cookieAnalytics: 'Analyse', saveChoices: 'Auswahl speichern', close: 'Schließen', noResults: 'Keine Immobilien für diese Kriterien gefunden.', priceFrom: 'Preis auf Anfrage',
   },
@@ -279,6 +279,7 @@ const state = {
   properties: [],
   posts: [],
   pages: [],
+  useful: null,
   visibleCount: 6,
   blogVisible: BLOG_BATCH,
   showAll: false,
@@ -679,6 +680,8 @@ function homeView() {
         </div>
       </section>
 
+      ${usefulSection()}
+
       <section class="podcast-section">
         <div class="container podcast-layout"><div><p class="eyebrow" data-i18n="podcastTitle"></p><p data-i18n="podcastLead"></p></div><div class="podcast-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><span data-i18n="youtube"></span><span aria-hidden="true">↗</span></a><a href="https://open.spotify.com/show/5Tansq4D8byHA7ciR9DA2n" target="_blank" rel="noreferrer"><span data-i18n="spotify"></span><span aria-hidden="true">↗</span></a></div></div>
       </section>
@@ -971,6 +974,29 @@ function openProperty(slug) {
   content.scrollTop = 0;
   dialog.showModal();
 }
+/**
+ * The old site's "Noderīga informācija" block (inheritance, document checks,
+ * the Land Register, buying in a child's name), migrated as an accordion on the
+ * homepage. The first item is open so the block is not just four closed rows.
+ */
+function usefulSection() {
+  const useful = state.useful?.[state.language] ?? state.useful?.lv;
+  if (!useful?.tabs?.length) return '';
+  return `
+      <section class="section info-section" aria-labelledby="info-title">
+        <div class="container">
+          <div class="section-heading"><h2 id="info-title">${escapeHtml(useful.title)}</h2></div>
+          <div class="info-list">
+            ${useful.tabs.map((tab, index) => `
+              <details class="info-item"${index === 0 ? ' open' : ''}>
+                <summary>${escapeHtml(tab.title)}</summary>
+                <div class="post-body">${tab.html}</div>
+              </details>`).join('')}
+          </div>
+        </div>
+      </section>`;
+}
+
 function articleCard(post, index) {
   return `
     <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}">
@@ -1463,14 +1489,16 @@ function trackStickyHeader() {
 
 async function start() {
   try {
-    const [properties, posts, pages] = await Promise.all([
+    const [properties, posts, pages, useful] = await Promise.all([
       fetch(assetUrl('/data/properties.json')).then((response) => response.json()),
       fetch(assetUrl('/data/posts.json')).then((response) => response.json()),
       fetch(assetUrl('/data/pages.json')).then((response) => response.json()),
+      fetch(assetUrl('/data/useful.json')).then((response) => response.json()),
     ]);
     state.properties = properties;
     state.posts = posts;
     state.pages = pages;
+    state.useful = useful;
     renderRoute();
     bindNavigation();
     trackStickyHeader();
