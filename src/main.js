@@ -265,15 +265,21 @@ function renderShell() {
           <a href="#buj" data-i18n="navFaq"></a>
         </nav>
         <div class="header-actions">
-          <label class="language-picker">
-            <span class="sr-only" data-i18n="languageLabel"></span>
-            <img class="language-flag" src="${assetUrl(flags[state.language])}" alt="" width="18" height="12">
-            <span class="language-name">${escapeHtml(languages[state.language].name)}</span>
-            <span class="language-caret" aria-hidden="true"></span>
-            <select id="language-picker" aria-label="${escapeHtml(t('languageLabel'))}">
-              ${Object.entries(languages).map(([code, lang]) => `<option value="${code}" ${state.language === code ? 'selected' : ''}>${escapeHtml(lang.name)}</option>`).join('')}
-            </select>
-          </label>
+          <div class="language-switcher">
+            <button class="language-picker" type="button" id="language-toggle" aria-haspopup="listbox" aria-expanded="false" aria-label="${escapeHtml(t('languageLabel'))}">
+              <img class="language-flag" src="${assetUrl(flags[state.language])}" alt="" width="18" height="12">
+              <span class="language-name">${escapeHtml(languages[state.language].name)}</span>
+              <span class="language-caret" aria-hidden="true"></span>
+            </button>
+            <ul class="language-menu" id="language-menu" role="listbox" aria-label="${escapeHtml(t('languageLabel'))}" hidden>
+              ${Object.entries(languages).map(([code, lang]) => `
+                <li class="language-option${state.language === code ? ' is-active' : ''}" role="option" data-language="${code}" aria-selected="${state.language === code}" tabindex="${state.language === code ? '0' : '-1'}">
+                  <img class="language-flag" src="${assetUrl(flags[code])}" alt="" width="18" height="12">
+                  <span>${escapeHtml(lang.name)}</span>
+                  <span class="language-check" aria-hidden="true">✓</span>
+                </li>`).join('')}
+            </ul>
+          </div>
           <a class="header-phone" href="tel:+37124922942">+371 2492 2942</a>
         </div>
       </div>
@@ -299,7 +305,7 @@ function renderShell() {
           <div class="mobile-menu-langs" role="group" aria-label="${escapeHtml(t('languageLabel'))}">
             ${Object.entries(languages).map(([code, lang]) => `
               <button type="button" class="mobile-menu-lang${state.language === code ? ' is-active' : ''}" data-language="${code}" aria-pressed="${state.language === code}">
-                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}
+                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}<span class="language-check" aria-hidden="true">✓</span>
               </button>`).join('')}
           </div>
         </div>
@@ -493,7 +499,8 @@ function applyTranslations() {
   document.querySelector('#search-price option[value=""]')?.replaceChildren(t('allPrices'));
   document.querySelector('.menu-toggle').setAttribute('aria-label', t('menuOpen'));
   document.querySelector('.main-navigation').setAttribute('aria-label', t('mainMenu'));
-  document.querySelector('#language-picker').setAttribute('aria-label', t('languageLabel'));
+  document.querySelector('#language-toggle').setAttribute('aria-label', t('languageLabel'));
+  document.querySelector('#language-menu').setAttribute('aria-label', t('languageLabel'));
   document.querySelector('#review-prev').setAttribute('aria-label', t('previousReview'));
   document.querySelector('#review-next').setAttribute('aria-label', t('nextReview'));
   document.querySelector('#quick-contact-toggle').setAttribute('aria-label', t('quickContact'));
@@ -792,9 +799,100 @@ function setLanguage(code) {
   renderShell();
 }
 
-function bindEvents() {
-  document.querySelector('#language-picker').addEventListener('change', (event) => setLanguage(event.target.value));
+/**
+ * Header language switcher: a button plus a styled listbox, so the choice is
+ * not the browser's native select popup. Keyboard: Enter/Space/ArrowDown opens,
+ * arrows move, Enter/Space picks, Escape closes and returns focus.
+ */
+function setupLanguageSwitcher() {
+  const toggle = document.querySelector('#language-toggle');
+  const menu = document.querySelector('#language-menu');
+  if (!toggle || !menu) return;
 
+  const options = [...menu.querySelectorAll('[data-language]')];
+  const activeOption = options.find((option) => option.classList.contains('is-active')) ?? options[0];
+  let lastFocused = null;
+
+  const isOpen = () => !menu.hidden;
+
+  const open = (focusFirst = false) => {
+    lastFocused = document.activeElement;
+    menu.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    const target = focusFirst ? options[0] : activeOption;
+    target?.focus();
+  };
+
+  const close = (restoreFocus = true) => {
+    if (!isOpen()) return;
+    // Focus is inside the menu when closing by keyboard: hand it back to the
+    // button so the user does not land on the document body.
+    const focusWasInside = menu.contains(document.activeElement);
+    menu.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    if (!restoreFocus) return;
+    if (focusWasInside) toggle.focus();
+    else if (lastFocused instanceof HTMLElement && lastFocused.isConnected) lastFocused.focus();
+  };
+
+  const focusOption = (index) => {
+    const bounded = (index + options.length) % options.length;
+    options.forEach((option, position) => option.setAttribute('tabindex', position === bounded ? '0' : '-1'));
+    options[bounded].focus();
+  };
+
+  const choose = (option) => {
+    close(false);
+    setLanguage(option.dataset.language);
+  };
+
+  toggle.addEventListener('click', () => (isOpen() ? close() : open()));
+  toggle.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      open(true);
+    }
+  });
+
+  options.forEach((option, index) => {
+    option.addEventListener('click', () => choose(option));
+    option.addEventListener('mouseenter', () => {
+      // Keep the roving tabindex on whatever the pointer is over.
+      options.forEach((other, position) => other.setAttribute('tabindex', position === index ? '0' : '-1'));
+    });
+    option.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        choose(option);
+      } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        focusOption(index + 1);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        focusOption(index - 1);
+      } else if (event.key === 'Home') {
+        event.preventDefault();
+        focusOption(0);
+      } else if (event.key === 'End') {
+        event.preventDefault();
+        focusOption(options.length - 1);
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
+        close();
+      } else if (event.key === 'Tab') {
+        close(false);
+      }
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (isOpen() && !event.target.closest('.language-switcher')) close(false);
+  });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
+}
+
+function bindEvents() {
+  setupLanguageSwitcher();
   setupMobileMenu();
 
   document.querySelector('#property-search').addEventListener('submit', (event) => {
