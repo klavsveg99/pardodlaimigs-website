@@ -305,16 +305,6 @@ function renderShell() {
         </nav>
 
         <div class="mobile-menu-block">
-          <p class="mobile-menu-label" data-i18n="languageLabel"></p>
-          <div class="mobile-menu-langs" role="group" aria-label="${escapeHtml(t('languageLabel'))}">
-            ${Object.entries(languages).map(([code, lang]) => `
-              <button type="button" class="mobile-menu-lang${state.language === code ? ' is-active' : ''}" data-language="${code}" aria-pressed="${state.language === code}">
-                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}<span class="language-check" aria-hidden="true">✓</span>
-              </button>`).join('')}
-          </div>
-        </div>
-
-        <div class="mobile-menu-block">
           <p class="mobile-menu-label" data-i18n="quickContact"></p>
           <a class="mobile-menu-contact" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+371 2492 2942</strong></a>
           <a class="mobile-menu-contact" href="tel:+37124922942"><span>Roberts</span><strong>+371 2492 2942</strong></a>
@@ -326,6 +316,16 @@ function renderShell() {
             <a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a>
             <a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a>
             <a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a>
+          </div>
+        </div>
+
+        <div class="mobile-menu-block mobile-menu-language">
+          <p class="mobile-menu-label" data-i18n="languageLabel"></p>
+          <div class="mobile-menu-langs" role="group" aria-label="${escapeHtml(t('languageLabel'))}">
+            ${Object.entries(languages).map(([code, lang]) => `
+              <button type="button" class="mobile-menu-lang${state.language === code ? ' is-active' : ''}" data-language="${code}" aria-pressed="${state.language === code}">
+                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}<span class="language-check" aria-hidden="true">✓</span>
+              </button>`).join('')}
           </div>
         </div>
       </div>
