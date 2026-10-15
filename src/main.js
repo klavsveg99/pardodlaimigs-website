@@ -246,13 +246,16 @@ const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => (
 
 function renderShell() {
   const heroSlides = state.properties.filter((property) => property.hero_image);
+  // The shell is always rebuilt with the menu closed, so a lock left over from
+  // an open drawer (for example when the language changed inside it) must go.
+  document.body.classList.remove('menu-locked');
   document.documentElement.lang = state.language;
   document.title = state.language === 'lv' ? 'Pārdod Laimīgs - nekustamā īpašuma pārdošana' : `Pārdod Laimīgs - ${t('navSell')}`;
   document.querySelector('#app').innerHTML = `
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#top" aria-label="Pārdod Laimīgs - sākums"><img src="${assetUrl('/images/brand/logo.svg')}" alt="Pārdod Laimīgs"></a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation" aria-label="${escapeHtml(t('menuOpen'))}"><span></span><span></span></button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="${escapeHtml(t('menuOpen'))}"><span></span><span></span><span></span></button>
         <nav class="main-navigation" id="main-navigation" aria-label="${escapeHtml(t('mainMenu'))}">
           <a href="#ipasumi" data-i18n="navProperties"></a>
           <a href="#pardot" data-i18n="navSell"></a>
@@ -275,6 +278,49 @@ function renderShell() {
         </div>
       </div>
     </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu-overlay" data-menu-close></div>
+      <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="${escapeHtml(t('mainMenu'))}">
+        <div class="mobile-menu-head">
+          <img class="mobile-menu-logo" src="${assetUrl('/images/brand/logo.svg')}" alt="Pārdod Laimīgs">
+          <button class="mobile-menu-close" type="button" data-menu-close aria-label="${escapeHtml(t('close'))}">
+            <span aria-hidden="true"></span><span aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <nav class="mobile-menu-nav" aria-label="${escapeHtml(t('mainMenu'))}">
+          ${[['#ipasumi', t('navProperties')], ['#pardot', t('navSell')], ['#komanda', t('navAbout')], ['#blog', t('navBlog')], ['#kontakti', t('navContact')], ['#buj', t('navFaq')]]
+            .map(([href, label], index) => `<a href="${href}"><span class="mobile-menu-index">${String(index + 1).padStart(2, '0')}</span><span class="mobile-menu-label-text">${escapeHtml(label)}</span><span class="mobile-menu-arrow" aria-hidden="true">↗</span></a>`).join('')}
+        </nav>
+
+        <div class="mobile-menu-block">
+          <p class="mobile-menu-label" data-i18n="languageLabel"></p>
+          <div class="mobile-menu-langs" role="group" aria-label="${escapeHtml(t('languageLabel'))}">
+            ${Object.entries(languages).map(([code, lang]) => `
+              <button type="button" class="mobile-menu-lang${state.language === code ? ' is-active' : ''}" data-language="${code}" aria-pressed="${state.language === code}">
+                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}
+              </button>`).join('')}
+          </div>
+        </div>
+
+        <div class="mobile-menu-block">
+          <p class="mobile-menu-label" data-i18n="quickContact"></p>
+          <a class="mobile-menu-contact" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+371 2492 2942</strong></a>
+          <a class="mobile-menu-contact" href="tel:+37124922942"><span>Roberts</span><strong>+371 2492 2942</strong></a>
+          <a class="mobile-menu-contact" href="tel:+37128228208"><span>Inga</span><strong>+371 2822 8208</strong></a>
+        </div>
+
+        <div class="mobile-menu-foot">
+          <div class="mobile-menu-social">
+            <a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a>
+            <a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a>
+            <a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <main id="top">
       <section class="hero-section">
@@ -686,6 +732,45 @@ function setupHero() {
   startHeroTimer();
 }
 
+function setupMobileMenu() {
+  const menu = document.querySelector('#mobile-menu');
+  const toggle = document.querySelector('.menu-toggle');
+  if (!menu || !toggle) return;
+
+  const mobileQuery = window.matchMedia('(max-width: 680px)');
+  let lastFocused = null;
+
+  const open = () => {
+    lastFocused = document.activeElement;
+    menu.classList.add('is-open');
+    toggle.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-locked');
+    menu.querySelector('.mobile-menu-close')?.focus();
+  };
+
+  const close = (restoreFocus = true) => {
+    if (!menu.classList.contains('is-open')) return;
+    menu.classList.remove('is-open');
+    toggle.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-locked');
+    if (restoreFocus) (lastFocused instanceof HTMLElement ? lastFocused : toggle).focus();
+  };
+
+  toggle.addEventListener('click', () => (menu.classList.contains('is-open') ? close() : open()));
+  menu.querySelectorAll('[data-menu-close]').forEach((element) => element.addEventListener('click', () => close()));
+  menu.querySelectorAll('.mobile-menu-nav a').forEach((link) => link.addEventListener('click', () => close(false)));
+  menu.querySelectorAll('[data-language]').forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.language)));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
+
+  // Leaving the mobile breakpoint (rotation, resize) must not leave a stray
+  // panel or a locked body behind.
+  mobileQuery.addEventListener('change', (event) => { if (!event.matches) close(false); });
+}
+
 function renderLegalList() {
   document.querySelector('#legal-list').innerHTML = t('legalItems')
     .map((item, index) => `<li><span class="legal-number">${String(index + 1).padStart(2, '0')}</span><p>${escapeHtml(item)}</p></li>`)
@@ -700,23 +785,17 @@ function renderFaq() {
   document.querySelector('#faq-list').innerHTML = t('faqItems').map(([question, answer]) => `<details class="faq-item"><summary>${escapeHtml(question)}</summary><p>${escapeHtml(answer)}</p></details>`).join('');
 }
 
-function bindEvents() {
-  document.querySelector('#language-picker').addEventListener('change', (event) => {
-    state.language = event.target.value;
-    localStorage.setItem('site-language', state.language);
-    renderShell();
-  });
+function setLanguage(code) {
+  if (!languages[code] || code === state.language) return;
+  state.language = code;
+  localStorage.setItem('site-language', code);
+  renderShell();
+}
 
-  const menuToggle = document.querySelector('.menu-toggle');
-  menuToggle.addEventListener('click', () => {
-    const open = menuToggle.getAttribute('aria-expanded') !== 'true';
-    menuToggle.setAttribute('aria-expanded', String(open));
-    document.querySelector('.main-navigation').classList.toggle('is-open', open);
-  });
-  document.querySelectorAll('.main-navigation a').forEach((link) => link.addEventListener('click', () => {
-    menuToggle.setAttribute('aria-expanded', 'false');
-    document.querySelector('.main-navigation').classList.remove('is-open');
-  }));
+function bindEvents() {
+  document.querySelector('#language-picker').addEventListener('change', (event) => setLanguage(event.target.value));
+
+  setupMobileMenu();
 
   document.querySelector('#property-search').addEventListener('submit', (event) => {
     event.preventDefault();
