@@ -730,7 +730,7 @@ function renderShell() {
   document.querySelector('#app').innerHTML = `
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="Pārdod Laimīgs - sākums"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
+        <a class="brand" href="${siteUrl()}" aria-label="Pārdod Laimīgs - sākums"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="${escapeHtml(t('menuOpen'))}"><span></span><span></span><span></span></button>
         <nav class="main-navigation" id="main-navigation" aria-label="${escapeHtml(t('mainMenu'))}">
           <a href="${homeAnchor('ipasumi')}" data-i18n="navProperties"></a>
@@ -803,7 +803,7 @@ ${viewMarkup()}
     <footer class="site-footer">
       <div class="container footer-main">
         <div class="footer-brand-block">
-          <a class="brand footer-brand" href="#top"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
+          <a class="brand footer-brand" href="${siteUrl()}"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
           <p data-i18n="footerLine"></p>
         </div>
         <div class="footer-contact-block">
