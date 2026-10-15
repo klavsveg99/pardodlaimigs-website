@@ -381,8 +381,8 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
       <div class="property-detail-media">
         <img id="property-detail-image" src="${escapeHtml(assetUrl(images[0]))}" alt="${escapeHtml(property.title)}">
         ${images.length > 1 ? `
-          <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}">←</button>
-          <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}">→</button>
+          <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+          <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
           <span class="property-gallery-position" id="property-gallery-position">1 / ${images.length}</span>
           <div class="property-detail-thumbs" role="group" aria-label="${escapeHtml(t('galleryLabel'))}">
             ${images.map((image, index) => `<button type="button" class="property-thumb${index === 0 ? ' is-active' : ''}" data-gallery-index="${index}" aria-label="${escapeHtml(`${t('photo')} ${index + 1}`)}"><img src="${escapeHtml(assetUrl(image))}" alt="" loading="lazy"></button>`).join('')}
@@ -393,7 +393,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
         <${heading} id="property-detail-title">${escapeHtml(property.title)}</${heading}>
         <div class="property-detail-place">
           <p class="property-detail-address">${escapeHtml(property.address)}</p>
-          ${hasLocation ? `<button class="property-map-toggle" type="button" id="property-map-toggle" aria-expanded="false" aria-controls="property-map"><span>${escapeHtml(t('preciseLocation'))}</span><span aria-hidden="true">↗</span></button>` : ''}
+          ${hasLocation ? `<button class="property-map-toggle" type="button" id="property-map-toggle" aria-expanded="false" aria-controls="property-map"><span>${escapeHtml(t('preciseLocation'))}</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>` : ''}
         </div>
         ${hasLocation ? '<div class="property-map" id="property-map" hidden></div>' : ''}
         <p class="property-detail-price">${escapeHtml(property.price || t('priceFrom'))}</p>
@@ -402,7 +402,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
         <div class="property-detail-agent"><span>${escapeHtml(t('agent'))}</span><strong>${escapeHtml(property.agent)}</strong><a href="tel:${escapeHtml(agent.phone.replace(/\s/g, ''))}">${escapeHtml(agent.phone)}</a></div>
         <div class="property-detail-actions">
           <button class="button button-dark" type="button" id="property-enquire">${escapeHtml(t('enquire'))}</button>
-          ${currentRoute().name === 'property' ? '' : `<a class="button button-outline" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}">${escapeHtml(t('fullListing'))}<span aria-hidden="true">↗</span></a>`}
+          ${currentRoute().name === 'property' ? '' : `<a class="button button-outline" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}">${escapeHtml(t('fullListing'))}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>`}
         </div>
       </div>
     </div>`;
@@ -456,7 +456,7 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
     if (open && !map.querySelector('iframe')) {
       const query = `${property.lat},${property.lng}`;
       map.innerHTML = `<iframe title="${escapeHtml(t('preciseLocation'))}: ${escapeHtml(property.title)}" src="https://www.google.com/maps?q=${query}&z=16&hl=${state.language}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a class="property-map-link" href="https://www.google.com/maps?q=${query}" target="_blank" rel="noreferrer"><span>${escapeHtml(t('openInMaps'))}</span><span aria-hidden="true">↗</span></a>`;
+        <a class="property-map-link" href="https://www.google.com/maps?q=${query}" target="_blank" rel="noreferrer"><span>${escapeHtml(t('openInMaps'))}</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>`;
     }
     if (open) map.scrollIntoView({ block: 'nearest' });
   });
@@ -583,7 +583,7 @@ function contactSection() {
             <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required><p class="field-error" id="email-error" hidden></p></label>
             <label><span data-i18n="formComment"></span><textarea name="comment" rows="2"></textarea></label>
             <label class="form-check"><input name="consent" type="checkbox" required><span data-i18n="formConsent"></span></label>
-            <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><span aria-hidden="true">↗</span></button></div>
+            <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
             <p class="form-feedback" id="form-feedback" role="status" hidden></p>
             <p class="recaptcha-note"></p>
           </form>
@@ -600,10 +600,10 @@ function homeView() {
             <h1 data-i18n="heroTitle"></h1>
             <p class="hero-description" data-i18n="heroBody"></p>
             <div class="hero-actions">
-              <a class="button button-light" href="${homeAnchor('kontakti')}"><span data-i18n="heroAction"></span><span aria-hidden="true">↗</span></a>
-              <button class="video-link" type="button" id="open-video" aria-haspopup="dialog"><span class="play-icon" aria-hidden="true">▶</span><span data-i18n="videoAction"></span></button>
+              <a class="button button-light" href="${homeAnchor('kontakti')}"><span data-i18n="heroAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+              <button class="video-link" type="button" id="open-video" aria-haspopup="dialog"><span class="play-icon" aria-hidden="true"><i class="fa-solid fa-play"></i></span><span data-i18n="videoAction"></span></button>
             </div>
-            <div class="hero-proof"><span class="proof-stars" aria-hidden="true">★★★★★</span><span data-i18n="heroNote"></span></div>
+            <div class="hero-proof"><span class="proof-stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><span data-i18n="heroNote"></span></div>
           </div>
           <div class="hero-visual" id="hero-carousel" aria-roledescription="carousel" aria-label="${escapeHtml(t('heroCarouselLabel'))}">
             <div class="hero-slides">
@@ -613,8 +613,8 @@ function homeView() {
             </div>
             <div class="hero-image-caption"><span class="caption-label" id="hero-caption-title"></span><span class="caption-location" id="hero-caption-location"></span></div>
             <div class="hero-controls">
-              <button class="hero-control" type="button" data-hero-prev aria-label="${escapeHtml(t('previousSlide'))}">←</button>
-              <button class="hero-control" type="button" data-hero-next aria-label="${escapeHtml(t('nextSlide'))}">→</button>
+              <button class="hero-control" type="button" data-hero-prev aria-label="${escapeHtml(t('previousSlide'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+              <button class="hero-control" type="button" data-hero-next aria-label="${escapeHtml(t('nextSlide'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
             </div>
             <div class="hero-index"><span id="hero-position">01</span><span class="hero-index-line"></span><span id="hero-total"></span></div>
             <div class="hero-progress" aria-hidden="true"><span id="hero-progress"></span></div>
@@ -629,7 +629,7 @@ function homeView() {
             <label><span data-i18n="searchType"></span><select name="category" id="search-category"><option value="" data-i18n="allTypes"></option></select></label>
             <label><span data-i18n="searchPrice"></span><select name="price" id="search-price"><option value="" data-i18n="allPrices"></option><option value="50000">€50 000</option><option value="100000">€100 000</option><option value="250000">€250 000</option><option value="500000">€500 000</option></select></label>
             <label class="search-keyword"><span data-i18n="searchPlace"></span><input name="query" id="search-query" type="search" autocomplete="off"></label>
-            <button class="button button-dark" type="submit"><span data-i18n="searchAction"></span><span aria-hidden="true">↗</span></button>
+            <button class="button button-dark" type="submit"><span data-i18n="searchAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
           </form>
         </div>
       </section>
@@ -638,11 +638,11 @@ function homeView() {
         <div class="container">
           <div class="section-heading section-heading-row">
             <div><p class="eyebrow eyebrow-green" data-i18n="propertiesEyebrow"></p><h2 id="properties-title" data-i18n="propertiesTitle"></h2><p class="section-lead" data-i18n="propertiesLead"></p></div>
-            <a class="text-link desktop-link" href="#ipasumi" id="view-all-top"><span data-i18n="viewAll"></span><span aria-hidden="true">↗</span></a>
+            <a class="text-link desktop-link" href="#ipasumi" id="view-all-top"><span data-i18n="viewAll"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
           </div>
           <div class="results-line"><span id="property-count"></span><span id="filter-summary"></span></div>
           <div class="property-grid" id="property-grid" aria-live="polite"></div>
-          <div class="section-action"><button class="button button-outline" id="view-all" type="button"><span data-i18n="viewAll"></span><span aria-hidden="true">↗</span></button></div>
+          <div class="section-action"><button class="button button-outline" id="view-all" type="button"><span data-i18n="viewAll"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
         </div>
       </section>
 
@@ -650,9 +650,9 @@ function homeView() {
         <div class="container">
           <div class="section-heading section-heading-centered"><p class="eyebrow eyebrow-green" data-i18n="sellEyebrow"></p><h2 id="selling-title" data-i18n="sellTitle"></h2><p class="section-lead" data-i18n="sellLead"></p></div>
           <div class="selling-grid">
-            <article class="selling-item"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
-            <article class="selling-item"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
-            <article class="selling-item"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><span aria-hidden="true">↗</span></a></article>
+            <article class="selling-item"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
           </div>
         </div>
       </section>
@@ -661,14 +661,14 @@ function homeView() {
         <div class="container">
           <div class="section-heading section-heading-centered"><p class="eyebrow eyebrow-green" data-i18n="urgentEyebrow"></p><h2 id="urgent-title" data-i18n="urgentTitle"></h2><p class="section-lead" data-i18n="urgentLead"></p></div>
           <ol class="urgent-steps" id="urgent-steps"></ol>
-          <div class="section-action"><a class="button button-dark" href="${homeAnchor('kontakti')}"><span data-i18n="urgentAction"></span><span aria-hidden="true">↗</span></a></div>
+          <div class="section-action"><a class="button button-dark" href="${homeAnchor('kontakti')}"><span data-i18n="urgentAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
         </div>
       </section>
 
       <section class="reviews-section" aria-labelledby="reviews-title">
         <div class="container reviews-layout">
-          <div class="reviews-intro"><p class="eyebrow" data-i18n="reviewsEyebrow"></p><h2 id="reviews-title" data-i18n="reviewsTitle"></h2><div class="review-score"><span class="proof-stars" aria-hidden="true">★★★★★</span><strong>5/5</strong><span data-i18n="reviewCount"></span></div><a class="text-link link-light" href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer"><span data-i18n="googleReviews"></span><span aria-hidden="true">↗</span></a></div>
-          <article class="review-card" aria-live="polite"><span class="quote-mark" aria-hidden="true">“</span><p id="review-quote"></p><div class="review-author"><strong id="review-name"></strong><span>★★★★★</span></div><div class="review-controls"><button id="review-prev" type="button" aria-label="${escapeHtml(t('previousReview'))}">←</button><span id="review-position"></span><button id="review-next" type="button" aria-label="${escapeHtml(t('nextReview'))}">→</button></div></article>
+          <div class="reviews-intro"><p class="eyebrow" data-i18n="reviewsEyebrow"></p><h2 id="reviews-title" data-i18n="reviewsTitle"></h2><div class="review-score"><span class="proof-stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><strong>5/5</strong><span data-i18n="reviewCount"></span></div><a class="text-link link-light" href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer"><span data-i18n="googleReviews"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+          <article class="review-card" aria-live="polite"><span class="quote-mark" aria-hidden="true">“</span><p id="review-quote"></p><div class="review-author"><strong id="review-name"></strong><span class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div><div class="review-controls"><button id="review-prev" type="button" aria-label="${escapeHtml(t('previousReview'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button><span id="review-position"></span><button id="review-next" type="button" aria-label="${escapeHtml(t('nextReview'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div></article>
         </div>
       </section>
 
@@ -683,7 +683,7 @@ function homeView() {
       ${usefulSection()}
 
       <section class="podcast-section">
-        <div class="container podcast-layout"><div><p class="eyebrow" data-i18n="podcastTitle"></p><p data-i18n="podcastLead"></p></div><div class="podcast-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><span data-i18n="youtube"></span><span aria-hidden="true">↗</span></a><a href="https://open.spotify.com/show/5Tansq4D8byHA7ciR9DA2n" target="_blank" rel="noreferrer"><span data-i18n="spotify"></span><span aria-hidden="true">↗</span></a></div></div>
+        <div class="container podcast-layout"><div><p class="eyebrow" data-i18n="podcastTitle"></p><p data-i18n="podcastLead"></p></div><div class="podcast-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><span data-i18n="youtube"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a href="https://open.spotify.com/show/5Tansq4D8byHA7ciR9DA2n" target="_blank" rel="noreferrer"><span data-i18n="spotify"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></div>
       </section>
 
       <section class="section team-section" id="komanda" aria-labelledby="team-title">
@@ -752,7 +752,7 @@ function renderShell() {
                 <li class="language-option${state.language === code ? ' is-active' : ''}" role="option" data-language="${code}" aria-selected="${state.language === code}" tabindex="${state.language === code ? '0' : '-1'}">
                   <img class="language-flag" src="${assetUrl(flags[code])}" alt="" width="18" height="12">
                   <span>${escapeHtml(lang.name)}</span>
-                  <span class="language-check" aria-hidden="true">✓</span>
+                  <span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
                 </li>`).join('')}
             </ul>
           </div>
@@ -773,7 +773,7 @@ function renderShell() {
 
         <nav class="mobile-menu-nav" aria-label="${escapeHtml(t('mainMenu'))}">
           ${[['ipasumi', t('navProperties')], ['pardot', t('navSell')], ['komanda', t('navAbout')], ['blog', t('navBlog')], ['kontakti', t('navContact')], ['buj', t('navFaq')]]
-            .map(([anchor, label], index) => `<a href="${homeAnchor(anchor)}"><span class="mobile-menu-index">${String(index + 1).padStart(2, '0')}</span><span class="mobile-menu-label-text">${escapeHtml(label)}</span><span class="mobile-menu-arrow" aria-hidden="true">↗</span></a>`).join('')}
+            .map(([anchor, label], index) => `<a href="${homeAnchor(anchor)}"><span class="mobile-menu-index">${String(index + 1).padStart(2, '0')}</span><span class="mobile-menu-label-text">${escapeHtml(label)}</span><span class="mobile-menu-arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></a>`).join('')}
         </nav>
 
         <div class="mobile-menu-block">
@@ -789,7 +789,7 @@ function renderShell() {
           <div class="mobile-menu-langs" role="group" aria-label="${escapeHtml(t('languageLabel'))}">
             ${Object.entries(languages).map(([code, lang]) => `
               <button type="button" class="mobile-menu-lang${state.language === code ? ' is-active' : ''}" data-language="${code}" aria-pressed="${state.language === code}">
-                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}<span class="language-check" aria-hidden="true">✓</span>
+                <img src="${assetUrl(flags[code])}" alt="" width="18" height="12">${escapeHtml(lang.name)}<span class="language-check" aria-hidden="true"><i class="fa-solid fa-check"></i></span>
               </button>`).join('')}
           </div>
         </div>
@@ -826,14 +826,14 @@ ${viewMarkup()}
     <div class="cookie-banner" id="cookie-banner" hidden><div class="cookie-copy"><strong data-i18n="cookiesTitle"></strong><p data-i18n="cookiesText"></p></div><div class="cookie-actions"><button type="button" class="button button-dark" id="accept-cookies" data-i18n="acceptCookies"></button><button type="button" class="button button-quiet" id="reject-cookies" data-i18n="rejectCookies"></button><button type="button" class="cookie-settings" id="open-cookie-settings" data-i18n="cookieSettings"></button></div></div>
 
     <dialog class="video-dialog" id="video-dialog" aria-label="${escapeHtml(t('videoAction'))}">
-      <button class="dialog-close" type="button" data-close-dialog aria-label="${escapeHtml(t('close'))}">×</button>
+      <button class="dialog-close" type="button" data-close-dialog aria-label="${escapeHtml(t('close'))}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
       <video id="intro-video" controls preload="none" playsinline width="1600" height="900" poster="${assetUrl('/video/pardod-laimigs-intro-poster.jpg')}">
         <source src="${assetUrl('/video/pardod-laimigs-intro.mp4')}" type="video/mp4">
       </video>
     </dialog>
 
-    <dialog class="property-dialog" id="property-dialog" aria-labelledby="property-detail-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button><div id="property-dialog-content"></div></dialog>
-    <dialog class="cookie-dialog" id="cookie-dialog" aria-labelledby="cookie-dialog-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button><h2 id="cookie-dialog-title" data-i18n="cookiesTitle"></h2><p data-i18n="cookiesText"></p><label class="cookie-option"><span data-i18n="cookieNecessary"></span><input type="checkbox" checked disabled></label><label class="cookie-option"><span data-i18n="cookieAnalytics"></span><input id="analytics-cookies" type="checkbox"></label><button class="button button-dark" id="save-cookie-settings" type="button" data-i18n="saveChoices"></button></dialog>
+    <dialog class="property-dialog" id="property-dialog" aria-labelledby="property-detail-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><div id="property-dialog-content"></div></dialog>
+    <dialog class="cookie-dialog" id="cookie-dialog" aria-labelledby="cookie-dialog-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><h2 id="cookie-dialog-title" data-i18n="cookiesTitle"></h2><p data-i18n="cookiesText"></p><label class="cookie-option"><span data-i18n="cookieNecessary"></span><input type="checkbox" checked disabled></label><label class="cookie-option"><span data-i18n="cookieAnalytics"></span><input id="analytics-cookies" type="checkbox"></label><button class="button button-dark" id="save-cookie-settings" type="button" data-i18n="saveChoices"></button></dialog>
   `;
 
   applyTranslations();
@@ -947,7 +947,7 @@ function renderProperties() {
         <h3><button class="property-title-button" type="button" data-property="${escapeHtml(property.slug)}">${escapeHtml(property.title)}</button></h3>
         <p class="property-address">${escapeHtml(property.address)}</p>
         ${property.facts?.length ? `<div class="property-facts">${property.facts.slice(0, 3).map((fact) => `<span>${escapeHtml(fact.value)} <small>${escapeHtml(factLabel(fact.label))}</small></span>`).join('')}</div>` : ''}
-        <div class="property-card-bottom"><strong class="property-price">${escapeHtml(property.price || t('priceFrom'))}</strong><a class="arrow-button" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}" aria-label="${escapeHtml(t('details'))}">↗</a></div>
+        <div class="property-card-bottom"><strong class="property-price">${escapeHtml(property.price || t('priceFrom'))}</strong><a class="arrow-button" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}" aria-label="${escapeHtml(t('details'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
       </div>
     </article>`).join('');
   document.querySelector('#property-count').textContent = `${results.length} ${t('propertyCount')}`;
@@ -996,7 +996,7 @@ function articleCard(post, index) {
       ${post.image
         ? `<img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy">`
         : `<div class="article-placeholder" aria-hidden="true"><img src="${BRAND_LOGO}" alt=""></div>`}
-      <div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h3>${escapeHtml(t('articleTitles')?.[index] ?? postTitle(post))}</h3><span class="article-link">${escapeHtml(t('readArticle'))}<span aria-hidden="true">↗</span></span></div>
+      <div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h3>${escapeHtml(t('articleTitles')?.[index] ?? postTitle(post))}</h3><span class="article-link">${escapeHtml(t('readArticle'))}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></div>
     </a></article>`;
 }
 
