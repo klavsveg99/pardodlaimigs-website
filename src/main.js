@@ -965,6 +965,40 @@ function openCookieSettings() {
   document.querySelector('#cookie-dialog').showModal();
 }
 
+/**
+ * The header stays sticky, but slides out of the way when the visitor scrolls
+ * down and comes back as soon as they scroll up or return to the top. The
+ * element is looked up on every frame because a language change re-renders the
+ * shell, and the listener is only ever added once.
+ */
+function trackStickyHeader() {
+  let last = window.scrollY;
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const header = document.querySelector('.site-header');
+    const y = Math.max(0, window.scrollY);
+    if (header) {
+      if (y <= 120 || y < last - 4) header.classList.remove('is-hidden');
+      else if (y > last + 4) header.classList.add('is-hidden');
+    }
+    last = y;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }, { passive: true });
+
+  // Show the header again when something inside it takes focus, otherwise the
+  // browser scrolls the page back to the top to reveal it.
+  document.addEventListener('focusin', (event) => {
+    if (event.target.closest('.site-header')) document.querySelector('.site-header')?.classList.remove('is-hidden');
+  });
+}
+
 async function start() {
   try {
     const [properties, articles] = await Promise.all([
@@ -974,6 +1008,7 @@ async function start() {
     state.properties = properties;
     state.articles = articles;
     renderShell();
+    trackStickyHeader();
   } catch (error) {
     document.querySelector('#app').innerHTML = '<main class="load-error">Could not load local content. Run the project using <code>npm run dev</code>.</main>';
     console.error(error);
