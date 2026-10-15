@@ -73,6 +73,13 @@ const languages = {
     formMessage: 'Par īpašumu',
     formSubmit: 'Pieteikt konsultāciju',
     localNote: 'Priekšskatījuma forma - pieteikums netiek nosūtīts.',
+    formConsent: 'Piekrītu personas datu apstrādei saskaņā ar privātuma politiku',
+    formPhoneCode: 'Valsts kods',
+    formPhoneInvalid: 'Ievadiet derīgu tālruņa numuru.',
+    formEmailInvalid: 'Ievadiet derīgu e-pasta adresi.',
+    formCaptchaFailed: 'Drošības pārbaude neizdevās. Lūdzu, mēģiniet vēlreiz.',
+    termsLabel: 'pakalpojuma noteikumi',
+    recaptchaNote: 'Šo vietni aizsargā reCAPTCHA. Uz to attiecas Google [privacy] un [terms].',
     legalTitle: 'Juridiskais atbalsts',
     legalItems: ['Juridiski apgrūtinātu īpašumu uzpirkšana', 'Nekustamo īpašumu atdalīšana', 'Jaunu nosaukumu piešķiršana zemes vienībām - palīdzība no iesnieguma pašvaldībā līdz reģistrācijai Zemesgrāmatā', 'Mantojuma lietas', 'Palīdzība, ja pret īpašumu vērsta parādu piedziņa', 'Pirkuma līgumu sagatavošana un citu līgumu pārbaude atbilstoši aktuālajiem likumiem'],
     footerLine: 'Ātri, ērti, laimīgi.',
@@ -98,7 +105,7 @@ const languages = {
     propertiesEyebrow: 'Land and homes for sale', propertiesTitle: 'Properties worth a closer look', propertiesLead: 'Browse current listings and get in touch to find out more.', viewAll: 'View all properties', propertyCount: 'properties', details: 'View property',
     sellEyebrow: 'A smoother way to sell', sellTitle: 'A considered approach for every property', sellLead: 'An accurate valuation and a clear plan help you make better decisions.', apartment: 'Apartment', apartmentText: 'We assess the market, prepare the listing, and find the right buyer.', house: 'House', houseText: 'We guide the sale even when the situation is not straightforward.', land: 'Land or forest', landText: 'We compare similar sales to find a realistic price and the right options.', sellAction: 'Request a consultation',
     reviewsEyebrow: 'What our clients say', reviewsTitle: 'Good deals start with trust', reviewCount: '150+ happy clients', blogEyebrow: 'Advice, ideas and useful resources', blogTitle: 'Useful information', readArticle: 'Read article', teamEyebrow: 'People on your side', teamTitle: 'Our team', agent: 'Real estate agent',
-    contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', localNote: 'Preview form - your request is not sent.',
+    contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', localNote: 'Preview form - your request is not sent.', formConsent: 'I agree to the processing of my personal data under the privacy policy', formPhoneCode: 'Country code', formPhoneInvalid: 'Enter a valid phone number.', formEmailInvalid: 'Enter a valid email address.', formCaptchaFailed: 'The security check failed. Please try again.', termsLabel: 'Terms of Service', recaptchaNote: 'This site is protected by reCAPTCHA and the Google [privacy] and [terms] apply.',
     legalTitle: 'Legal support', legalItems: ['Purchase of properties with legal encumbrances', 'Subdivision and naming of properties', 'Inheritance matters', 'Debt recovery matters', 'Preparation and review of purchase agreements'], footerLine: 'Quick, easy, happy.', quickContact: 'Quick contact', call: 'Call', email: 'Send an email', cookiesTitle: 'Your privacy choices', cookiesText: 'We use essential cookies to run this site. With your permission, we may also use analytics cookies.', acceptCookies: 'Accept all', rejectCookies: 'Essential only', cookieSettings: 'Settings', cookieNecessary: 'Essential', cookieAnalytics: 'Analytics', saveChoices: 'Save choices', close: 'Close', noResults: 'No properties match these filters.', priceFrom: 'Price on request',
   },
   ru: {
@@ -108,7 +115,7 @@ const languages = {
     propertiesEyebrow: 'Земля и недвижимость на продажу', propertiesTitle: 'Объекты, заслуживающие внимания', propertiesLead: 'Посмотрите актуальные предложения и свяжитесь с нами, чтобы узнать подробности.', viewAll: 'Все объекты', propertyCount: 'объектов', details: 'Посмотреть объект',
     sellEyebrow: 'Продажа без лишнего стресса', sellTitle: 'Индивидуальный подход к каждому объекту', sellLead: 'Точная оценка и понятный план помогают принимать верные решения.', apartment: 'Квартира', apartmentText: 'Оценим рынок, подготовим объявление и найдем подходящего покупателя.', house: 'Дом', houseText: 'Поможем пройти процесс продажи, даже если ситуация нестандартная.', land: 'Земля или лес', landText: 'Сравним похожие сделки, чтобы определить обоснованную цену и возможности.', sellAction: 'Записаться на консультацию',
     reviewsEyebrow: 'Отзывы наших клиентов', reviewsTitle: 'Хорошие сделки начинаются с доверия', reviewCount: 'Более 150 довольных клиентов', blogEyebrow: 'Советы и полезные материалы', blogTitle: 'Полезная информация', readArticle: 'Читать статью', teamEyebrow: 'Люди на вашей стороне', teamTitle: 'Наша команда', agent: 'Агент по недвижимости',
-    contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', localNote: 'Демонстрационная форма - заявка не отправляется.',
+    contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', localNote: 'Демонстрационная форма - заявка не отправляется.', formConsent: 'Я согласен на обработку персональных данных согласно политике конфиденциальности', formPhoneCode: 'Код страны', formPhoneInvalid: 'Введите корректный номер телефона.', formEmailInvalid: 'Введите корректный адрес эл. почты.', formCaptchaFailed: 'Проверка безопасности не удалась. Попробуйте ещё раз.', termsLabel: 'Условия использования', recaptchaNote: 'Этот сайт защищён reCAPTCHA. Применяются [privacy] и [terms] Google.',
     legalTitle: 'Юридическая поддержка', legalItems: ['Выкуп объектов с юридическими обременениями', 'Раздел недвижимости и присвоение названий', 'Вопросы наследства', 'Вопросы взыскания долгов', 'Подготовка и проверка договоров купли-продажи'], footerLine: 'Быстро, удобно, счастливо.', quickContact: 'Быстрая связь', call: 'Позвонить', email: 'Написать', cookiesTitle: 'Настройки конфиденциальности', cookiesText: 'Для работы сайта используются необходимые cookie. С вашего разрешения также могут использоваться аналитические cookie.', acceptCookies: 'Разрешить все', rejectCookies: 'Только необходимые', cookieSettings: 'Настройки', cookieNecessary: 'Необходимые', cookieAnalytics: 'Аналитика', saveChoices: 'Сохранить выбор', close: 'Закрыть', noResults: 'По этим критериям объекты не найдены.', priceFrom: 'Цена по запросу',
   },
   de: {
@@ -118,7 +125,7 @@ const languages = {
     propertiesEyebrow: 'Grundstücke und Immobilien zum Verkauf', propertiesTitle: 'Immobilien, die einen Blick wert sind', propertiesLead: 'Entdecken Sie aktuelle Angebote und fragen Sie uns nach weiteren Informationen.', viewAll: 'Alle Immobilien ansehen', propertyCount: 'Immobilien', details: 'Immobilie ansehen',
     sellEyebrow: 'Verkaufen ohne unnötigen Stress', sellTitle: 'Ein passender Weg für jede Immobilie', sellLead: 'Eine genaue Bewertung und ein klarer Plan helfen bei guten Entscheidungen.', apartment: 'Wohnung', apartmentText: 'Wir bewerten den Markt, erstellen das Angebot und finden den passenden Käufer.', house: 'Haus', houseText: 'Wir begleiten den Verkauf auch in besonderen Situationen.', land: 'Grundstück oder Wald', landText: 'Wir vergleichen ähnliche Verkäufe, um einen fairen Preis und Möglichkeiten zu finden.', sellAction: 'Beratung anfragen',
     reviewsEyebrow: 'Das sagen unsere Kunden', reviewsTitle: 'Gute Geschäfte beginnen mit Vertrauen', reviewCount: 'Mehr als 150 zufriedene Kunden', blogEyebrow: 'Tipps und hilfreiche Informationen', blogTitle: 'Nützliche Informationen', readArticle: 'Artikel lesen', teamEyebrow: 'Menschen an Ihrer Seite', teamTitle: 'Unser Team', agent: 'Immobilienmakler',
-    contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', localNote: 'Vorschauformular - die Anfrage wird nicht gesendet.',
+    contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', localNote: 'Vorschauformular - die Anfrage wird nicht gesendet.', formConsent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzerklärung zu', formPhoneCode: 'Ländervorwahl', formPhoneInvalid: 'Bitte eine gültige Telefonnummer eingeben.', formEmailInvalid: 'Bitte eine gültige E-Mail-Adresse eingeben.', formCaptchaFailed: 'Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.', termsLabel: 'Nutzungsbedingungen', recaptchaNote: 'Diese Website ist durch reCAPTCHA geschützt. Es gelten die [privacy] und die [terms] von Google.',
     legalTitle: 'Rechtliche Unterstützung', legalItems: ['Ankauf rechtlich belasteter Immobilien', 'Teilung und Benennung von Grundstücken', 'Erbschaftsangelegenheiten', 'Fragen zur Forderungsvollstreckung', 'Vorbereitung und Prüfung von Kaufverträgen'], footerLine: 'Schnell, einfach, glücklich.', quickContact: 'Schnellkontakt', call: 'Anrufen', email: 'E-Mail senden', cookiesTitle: 'Ihre Datenschutzeinstellungen', cookiesText: 'Für den Betrieb der Website verwenden wir notwendige Cookies. Mit Ihrer Einwilligung können auch Analyse-Cookies eingesetzt werden.', acceptCookies: 'Alle akzeptieren', rejectCookies: 'Nur notwendige', cookieSettings: 'Einstellungen', cookieNecessary: 'Notwendig', cookieAnalytics: 'Analyse', saveChoices: 'Auswahl speichern', close: 'Schließen', noResults: 'Keine Immobilien für diese Kriterien gefunden.', priceFrom: 'Preis auf Anfrage',
   },
 };
@@ -222,6 +229,46 @@ const agents = {
   'Roberts Evarsons': { phone: '+371 2492 2942' },
   'Inga Dobuma': { phone: '+371 2822 8208' },
 };
+
+/**
+ * Country dial codes with the national number length each one accepts. The CRM
+ * validates against the same list (config/site.php phone_prefixes), so keep
+ * them in step. Latvia first, then alphabetical by ISO code.
+ */
+const phonePrefixes = [
+  ['LV', '371', 8, 8],
+  ['AT', '43', 8, 11],
+  ['BE', '32', 8, 9],
+  ['BY', '375', 9, 9],
+  ['CH', '41', 9, 9],
+  ['CZ', '420', 9, 9],
+  ['DE', '49', 6, 11],
+  ['DK', '45', 8, 8],
+  ['EE', '372', 7, 8],
+  ['ES', '34', 9, 9],
+  ['FI', '358', 6, 12],
+  ['FR', '33', 9, 9],
+  ['GB', '44', 9, 10],
+  ['IE', '353', 7, 9],
+  ['IT', '39', 8, 11],
+  ['LT', '370', 8, 8],
+  ['NL', '31', 9, 9],
+  ['NO', '47', 8, 8],
+  ['PL', '48', 9, 9],
+  ['PT', '351', 9, 9],
+  ['RU', '7', 10, 10],
+  ['SE', '46', 7, 10],
+  ['UA', '380', 9, 9],
+  ['US', '1', 10, 10],
+];
+const DEFAULT_PREFIX = '371';
+
+/**
+ * Google reCAPTCHA v3 - the key the WordPress site already uses (WPForms), so
+ * the score history stays consistent across the move. The matching secret lives
+ * in the CRM's environment, never in this repository.
+ */
+const RECAPTCHA_SITE_KEY = '6Lf5xtctAAAAADPY0aHqxliMKSfrkC2AhHeVSdD6';
 
 const state = {
   language: localStorage.getItem('site-language') || 'lv',
@@ -532,11 +579,23 @@ function contactSection() {
             <div class="form-row"><label><span data-i18n="formCadastre"></span><input name="cadastre" required></label><label><span data-i18n="formDesiredPrice"></span><input name="desired_price" inputmode="decimal"></label></div>
             <label><span data-i18n="formDescription"></span><textarea name="description" rows="3" required></textarea></label>
             <label class="form-check"><input name="urgent" type="checkbox"><span data-i18n="urgentCheckbox"></span></label>
-            <div class="form-row"><label><span data-i18n="formName"></span><input name="name" autocomplete="name" required></label><label><span data-i18n="formPhone"></span><input name="phone" type="tel" autocomplete="tel" required></label></div>
-            <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required></label>
+            <div class="form-row"><label><span data-i18n="formName"></span><input name="name" autocomplete="name" required></label>
+              <label><span data-i18n="formPhone"></span>
+                <span class="phone-field">
+                  <select name="phone_prefix" aria-label="${escapeHtml(t('formPhoneCode'))}">
+                    ${phonePrefixes.map(([iso, dial]) => `<option value="${dial}"${dial === DEFAULT_PREFIX ? ' selected' : ''}>${iso} +${dial}</option>`).join('')}
+                  </select>
+                  <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required>
+                </span>
+                <p class="field-error" id="phone-error" hidden></p>
+              </label>
+            </div>
+            <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required><p class="field-error" id="email-error" hidden></p></label>
             <label><span data-i18n="formComment"></span><textarea name="comment" rows="2"></textarea></label>
+            <label class="form-check"><input name="consent" type="checkbox" required><span data-i18n="formConsent"></span></label>
             <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><span aria-hidden="true">↗</span></button></div>
             <p class="form-feedback" id="form-feedback" role="status" hidden></p>
+            <p class="recaptcha-note"></p>
           </form>
         </div>
       </section>`;
@@ -809,6 +868,12 @@ function applyTranslations() {
   document.querySelectorAll('[data-close-dialog]').forEach((button) => button.setAttribute('aria-label', t('close')));
   const viewAllTop = document.querySelector('#view-all-top span');
   if (viewAllTop) viewAllTop.textContent = t('viewAll');
+  const recaptchaNote = document.querySelector('.recaptcha-note');
+  if (recaptchaNote) {
+    recaptchaNote.innerHTML = escapeHtml(t('recaptchaNote'))
+      .replace('[privacy]', `<a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">${escapeHtml(t('privacyLabel'))}</a>`)
+      .replace('[terms]', `<a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">${escapeHtml(t('termsLabel'))}</a>`);
+  }
   document.querySelector('#manage-cookies').textContent = state.language === 'lv' ? 'Sīkdatņu iestatījumi' : t('cookieSettings');
 }
 
@@ -1136,9 +1201,92 @@ function on(selector, event, handler) {
   document.querySelector(selector)?.addEventListener(event, handler);
 }
 
+/**
+ * reCAPTCHA v3 runs invisibly: we ask for a token on submit and let the server
+ * check its score. The preview has no server, so a token that cannot be fetched
+ * (offline, or a host the key is not registered for) is not fatal here.
+ */
+function loadRecaptcha() {
+  if (!RECAPTCHA_SITE_KEY || document.querySelector('script[data-recaptcha]')) return;
+  const script = document.createElement('script');
+  script.src = `https://www.google.com/recaptcha/api.js?render=${RECAPTCHA_SITE_KEY}`;
+  script.async = true;
+  script.dataset.recaptcha = '1';
+  document.head.appendChild(script);
+}
+
+function withRecaptchaToken(callback) {
+  if (!RECAPTCHA_SITE_KEY) {
+    callback('');
+    return;
+  }
+
+  let attempts = 0;
+  const attempt = () => {
+    if (typeof grecaptcha === 'undefined') {
+      // api.js loads asynchronously. The preview has no server to verify a
+      // token against, so once it is clearly not coming the form still goes
+      // through rather than leaving the visitor stuck.
+      if (attempts++ < 40) {
+        setTimeout(attempt, 150);
+      } else {
+        callback('');
+      }
+      return;
+    }
+    grecaptcha.ready(() => {
+      grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'valuation' })
+        .then((token) => callback(token || ''))
+        .catch(() => callback(''));
+    });
+  };
+  attempt();
+}
+
+function setFieldError(field, message) {
+  const error = document.querySelector(`#${field.name}-error`);
+  field.setAttribute('aria-invalid', 'true');
+  if (error) {
+    error.textContent = message;
+    error.hidden = false;
+  }
+}
+
+function clearFieldError(field) {
+  const error = document.querySelector(`#${field.name}-error`);
+  field.removeAttribute('aria-invalid');
+  if (error) error.hidden = true;
+}
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+
+/** Email shape and national number length for the chosen country. */
+function validateContactForm(form) {
+  let valid = true;
+
+  const email = form.email;
+  clearFieldError(email);
+  if (!EMAIL_PATTERN.test(email.value.trim())) {
+    setFieldError(email, t('formEmailInvalid'));
+    valid = false;
+  }
+
+  const phone = form.phone;
+  clearFieldError(phone);
+  const rule = phonePrefixes.find(([, dial]) => dial === form.phone_prefix.value) ?? phonePrefixes[0];
+  const digits = phone.value.replace(/\D/g, '');
+  if (digits.length < rule[2] || digits.length > rule[3]) {
+    setFieldError(phone, t('formPhoneInvalid'));
+    valid = false;
+  }
+
+  return valid;
+}
+
 function bindEvents() {
   setupLanguageSwitcher();
   setupMobileMenu();
+  if (document.querySelector('#contact-form')) loadRecaptcha();
 
   on('#property-search', 'submit', (event) => {
     event.preventDefault();
@@ -1177,10 +1325,24 @@ function bindEvents() {
 
   on('#contact-form', 'submit', (event) => {
     event.preventDefault();
-    const feedback = document.querySelector('#form-feedback');
-    feedback.textContent = t('localNote');
-    feedback.hidden = false;
+    const form = event.target;
+    if (!validateContactForm(form)) {
+      form.querySelector('[aria-invalid="true"]')?.focus();
+      return;
+    }
+    withRecaptchaToken((token) => {
+      // The preview stops here: there is no server to verify the token against
+      // (the CRM's PublicSiteLeadController does that). The token is fetched so
+      // the widget behaves exactly as it will in production.
+      const feedback = document.querySelector('#form-feedback');
+      feedback.textContent = t('localNote');
+      feedback.hidden = false;
+    });
   });
+  on('#contact-form', 'input', (event) => {
+    if (event.target.name === 'email' || event.target.name === 'phone') clearFieldError(event.target);
+  });
+  on('#contact-form select[name="phone_prefix"]', 'change', () => clearFieldError(document.querySelector('#contact-form [name="phone"]')));
 
   on('#accept-cookies', 'click', () => saveCookieConsent(true));
   on('#reject-cookies', 'click', () => saveCookieConsent(false));

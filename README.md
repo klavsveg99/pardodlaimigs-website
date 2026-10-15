@@ -30,7 +30,7 @@ Listings, thumbnails, hero images, per-property galleries and each property's ex
 
 `public/data/posts.json` and `public/data/pages.json` carry the article and page copy (all four languages) migrated from WordPress into the CRM, so the preview and the CRM site render the same text. The dates come from the live posts, and one wrong date in the earlier snapshot was corrected.
 
-The live CRM remains the source of truth for properties. Nothing in the preview links back to the old WordPress site. The valuation form and cookie choices are local-only: they do not submit data or load analytics.
+The live CRM remains the source of truth for properties. Nothing in the preview links back to the old WordPress site. The valuation form validates the email shape and the phone number against the chosen country's dial code, and asks Google for a reCAPTCHA v3 token using the same key the live site uses - the preview has no server, so it stops after the token (the CRM verifies it). Cookie choices are local-only: they do not load analytics.
 
 ## Still to do before launch
 
