@@ -15,7 +15,6 @@ const template = readFileSync(join(dist, 'index.html'), 'utf8');
 const read = (file) => JSON.parse(readFileSync(join(root, 'public', 'data', file), 'utf8'));
 
 const routes = [
-  'blog/',
   ...read('properties.json').map((property) => `ipasums/${property.slug}/`),
   ...read('posts.json').map((post) => `${post.slug}/`),
   ...read('pages.json').map((page) => `${page.slug}/`),

@@ -74,6 +74,7 @@ const languages = {
     formSubmit: 'Pieteikt konsultāciju',
     localNote: 'Priekšskatījuma forma - pieteikums netiek nosūtīts.',
     formConsent: 'Piekrītu personas datu apstrādei saskaņā ar privātuma politiku',
+    loadMore: 'Rādīt vairāk rakstu',
     formPhoneCode: 'Valsts kods',
     formPhoneInvalid: 'Ievadiet derīgu tālruņa numuru.',
     formEmailInvalid: 'Ievadiet derīgu e-pasta adresi.',
@@ -105,7 +106,7 @@ const languages = {
     propertiesEyebrow: 'Land and homes for sale', propertiesTitle: 'Properties worth a closer look', propertiesLead: 'Browse current listings and get in touch to find out more.', viewAll: 'View all properties', propertyCount: 'properties', details: 'View property',
     sellEyebrow: 'A smoother way to sell', sellTitle: 'A considered approach for every property', sellLead: 'An accurate valuation and a clear plan help you make better decisions.', apartment: 'Apartment', apartmentText: 'We assess the market, prepare the listing, and find the right buyer.', house: 'House', houseText: 'We guide the sale even when the situation is not straightforward.', land: 'Land or forest', landText: 'We compare similar sales to find a realistic price and the right options.', sellAction: 'Request a consultation',
     reviewsEyebrow: 'What our clients say', reviewsTitle: 'Good deals start with trust', reviewCount: '150+ happy clients', blogEyebrow: 'Advice, ideas and useful resources', blogTitle: 'Useful information', readArticle: 'Read article', teamEyebrow: 'People on your side', teamTitle: 'Our team', agent: 'Real estate agent',
-    contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', localNote: 'Preview form - your request is not sent.', formConsent: 'I agree to the processing of my personal data under the privacy policy', formPhoneCode: 'Country code', formPhoneInvalid: 'Enter a valid phone number.', formEmailInvalid: 'Enter a valid email address.', formCaptchaFailed: 'The security check failed. Please try again.', termsLabel: 'Terms of Service', recaptchaNote: 'This site is protected by reCAPTCHA and the Google [privacy] and [terms] apply.',
+    contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', localNote: 'Preview form - your request is not sent.', formConsent: 'I agree to the processing of my personal data under the privacy policy', loadMore: 'Show more articles', formPhoneCode: 'Country code', formPhoneInvalid: 'Enter a valid phone number.', formEmailInvalid: 'Enter a valid email address.', formCaptchaFailed: 'The security check failed. Please try again.', termsLabel: 'Terms of Service', recaptchaNote: 'This site is protected by reCAPTCHA and the Google [privacy] and [terms] apply.',
     legalTitle: 'Legal support', legalItems: ['Purchase of properties with legal encumbrances', 'Subdivision and naming of properties', 'Inheritance matters', 'Debt recovery matters', 'Preparation and review of purchase agreements'], footerLine: 'Quick, easy, happy.', quickContact: 'Quick contact', call: 'Call', email: 'Send an email', cookiesTitle: 'Your privacy choices', cookiesText: 'We use essential cookies to run this site. With your permission, we may also use analytics cookies.', acceptCookies: 'Accept all', rejectCookies: 'Essential only', cookieSettings: 'Settings', cookieNecessary: 'Essential', cookieAnalytics: 'Analytics', saveChoices: 'Save choices', close: 'Close', noResults: 'No properties match these filters.', priceFrom: 'Price on request',
   },
   ru: {
@@ -115,7 +116,7 @@ const languages = {
     propertiesEyebrow: 'Земля и недвижимость на продажу', propertiesTitle: 'Объекты, заслуживающие внимания', propertiesLead: 'Посмотрите актуальные предложения и свяжитесь с нами, чтобы узнать подробности.', viewAll: 'Все объекты', propertyCount: 'объектов', details: 'Посмотреть объект',
     sellEyebrow: 'Продажа без лишнего стресса', sellTitle: 'Индивидуальный подход к каждому объекту', sellLead: 'Точная оценка и понятный план помогают принимать верные решения.', apartment: 'Квартира', apartmentText: 'Оценим рынок, подготовим объявление и найдем подходящего покупателя.', house: 'Дом', houseText: 'Поможем пройти процесс продажи, даже если ситуация нестандартная.', land: 'Земля или лес', landText: 'Сравним похожие сделки, чтобы определить обоснованную цену и возможности.', sellAction: 'Записаться на консультацию',
     reviewsEyebrow: 'Отзывы наших клиентов', reviewsTitle: 'Хорошие сделки начинаются с доверия', reviewCount: 'Более 150 довольных клиентов', blogEyebrow: 'Советы и полезные материалы', blogTitle: 'Полезная информация', readArticle: 'Читать статью', teamEyebrow: 'Люди на вашей стороне', teamTitle: 'Наша команда', agent: 'Агент по недвижимости',
-    contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', localNote: 'Демонстрационная форма - заявка не отправляется.', formConsent: 'Я согласен на обработку персональных данных согласно политике конфиденциальности', formPhoneCode: 'Код страны', formPhoneInvalid: 'Введите корректный номер телефона.', formEmailInvalid: 'Введите корректный адрес эл. почты.', formCaptchaFailed: 'Проверка безопасности не удалась. Попробуйте ещё раз.', termsLabel: 'Условия использования', recaptchaNote: 'Этот сайт защищён reCAPTCHA. Применяются [privacy] и [terms] Google.',
+    contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', localNote: 'Демонстрационная форма - заявка не отправляется.', formConsent: 'Я согласен на обработку персональных данных согласно политике конфиденциальности', loadMore: 'Показать больше статей', formPhoneCode: 'Код страны', formPhoneInvalid: 'Введите корректный номер телефона.', formEmailInvalid: 'Введите корректный адрес эл. почты.', formCaptchaFailed: 'Проверка безопасности не удалась. Попробуйте ещё раз.', termsLabel: 'Условия использования', recaptchaNote: 'Этот сайт защищён reCAPTCHA. Применяются [privacy] и [terms] Google.',
     legalTitle: 'Юридическая поддержка', legalItems: ['Выкуп объектов с юридическими обременениями', 'Раздел недвижимости и присвоение названий', 'Вопросы наследства', 'Вопросы взыскания долгов', 'Подготовка и проверка договоров купли-продажи'], footerLine: 'Быстро, удобно, счастливо.', quickContact: 'Быстрая связь', call: 'Позвонить', email: 'Написать', cookiesTitle: 'Настройки конфиденциальности', cookiesText: 'Для работы сайта используются необходимые cookie. С вашего разрешения также могут использоваться аналитические cookie.', acceptCookies: 'Разрешить все', rejectCookies: 'Только необходимые', cookieSettings: 'Настройки', cookieNecessary: 'Необходимые', cookieAnalytics: 'Аналитика', saveChoices: 'Сохранить выбор', close: 'Закрыть', noResults: 'По этим критериям объекты не найдены.', priceFrom: 'Цена по запросу',
   },
   de: {
@@ -125,7 +126,7 @@ const languages = {
     propertiesEyebrow: 'Grundstücke und Immobilien zum Verkauf', propertiesTitle: 'Immobilien, die einen Blick wert sind', propertiesLead: 'Entdecken Sie aktuelle Angebote und fragen Sie uns nach weiteren Informationen.', viewAll: 'Alle Immobilien ansehen', propertyCount: 'Immobilien', details: 'Immobilie ansehen',
     sellEyebrow: 'Verkaufen ohne unnötigen Stress', sellTitle: 'Ein passender Weg für jede Immobilie', sellLead: 'Eine genaue Bewertung und ein klarer Plan helfen bei guten Entscheidungen.', apartment: 'Wohnung', apartmentText: 'Wir bewerten den Markt, erstellen das Angebot und finden den passenden Käufer.', house: 'Haus', houseText: 'Wir begleiten den Verkauf auch in besonderen Situationen.', land: 'Grundstück oder Wald', landText: 'Wir vergleichen ähnliche Verkäufe, um einen fairen Preis und Möglichkeiten zu finden.', sellAction: 'Beratung anfragen',
     reviewsEyebrow: 'Das sagen unsere Kunden', reviewsTitle: 'Gute Geschäfte beginnen mit Vertrauen', reviewCount: 'Mehr als 150 zufriedene Kunden', blogEyebrow: 'Tipps und hilfreiche Informationen', blogTitle: 'Nützliche Informationen', readArticle: 'Artikel lesen', teamEyebrow: 'Menschen an Ihrer Seite', teamTitle: 'Unser Team', agent: 'Immobilienmakler',
-    contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', localNote: 'Vorschauformular - die Anfrage wird nicht gesendet.', formConsent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzerklärung zu', formPhoneCode: 'Ländervorwahl', formPhoneInvalid: 'Bitte eine gültige Telefonnummer eingeben.', formEmailInvalid: 'Bitte eine gültige E-Mail-Adresse eingeben.', formCaptchaFailed: 'Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.', termsLabel: 'Nutzungsbedingungen', recaptchaNote: 'Diese Website ist durch reCAPTCHA geschützt. Es gelten die [privacy] und die [terms] von Google.',
+    contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', localNote: 'Vorschauformular - die Anfrage wird nicht gesendet.', formConsent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzerklärung zu', loadMore: 'Mehr Artikel anzeigen', formPhoneCode: 'Ländervorwahl', formPhoneInvalid: 'Bitte eine gültige Telefonnummer eingeben.', formEmailInvalid: 'Bitte eine gültige E-Mail-Adresse eingeben.', formCaptchaFailed: 'Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.', termsLabel: 'Nutzungsbedingungen', recaptchaNote: 'Diese Website ist durch reCAPTCHA geschützt. Es gelten die [privacy] und die [terms] von Google.',
     legalTitle: 'Rechtliche Unterstützung', legalItems: ['Ankauf rechtlich belasteter Immobilien', 'Teilung und Benennung von Grundstücken', 'Erbschaftsangelegenheiten', 'Fragen zur Forderungsvollstreckung', 'Vorbereitung und Prüfung von Kaufverträgen'], footerLine: 'Schnell, einfach, glücklich.', quickContact: 'Schnellkontakt', call: 'Anrufen', email: 'E-Mail senden', cookiesTitle: 'Ihre Datenschutzeinstellungen', cookiesText: 'Für den Betrieb der Website verwenden wir notwendige Cookies. Mit Ihrer Einwilligung können auch Analyse-Cookies eingesetzt werden.', acceptCookies: 'Alle akzeptieren', rejectCookies: 'Nur notwendige', cookieSettings: 'Einstellungen', cookieNecessary: 'Notwendig', cookieAnalytics: 'Analyse', saveChoices: 'Auswahl speichern', close: 'Schließen', noResults: 'Keine Immobilien für diese Kriterien gefunden.', priceFrom: 'Preis auf Anfrage',
   },
 };
@@ -270,12 +271,16 @@ const DEFAULT_PREFIX = '371';
  */
 const RECAPTCHA_SITE_KEY = '6Lf5xtctAAAAADPY0aHqxliMKSfrkC2AhHeVSdD6';
 
+/** How many blog cards appear at once, and on every load more. */
+const BLOG_BATCH = 3;
+
 const state = {
   language: localStorage.getItem('site-language') || 'lv',
   properties: [],
   posts: [],
   pages: [],
   visibleCount: 6,
+  blogVisible: BLOG_BATCH,
   showAll: false,
   review: 0,
   heroIndex: 0,
@@ -317,7 +322,6 @@ function currentRoute() {
   if (!relative) return { name: 'home' };
   const property = relative.match(/^ipasums\/(.+)$/);
   if (property) return { name: 'property', slug: property[1] };
-  if (relative === 'blog') return { name: 'blog' };
   if (state.pages.some((page) => page.slug === relative)) return { name: 'page', slug: relative };
   if (state.posts.some((post) => post.slug === relative)) return { name: 'post', slug: relative };
   return { name: 'home' };
@@ -342,7 +346,6 @@ function pageTitle(route) {
     const page = state.pages.find((item) => item.slug === route.slug);
     return page ? `${page.translations[state.language]?.title ?? suffix} - ${suffix}` : suffix;
   }
-  if (route.name === 'blog') return `${t('blogTitle')} - ${suffix}`;
   return state.language === 'lv' ? `${suffix} - nekustamā īpašuma pārdošana` : `${suffix} - ${t('navSell')}`;
 }
 
@@ -483,27 +486,13 @@ function postView(slug) {
   return `
       <article class="section post-page">
         <div class="container post-layout">
-          <p class="breadcrumb"><a href="${escapeHtml(siteUrl('blog/'))}">${escapeHtml(t('navBlog'))}</a><span aria-hidden="true">/</span><span>${escapeHtml(copy.title)}</span></p>
+          <p class="breadcrumb"><a href="${homeAnchor('blog')}">${escapeHtml(t('navBlog'))}</a><span aria-hidden="true">/</span><span>${escapeHtml(copy.title)}</span></p>
           <h1>${escapeHtml(copy.title)}</h1>
           <p class="post-date">${escapeHtml(post.date)}</p>
           ${post.image ? `<img class="post-cover" src="${escapeHtml(assetUrl(post.image))}" alt="">` : ''}
           <div class="post-body">${copy.html}</div>
         </div>
       </article>
-      ${contactSection()}`;
-}
-
-function blogView() {
-  return `
-      <section class="section blog-section blog-index" id="blog" aria-labelledby="blog-title">
-        <div class="container">
-          <div class="section-heading"><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h1 id="blog-title" data-i18n="blogTitle"></h1></div>
-          <div class="article-grid">
-            ${state.posts.map((post) => `
-              <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}"><img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy"><div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h2>${escapeHtml(postTitle(post))}</h2><span class="article-link">${escapeHtml(t('readArticle'))}<span aria-hidden="true">↗</span></span></div></a></article>`).join('')}
-          </div>
-        </div>
-      </section>
       ${contactSection()}`;
 }
 
@@ -544,7 +533,7 @@ function bindNavigation() {
 
     const url = new URL(link.href);
     const target = url.pathname.slice(base.length).replace(/^\/+|\/+$/g, '');
-    const owned = target === '' || target === 'blog' || /^ipasums\/.+/.test(target)
+    const owned = target === '' || /^ipasums\/.+/.test(target)
       || state.posts.some((post) => post.slug === target)
       || state.pages.some((page) => page.slug === target);
     if (!owned) return;
@@ -684,8 +673,9 @@ function homeView() {
 
       <section class="section blog-section" id="blog" aria-labelledby="blog-title">
         <div class="container">
-          <div class="section-heading section-heading-row"><div><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h2 id="blog-title" data-i18n="blogTitle"></h2></div><a class="text-link desktop-link" href="${siteUrl('blog/')}"><span data-i18n="allArticles"></span><span aria-hidden="true">↗</span></a></div>
+          <div class="section-heading"><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h2 id="blog-title" data-i18n="blogTitle"></h2></div>
           <div class="article-grid" id="article-grid"></div>
+          <div class="section-action"><button class="button button-outline" id="load-more-posts" type="button" data-i18n="loadMore"></button></div>
         </div>
       </section>
 
@@ -723,7 +713,6 @@ function viewMarkup() {
   const route = currentRoute();
   if (route.name === 'property') return propertyView(route.slug);
   if (route.name === 'post') return postView(route.slug);
-  if (route.name === 'blog') return blogView();
   if (route.name === 'page') return pageView(route.slug);
   return homeView();
 }
@@ -982,11 +971,37 @@ function openProperty(slug) {
   content.scrollTop = 0;
   dialog.showModal();
 }
+function articleCard(post, index) {
+  return `
+    <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}">
+      ${post.image
+        ? `<img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy">`
+        : `<div class="article-placeholder" aria-hidden="true"><img src="${BRAND_LOGO}" alt=""></div>`}
+      <div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h3>${escapeHtml(t('articleTitles')?.[index] ?? postTitle(post))}</h3><span class="article-link">${escapeHtml(t('readArticle'))}<span aria-hidden="true">↗</span></span></div>
+    </a></article>`;
+}
+
 function renderArticles() {
   const grid = document.querySelector('#article-grid');
   if (!grid) return;
-  grid.innerHTML = state.posts.map((post, index) => `
-    <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}"><img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy"><div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h3>${escapeHtml(t('articleTitles')?.[index] ?? postTitle(post))}</h3><span class="article-link">${escapeHtml(t('readArticle'))}<span aria-hidden="true">↗</span></span></div></a></article>`).join('');
+  grid.innerHTML = state.posts.slice(0, state.blogVisible).map(articleCard).join('');
+  const more = document.querySelector('#load-more-posts');
+  if (more) more.hidden = state.blogVisible >= state.posts.length;
+}
+
+/**
+ * Adds the next batch of posts without leaving the page. The CRM asks the
+ * server for it (site.blog.more); the preview slices its own snapshot.
+ */
+function loadMorePosts() {
+  const button = document.querySelector('#load-more-posts');
+  if (!button || button.getAttribute('aria-busy') === 'true') return;
+  button.setAttribute('aria-busy', 'true');
+  requestAnimationFrame(() => {
+    state.blogVisible = Math.min(state.blogVisible + BLOG_BATCH, state.posts.length);
+    renderArticles();
+    button.setAttribute('aria-busy', 'false');
+  });
 }
 
 function renderReview() {
@@ -1364,6 +1379,8 @@ function bindEvents() {
 
   setupVideoDialog();
   on('#open-video', 'click', () => document.querySelector('#video-dialog')?.showModal());
+
+  on('#load-more-posts', 'click', loadMorePosts);
 
   on('#contact-form', 'submit', (event) => {
     event.preventDefault();
