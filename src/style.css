@@ -235,6 +235,13 @@ h1 { max-width: 580px; margin: 0; color: #fff; font-size: clamp(42px, 4.5vw, 60p
 
 .contact-section { padding: 86px 0; color: #fff; background: var(--brand); }
 .contact-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 11%; align-items: start; }
+/* The form is taller than the copy beside it, so the copy follows the scroll
+   and stays level with the form until the section (and the form) ends. Only in
+   the two-column layout - on mobile the copy sits above the form and pinning it
+   would cover the fields. */
+@media (min-width: 681px) {
+  .contact-copy { position: sticky; top: 104px; }
+}
 .contact-copy h2 { max-width: 440px; margin: 0 0 16px; font-size: clamp(30px, 3.5vw, 46px); line-height: 1.13; letter-spacing: -.05em; }
 .contact-copy > p:not(.eyebrow) { max-width: 440px; margin-bottom: 27px; color: rgb(255 255 255 / 77%); font-size: 13px; line-height: 1.7; }
 .contact-direct { display: flex; flex-wrap: wrap; gap: 25px; }
@@ -271,6 +278,9 @@ h1 { max-width: 580px; margin: 0; color: #fff; font-size: clamp(42px, 4.5vw, 60p
 .quick-contact-panel a:last-child { border: 0; }
 .quick-contact-panel a span { color: var(--muted); }
 .quick-contact-panel a strong { color: var(--brand); font-size: 12px; }
+/* WhatsApp is one line with no number, so it takes the same emphasis as the
+   phone number next to it. */
+.quick-contact-panel .quick-contact-single span { color: var(--brand); font-size: 12px; font-weight: 700; }
 
 .cookie-banner { position: fixed; z-index: 25; right: 22px; bottom: 22px; left: 22px; max-width: 910px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; margin-inline: auto; padding: 20px 22px; background: #fff; box-shadow: 0 6px 34px rgb(0 0 0 / 18%); }
 .cookie-banner[hidden] { display: none; }
