@@ -778,16 +778,9 @@ function renderShell() {
 
         <div class="mobile-menu-block">
           <p class="mobile-menu-label" data-i18n="quickContact"></p>
-          <a class="mobile-menu-contact" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span><strong>+371 2492 2942</strong></a>
-          <a class="mobile-menu-contact" href="tel:+37124922942"><span>Roberts</span><strong>+371 2492 2942</strong></a>
-        </div>
-
-        <div class="mobile-menu-foot">
-          <div class="mobile-menu-social">
-            <a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a>
-            <a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a>
-            <a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a>
-            <a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a>
+          <div class="mobile-menu-actions">
+            <a href="https://wa.me/37124922942" target="_blank" rel="noreferrer">WhatsApp</a>
+            <a href="tel:+37124922942">+371 2492 2942</a>
           </div>
         </div>
 
