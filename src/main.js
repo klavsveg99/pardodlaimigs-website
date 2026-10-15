@@ -611,7 +611,7 @@ function homeView() {
             <p class="hero-description" data-i18n="heroBody"></p>
             <div class="hero-actions">
               <a class="button button-light" href="${homeAnchor('kontakti')}"><span data-i18n="heroAction"></span><span aria-hidden="true">↗</span></a>
-              <a class="video-link" href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><span class="play-icon" aria-hidden="true">▶</span><span data-i18n="videoAction"></span></a>
+              <button class="video-link" type="button" id="open-video" aria-haspopup="dialog"><span class="play-icon" aria-hidden="true">▶</span><span data-i18n="videoAction"></span></button>
             </div>
             <div class="hero-proof"><span class="proof-stars" aria-hidden="true">★★★★★</span><span data-i18n="heroNote"></span></div>
           </div>
@@ -821,6 +821,13 @@ ${viewMarkup()}
     <div class="quick-contact-panel" id="quick-contact-panel" hidden><a class="quick-contact-single" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span></a><a href="tel:+37124922942"><span data-i18n="call"></span><strong>+371 2492 2942</strong></a></div>
 
     <div class="cookie-banner" id="cookie-banner" hidden><div class="cookie-copy"><strong data-i18n="cookiesTitle"></strong><p data-i18n="cookiesText"></p></div><div class="cookie-actions"><button type="button" class="button button-dark" id="accept-cookies" data-i18n="acceptCookies"></button><button type="button" class="button button-quiet" id="reject-cookies" data-i18n="rejectCookies"></button><button type="button" class="cookie-settings" id="open-cookie-settings" data-i18n="cookieSettings"></button></div></div>
+
+    <dialog class="video-dialog" id="video-dialog" aria-label="${escapeHtml(t('videoAction'))}">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="${escapeHtml(t('close'))}">×</button>
+      <video id="intro-video" controls preload="none" playsinline width="1600" height="900" poster="${assetUrl('/video/pardod-laimigs-intro-poster.jpg')}">
+        <source src="${assetUrl('/video/pardod-laimigs-intro.mp4')}" type="video/mp4">
+      </video>
+    </dialog>
 
     <dialog class="property-dialog" id="property-dialog" aria-labelledby="property-detail-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button><div id="property-dialog-content"></div></dialog>
     <dialog class="cookie-dialog" id="cookie-dialog" aria-labelledby="cookie-dialog-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button><h2 id="cookie-dialog-title" data-i18n="cookiesTitle"></h2><p data-i18n="cookiesText"></p><label class="cookie-option"><span data-i18n="cookieNecessary"></span><input type="checkbox" checked disabled></label><label class="cookie-option"><span data-i18n="cookieAnalytics"></span><input id="analytics-cookies" type="checkbox"></label><button class="button button-dark" id="save-cookie-settings" type="button" data-i18n="saveChoices"></button></dialog>
@@ -1243,6 +1250,20 @@ function withRecaptchaToken(callback) {
   attempt();
 }
 
+/**
+ * The intro video plays in a dialog. It is 24 MB, so the file only downloads
+ * once it is opened (preload="none") and stops again when the dialog closes.
+ */
+function setupVideoDialog() {
+  const dialog = document.querySelector('#video-dialog');
+  const video = document.querySelector('#intro-video');
+  if (!dialog || !video) return;
+  dialog.addEventListener('close', () => {
+    video.pause();
+    video.currentTime = 0;
+  });
+}
+
 function setFieldError(field, message) {
   const error = document.querySelector(`#${field.name}-error`);
   field.setAttribute('aria-invalid', 'true');
@@ -1322,6 +1343,9 @@ function bindEvents() {
     quickToggle.setAttribute('aria-expanded', String(open));
     panel.hidden = !open;
   });
+
+  setupVideoDialog();
+  on('#open-video', 'click', () => document.querySelector('#video-dialog')?.showModal());
 
   on('#contact-form', 'submit', (event) => {
     event.preventDefault();
