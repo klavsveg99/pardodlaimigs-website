@@ -418,7 +418,7 @@ function renderShell() {
           <div class="team-heading"><p class="eyebrow eyebrow-green" data-i18n="teamEyebrow"></p><h2 id="team-title" data-i18n="teamTitle"></h2><p class="section-lead" data-i18n="teamLead"></p></div>
           <div class="team-grid">
             <article class="agent-card"><img src="${assetUrl('/images/team/roberts.jpg')}" alt="Roberts Evarsons" loading="lazy"><div><p class="agent-role" data-i18n="agent"></p><h3>Roberts Evarsons</h3><a href="tel:+37124922942">+371 2492 2942</a></div></article>
-            <article class="agent-card"><img src="${assetUrl('/images/team/inga.jpg')}" alt="Inga Dobuma" loading="lazy"><div><p class="agent-role" data-i18n="agent"></p><h3>Inga Dobuma</h3><a href="tel:+37128228208">+371 2822 8208</a></div></article>
+            <article class="agent-card agent-card--portrait"><img src="${assetUrl('/images/team/inga.jpg')}" alt="Inga Dobuma" loading="lazy"><div><p class="agent-role" data-i18n="agent"></p><h3>Inga Dobuma</h3><a href="tel:+37128228208">+371 2822 8208</a></div></article>
           </div>
         </div>
       </section>
