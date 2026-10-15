@@ -455,7 +455,7 @@ function renderShell() {
             <div class="form-row"><label><span data-i18n="formName"></span><input name="name" autocomplete="name" required></label><label><span data-i18n="formPhone"></span><input name="phone" type="tel" autocomplete="tel" required></label></div>
             <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required></label>
             <label><span data-i18n="formComment"></span><textarea name="comment" rows="2"></textarea></label>
-            <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><span aria-hidden="true">↗</span></button><p class="local-note" data-i18n="localNote"></p></div>
+            <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><span aria-hidden="true">↗</span></button></div>
             <p class="form-feedback" id="form-feedback" role="status" hidden></p>
           </form>
         </div>
