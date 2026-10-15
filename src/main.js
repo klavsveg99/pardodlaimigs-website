@@ -815,7 +815,25 @@ function renderShell() {
 ${viewMarkup()}
     </main>
 
-    <footer class="site-footer"><div class="container footer-main"><a class="brand footer-brand" href="#top"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a><p data-i18n="footerLine"></p><div class="footer-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a><a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a><a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a><a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a></div><a class="footer-phone" href="tel:+37124922942">+371 2492 2942</a></div><div class="container footer-bottom"><span>© <span id="current-year"></span> Pārdod Laimīgs</span><button type="button" class="footer-cookie-link" id="manage-cookies">Sīkdatņu iestatījumi</button><a href="${siteUrl('privatuma-politika/')}" data-i18n="privacyLabel"></a></div></footer>
+    <footer class="site-footer">
+      <div class="container footer-main">
+        <div class="footer-brand-block">
+          <a class="brand footer-brand" href="#top"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
+          <p data-i18n="footerLine"></p>
+        </div>
+        <div class="footer-contact-block">
+          <a class="footer-phone" href="tel:+37124922942">+371 2492 2942</a>
+          <div class="footer-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a><a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a><a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a><a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a></div>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>© <span id="current-year"></span> Pārdod Laimīgs</span>
+        <div class="footer-legal">
+          <button type="button" class="footer-cookie-link" id="manage-cookies">Sīkdatņu iestatījumi</button>
+          <a href="${siteUrl('privatuma-politika/')}" data-i18n="privacyLabel"></a>
+        </div>
+      </div>
+    </footer>
 
     <button class="quick-contact-button" id="quick-contact-toggle" type="button" aria-label="${escapeHtml(t('quickContact'))}" aria-expanded="false" aria-controls="quick-contact-panel"><i class="fa-solid fa-headset" aria-hidden="true"></i><span data-i18n="quickContact"></span></button>
     <div class="quick-contact-panel" id="quick-contact-panel" hidden><a class="quick-contact-single" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span></a><a href="tel:+37124922942"><span data-i18n="call"></span><strong>+371 2492 2942</strong></a></div>
