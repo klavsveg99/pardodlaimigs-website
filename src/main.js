@@ -242,6 +242,10 @@ const assetUrl = (path) => {
   if (/^(https?:|data:|blob:)/i.test(path)) return path;
   return `${import.meta.env.BASE_URL}${String(path).replace(/^\/+/, '')}`;
 };
+// Files under /new/ are edge-cached for months (`cache-control: max-age=16070400`),
+// so replacing an image file does not reach users until its URL changes.
+// Bump the version whenever the logo file itself is replaced.
+const BRAND_LOGO = `${assetUrl('/images/brand/logo.svg')}?v=2`;
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
 function renderShell() {
@@ -254,7 +258,7 @@ function renderShell() {
   document.querySelector('#app').innerHTML = `
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="Pārdod Laimīgs - sākums"><img src="${assetUrl('/images/brand/logo.svg')}" alt="Pārdod Laimīgs"></a>
+        <a class="brand" href="#top" aria-label="Pārdod Laimīgs - sākums"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="${escapeHtml(t('menuOpen'))}"><span></span><span></span><span></span></button>
         <nav class="main-navigation" id="main-navigation" aria-label="${escapeHtml(t('mainMenu'))}">
           <a href="#ipasumi" data-i18n="navProperties"></a>
@@ -289,7 +293,7 @@ function renderShell() {
       <div class="mobile-menu-overlay" data-menu-close></div>
       <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="${escapeHtml(t('mainMenu'))}">
         <div class="mobile-menu-head">
-          <img class="mobile-menu-logo" src="${assetUrl('/images/brand/logo.svg')}" alt="Pārdod Laimīgs">
+          <img class="mobile-menu-logo" src="${BRAND_LOGO}" alt="Pārdod Laimīgs">
           <button class="mobile-menu-close" type="button" data-menu-close aria-label="${escapeHtml(t('close'))}">
             <span aria-hidden="true"></span><span aria-hidden="true"></span>
           </button>
@@ -461,7 +465,7 @@ function renderShell() {
       <section class="section faq-section" id="buj" aria-labelledby="faq-title"><div class="container faq-layout"><div><p class="eyebrow eyebrow-green" data-i18n="faqEyebrow"></p><h2 id="faq-title" data-i18n="faqTitle"></h2></div><div class="faq-list" id="faq-list"></div></div></section>
     </main>
 
-    <footer class="site-footer"><div class="container footer-main"><a class="brand footer-brand" href="#top"><img src="${assetUrl('/images/brand/logo.svg')}" alt="Pārdod Laimīgs"></a><p data-i18n="footerLine"></p><div class="footer-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a><a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a><a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a><a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a></div><a class="footer-phone" href="tel:+37124922942">+371 2492 2942</a></div><div class="container footer-bottom"><span>© <span id="current-year"></span> Pārdod Laimīgs</span><button type="button" class="footer-cookie-link" id="manage-cookies">Sīkdatņu iestatījumi</button><a href="https://pardodlaimigs.lv/privatuma-politika/" target="_blank" rel="noreferrer" data-i18n="privacyLabel"></a></div></footer>
+    <footer class="site-footer"><div class="container footer-main"><a class="brand footer-brand" href="#top"><img src="${BRAND_LOGO}" alt="Pārdod Laimīgs"></a><p data-i18n="footerLine"></p><div class="footer-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer">YouTube</a><a href="https://www.facebook.com/PardodLaimigs/" target="_blank" rel="noreferrer">Facebook</a><a href="https://instagram.com/pardodlaimigs" target="_blank" rel="noreferrer">Instagram</a><a href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer">Google</a></div><a class="footer-phone" href="tel:+37124922942">+371 2492 2942</a></div><div class="container footer-bottom"><span>© <span id="current-year"></span> Pārdod Laimīgs</span><button type="button" class="footer-cookie-link" id="manage-cookies">Sīkdatņu iestatījumi</button><a href="https://pardodlaimigs.lv/privatuma-politika/" target="_blank" rel="noreferrer" data-i18n="privacyLabel"></a></div></footer>
 
     <button class="quick-contact-button" id="quick-contact-toggle" type="button" aria-label="${escapeHtml(t('quickContact'))}" aria-expanded="false" aria-controls="quick-contact-panel"><span class="quick-contact-dot" aria-hidden="true"></span><span data-i18n="quickContact"></span></button>
     <div class="quick-contact-panel" id="quick-contact-panel" hidden><a class="quick-contact-single" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span></a><a href="tel:+37124922942"><span data-i18n="call"></span><strong>+371 2492 2942</strong></a></div>
