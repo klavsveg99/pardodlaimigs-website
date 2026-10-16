@@ -860,7 +860,7 @@ ${viewMarkup()}
           <div class="agent-dialog-listings" id="agent-dialog-listings" hidden>
             <p class="agent-dialog-label"><span data-i18n="navProperties"></span><span id="agent-dialog-count"></span></p>
             <div class="agent-properties" id="agent-dialog-properties"></div>
-            <button class="text-link" id="agent-dialog-more" type="button" hidden><span data-i18n="viewMoreProperties"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+            <button class="agent-dialog-more" id="agent-dialog-more" type="button" hidden><span data-i18n="viewMoreProperties"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
           </div>
         </div>
       </div>
