@@ -1023,7 +1023,7 @@ function articleCard(post, index) {
     <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}">
       ${post.image
         ? `<img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy">`
-        : `<div class="article-placeholder" aria-hidden="true"><img src="${BRAND_LOGO}" alt=""></div>`}
+        : `<div class="article-placeholder" aria-hidden="true"><img src="${assetUrl('/images/favicon-180x180.jpg')}" alt=""></div>`}
       <div class="article-copy"><span class="article-date">${escapeHtml(post.date)}</span><h3>${escapeHtml(t('articleTitles')?.[index] ?? postTitle(post))}</h3><span class="article-link">${escapeHtml(t('readArticle'))}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span></div>
     </a></article>`;
 }
