@@ -555,7 +555,12 @@ function bindNavigation() {
     }
     history.pushState({}, '', `${siteUrl(target)}${url.hash}`);
     renderRoute();
+    // A new page starts at its beginning: without this the browser keeps the
+    // previous scroll position, which lands a fresh page at its bottom when the
+    // previous one was taller. (Going back is left to the browser, which
+    // restores the position it saved for that entry.)
     if (url.hash) document.querySelector(url.hash)?.scrollIntoView({ block: 'start' });
+    else window.scrollTo({ top: 0, behavior: 'auto' });
   });
 
   window.addEventListener('popstate', () => renderRoute());
