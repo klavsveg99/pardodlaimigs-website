@@ -219,12 +219,19 @@ const reviews = [
   },
 ];
 
+// Vector flags: the old 18x12 PNGs were visibly soft on any modern screen.
 const flags = {
-  lv: '/images/flags/lv.png',
-  en: '/images/flags/en_GB.png',
-  ru: '/images/flags/ru_RU.png',
-  de: '/images/flags/de_DE.png',
+  lv: '/images/flags/lv.svg',
+  en: '/images/flags/en.svg',
+  ru: '/images/flags/ru.svg',
+  de: '/images/flags/de.svg',
 };
+
+/** The team, and the photos shown in the team grid and its dialog. */
+const AGENTS = [
+  { slug: 'roberts-evarsons', name: 'Roberts Evarsons', phone: '+371 2492 2942', photo: '/images/team/roberts.jpg' },
+  { slug: 'inga-dobuma', name: 'Inga Dobuma', phone: '+371 2822 8208', photo: '/images/team/inga.jpg', portrait: true },
+];
 
 const agents = {
   'Roberts Evarsons': { phone: '+371 2492 2942' },
@@ -280,6 +287,7 @@ const state = {
   posts: [],
   pages: [],
   useful: null,
+  agentBios: null,
   visibleCount: 6,
   blogVisible: BLOG_BATCH,
   showAll: false,
@@ -650,9 +658,9 @@ function homeView() {
         <div class="container">
           <div class="section-heading section-heading-centered"><p class="eyebrow eyebrow-green" data-i18n="sellEyebrow"></p><h2 id="selling-title" data-i18n="sellTitle"></h2><p class="section-lead" data-i18n="sellLead"></p></div>
           <div class="selling-grid">
-            <article class="selling-item"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
-            <article class="selling-item"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
-            <article class="selling-item"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="${homeAnchor('kontakti')}"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="apartment"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="house"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="land"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
           </div>
         </div>
       </section>
@@ -690,8 +698,15 @@ function homeView() {
         <div class="container team-layout">
           <div class="team-heading"><p class="eyebrow eyebrow-green" data-i18n="teamEyebrow"></p><h2 id="team-title" data-i18n="teamTitle"></h2><p class="section-lead" data-i18n="teamLead"></p></div>
           <div class="team-grid">
-            <article class="agent-card"><img src="${assetUrl('/images/team/roberts.jpg')}" alt="Roberts Evarsons" loading="lazy"><div><p class="agent-role" data-i18n="agent"></p><h3>Roberts Evarsons</h3><a href="tel:+37124922942">+371 2492 2942</a></div></article>
-            <article class="agent-card agent-card--portrait"><img src="${assetUrl('/images/team/inga.jpg')}" alt="Inga Dobuma" loading="lazy"><div><p class="agent-role" data-i18n="agent"></p><h3>Inga Dobuma</h3><a href="tel:+37128228208">+371 2822 8208</a></div></article>
+            ${AGENTS.map((agent) => `
+              <article class="agent-card${agent.portrait ? ' agent-card--portrait' : ''}">
+                <button class="agent-photo" type="button" data-agent="${agent.slug}" aria-label="${escapeHtml(agent.name)}"><img src="${escapeHtml(assetUrl(agent.photo))}" alt="" loading="lazy"></button>
+                <div>
+                  <p class="agent-role" data-i18n="agent"></p>
+                  <h3><button class="agent-name" type="button" data-agent="${agent.slug}">${escapeHtml(agent.name)}</button></h3>
+                  <a href="tel:${agent.phone.replace(/\s/g, '')}">${escapeHtml(agent.phone)}</a>
+                </div>
+              </article>`).join('')}
           </div>
         </div>
       </section>
@@ -824,6 +839,19 @@ ${viewMarkup()}
     <div class="quick-contact-panel" id="quick-contact-panel" hidden><a class="quick-contact-single" href="https://wa.me/37124922942" target="_blank" rel="noreferrer"><span>WhatsApp</span></a><a href="tel:+37124922942"><span data-i18n="call"></span><strong>+371 2492 2942</strong></a></div>
 
     <div class="cookie-banner" id="cookie-banner" hidden><div class="cookie-copy"><strong data-i18n="cookiesTitle"></strong><p data-i18n="cookiesText"></p></div><div class="cookie-actions"><button type="button" class="button button-dark" id="accept-cookies" data-i18n="acceptCookies"></button><button type="button" class="button button-quiet" id="reject-cookies" data-i18n="rejectCookies"></button><button type="button" class="cookie-settings" id="open-cookie-settings" data-i18n="cookieSettings"></button></div></div>
+
+    <dialog class="agent-dialog" id="agent-dialog" aria-labelledby="agent-dialog-name">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="${escapeHtml(t('close'))}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="agent-dialog-body">
+        <img id="agent-dialog-photo" src="" alt="">
+        <div class="agent-dialog-copy">
+          <p class="agent-role" data-i18n="agent"></p>
+          <h2 id="agent-dialog-name"></h2>
+          <p class="agent-dialog-bio" id="agent-dialog-bio"></p>
+          <a class="agent-dialog-phone" id="agent-dialog-phone" href=""><i class="fa-solid fa-phone" aria-hidden="true"></i><span></span></a>
+        </div>
+      </div>
+    </dialog>
 
     <dialog class="video-dialog" id="video-dialog" aria-label="${escapeHtml(t('videoAction'))}">
       <button class="dialog-close" type="button" data-close-dialog aria-label="${escapeHtml(t('close'))}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
@@ -1306,6 +1334,35 @@ function withRecaptchaToken(callback) {
  * The intro video plays in a dialog. It is 24 MB, so the file only downloads
  * once it is opened (preload="none") and stops again when the dialog closes.
  */
+/**
+ * Tapping an agent's photo or name opens their short description, the way the
+ * old site's popup did (the descriptions were migrated per language).
+ */
+function openAgentDialog(slug) {
+  const agent = AGENTS.find((item) => item.slug === slug);
+  const dialog = document.querySelector('#agent-dialog');
+  if (!agent || !dialog) return;
+
+  const bio = state.agentBios?.[state.language]?.[slug] ?? state.agentBios?.lv?.[slug] ?? '';
+  const phone = document.querySelector('#agent-dialog-phone');
+
+  document.querySelector('#agent-dialog-photo').src = assetUrl(agent.photo);
+  document.querySelector('#agent-dialog-photo').alt = agent.name;
+  dialog.classList.toggle('is-portrait', Boolean(agent.portrait));
+  document.querySelector('#agent-dialog-name').textContent = agent.name;
+  document.querySelector('#agent-dialog-bio').textContent = bio;
+  phone.href = `tel:${agent.phone.replace(/\s/g, '')}`;
+  phone.querySelector('span').textContent = agent.phone;
+
+  dialog.showModal();
+}
+
+function setupAgentDialog() {
+  document.querySelectorAll('[data-agent]').forEach((element) => {
+    element.addEventListener('click', () => openAgentDialog(element.dataset.agent));
+  });
+}
+
 function setupVideoDialog() {
   const dialog = document.querySelector('#video-dialog');
   const video = document.querySelector('#intro-video');
@@ -1396,6 +1453,15 @@ function bindEvents() {
     panel.hidden = !open;
   });
 
+  // "Katram īpašumam - sava pieeja" links prefill the type in the form.
+  document.querySelectorAll('[data-preselect]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const select = document.querySelector('.contact-form select[name="property_type"]');
+      if (select) select.value = link.dataset.preselect;
+    });
+  });
+
+  setupAgentDialog();
   setupVideoDialog();
   on('#open-video', 'click', () => document.querySelector('#video-dialog')?.showModal());
 
@@ -1482,16 +1548,18 @@ function trackStickyHeader() {
 
 async function start() {
   try {
-    const [properties, posts, pages, useful] = await Promise.all([
+    const [properties, posts, pages, useful, agentBios] = await Promise.all([
       fetch(assetUrl('/data/properties.json')).then((response) => response.json()),
       fetch(assetUrl('/data/posts.json')).then((response) => response.json()),
       fetch(assetUrl('/data/pages.json')).then((response) => response.json()),
       fetch(assetUrl('/data/useful.json')).then((response) => response.json()),
+      fetch(assetUrl('/data/agents.json')).then((response) => response.json()),
     ]);
     state.properties = properties;
     state.posts = posts;
     state.pages = pages;
     state.useful = useful;
+    state.agentBios = agentBios;
     renderRoute();
     bindNavigation();
     trackStickyHeader();
