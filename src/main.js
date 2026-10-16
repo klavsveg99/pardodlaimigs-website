@@ -697,7 +697,7 @@ function homeView() {
       ${usefulSection()}
 
       <section class="podcast-section">
-        <div class="container podcast-layout"><div><p class="eyebrow" data-i18n="podcastTitle"></p><p data-i18n="podcastLead"></p></div><div class="podcast-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><span data-i18n="youtube"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a><a href="https://open.spotify.com/show/5Tansq4D8byHA7ciR9DA2n" target="_blank" rel="noreferrer"><span data-i18n="spotify"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div></div>
+        <div class="container podcast-layout"><div><p class="eyebrow" data-i18n="podcastTitle"></p><p data-i18n="podcastLead"></p></div><div class="podcast-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i><span data-i18n="youtube"></span><i class="fa-solid fa-arrow-right podcast-link-arrow" aria-hidden="true"></i></a><a href="https://open.spotify.com/show/5Tansq4D8byHA7ciR9DA2n" target="_blank" rel="noreferrer"><i class="fa-brands fa-spotify" aria-hidden="true"></i><span data-i18n="spotify"></span><i class="fa-solid fa-arrow-right podcast-link-arrow" aria-hidden="true"></i></a></div></div>
       </section>
 
       <section class="section team-section" id="komanda" aria-labelledby="team-title">

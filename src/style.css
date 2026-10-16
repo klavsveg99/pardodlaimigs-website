@@ -182,12 +182,14 @@ h1, h2, h3 { font-family: var(--serif); }
 .urgent-step h3 { margin: 11px 0 8px; font-size: 18px; }
 .urgent-step p { max-width: 300px; margin: 0 auto; color: var(--muted); font-size: 13px; line-height: 1.65; }
 
-.podcast-section { padding: 33px 0; color: #fff; background: #203e3b; }
-.podcast-layout { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+.podcast-section { padding: 44px 0; color: #fff; background: #203e3b; }
+.podcast-layout { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 28px; }
 .podcast-layout .eyebrow { margin: 0 0 7px; }
 .podcast-layout p:not(.eyebrow) { max-width: 520px; margin: 0; color: rgb(255 255 255 / 75%); font-size: 14px; }
 .podcast-links { display: flex; gap: 12px; }
-.podcast-links a { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; min-width: 150px; padding: 13px 15px; border: 1px solid rgb(255 255 255 / 35%); color: #fff; font-size: 13px; font-weight: 700; }
+.podcast-links a { display: inline-flex; flex-shrink: 0; align-items: center; gap: 10px; min-width: 150px; padding: 13px 15px; border: 1px solid rgb(255 255 255 / 35%); color: #fff; font-size: 13px; font-weight: 700; }
+.podcast-links a .fa-brands { font-size: 16px; }
+.podcast-link-arrow { margin-left: auto; }
 .podcast-links a:hover { color: var(--brand-dark); background: #fff; }
 
 .faq-section { padding-top: 85px; background: #f0f2ee; }
@@ -560,8 +562,8 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .urgent-step::before { position: absolute; top: 0; left: 0; margin: 0; background: #fbfaf7; }
   .urgent-step p { max-width: none; margin: 0; }
   .podcast-layout { align-items: flex-start; flex-direction: column; }
-  .podcast-links { width: 100%; }
-  .podcast-links a { flex: 1; min-width: 0; }
+  .podcast-links { width: 100%; flex-direction: column; }
+  .podcast-links a { width: 100%; }
   .faq-layout { grid-template-columns: 1fr; gap: 24px; }
   .info-item summary { padding: 17px 32px 17px 0; font-size: 16px; }
   .info-item summary::after { top: 14px; font-size: 16px; }
