@@ -1006,7 +1006,7 @@ function openProperty(slug) {
 /**
  * The old site's "Noderīga informācija" block (inheritance, document checks,
  * the Land Register, buying in a child's name), migrated as an accordion on the
- * homepage. The first item is open so the block is not just four closed rows.
+ * homepage. All items start closed, like the FAQ.
  */
 function usefulSection() {
   const useful = state.useful?.[state.language] ?? state.useful?.lv;
@@ -1016,8 +1016,8 @@ function usefulSection() {
         <div class="container">
           <div class="section-heading"><h2 id="info-title">${escapeHtml(useful.title)}</h2></div>
           <div class="info-list">
-            ${useful.tabs.map((tab, index) => `
-              <details class="info-item"${index === 0 ? ' open' : ''}>
+            ${useful.tabs.map((tab) => `
+              <details class="info-item">
                 <summary>${escapeHtml(tab.title)}</summary>
                 <div class="post-body">${tab.html}</div>
               </details>`).join('')}
