@@ -36,11 +36,13 @@ const languages = {
     sellTitle: 'Katram īpašumam - sava pieeja',
     sellLead: 'Precīzs vērtējums un skaidrs plāns palīdz pieņemt labākos lēmumus.',
     apartment: 'Dzīvoklis',
-    apartmentText: 'Nosakām tirgus vērtību, sagatavojam sludinājumu un atrodam īsto pircēju.',
+    apartmentText: 'Esam pārdevuši vairāk nekā 100 dzīvokļu. Cenu nosakām pēc reāliem darījumiem un laikus sakārtojam dokumentus.',
     house: 'Māja',
-    houseText: 'Sakārtojam pārdošanas procesu arī tad, ja situācija nav standarta.',
-    land: 'Zeme vai mežs',
-    landText: 'Salīdzinām līdzīgus darījumus, lai noteiktu pamatotu cenu un iespējas.',
+    houseText: 'Korekta cena paātrina pārdošanu. Sakārtojam platības un dokumentus, lai pircējs saņemtu finansējumu.',
+    land: 'Zeme',
+    landText: 'Pārbaudām zonējumu un dalīšanas iespējas, kā arī aprēķinām komunikāciju izbūves izmaksas.',
+    farmland: 'Lauksaimniecības zeme',
+    farmlandText: 'Pārzinām meža un lauksaimniecības zemes cenas pēc zemes veida un audzes vecuma visā Latvijā.',
     sellAction: 'Pieteikt konsultāciju',
     reviewsEyebrow: 'Ko saka mūsu klienti',
     reviewsTitle: 'Labi darījumi sākas ar uzticēšanos',
@@ -105,7 +107,7 @@ const languages = {
     eyebrow: 'Real estate agency in Latvia', heroTitle: 'Sell your property.\nFor the best price.', heroBody: 'Professional support from the first conversation to closing. A clear process, a considered strategy, and someone on your side.', heroAction: 'Request a valuation', videoAction: 'Meet our team', heroNote: 'More than 150 happy clients',
     searchTitle: 'Find your next property', searchType: 'Property type', searchPrice: 'Maximum price', searchPlace: 'Place or keyword', searchAction: 'Search', allTypes: 'All types', allPrices: 'Any price',
     propertiesEyebrow: 'Land and homes for sale', propertiesTitle: 'Properties worth a closer look', propertiesLead: 'Browse current listings and get in touch to find out more.', viewAll: 'View all properties', propertyCount: 'properties', details: 'View property',
-    sellEyebrow: 'A smoother way to sell', sellTitle: 'A considered approach for every property', sellLead: 'An accurate valuation and a clear plan help you make better decisions.', apartment: 'Apartment', apartmentText: 'We assess the market, prepare the listing, and find the right buyer.', house: 'House', houseText: 'We guide the sale even when the situation is not straightforward.', land: 'Land or forest', landText: 'We compare similar sales to find a realistic price and the right options.', sellAction: 'Request a consultation',
+    sellEyebrow: 'A smoother way to sell', sellTitle: 'A considered approach for every property', sellLead: 'An accurate valuation and a clear plan help you make better decisions.', apartment: 'Apartment', apartmentText: 'We have sold more than 100 apartments. We set the price from real transactions and get the documents in order in good time.', house: 'House', houseText: 'A correct price speeds up the sale. We sort out the areas and documents so the buyer can obtain financing.', land: 'Land', landText: 'We check zoning and subdivision options, and calculate the cost of building utilities.', farmland: 'Farmland', farmlandText: 'We know forest and farmland prices by land type and stand age across Latvia.', sellAction: 'Request a consultation',
     reviewsEyebrow: 'What our clients say', reviewsTitle: 'Good deals start with trust', reviewCount: '150+ happy clients', blogEyebrow: 'Advice, ideas and useful resources', blogTitle: 'Blog articles', readArticle: 'Read article', teamEyebrow: 'People on your side', teamTitle: 'Our team', agent: 'Real estate agent',
     contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', localNote: 'Preview form - your request is not sent.', formConsent: 'I agree to the processing of my personal data under the privacy policy', loadMore: 'Show more articles', viewMoreProperties: 'View all properties', formPhoneCode: 'Country code', formPhoneInvalid: 'Enter a valid phone number.', formEmailInvalid: 'Enter a valid email address.', formCaptchaFailed: 'The security check failed. Please try again.', termsLabel: 'Terms of Service', recaptchaNote: 'This site is protected by reCAPTCHA and the Google [privacy] and [terms] apply.',
     legalTitle: 'Legal support', legalItems: ['Purchase of properties with legal encumbrances', 'Subdivision and naming of properties', 'Inheritance matters', 'Debt recovery matters', 'Preparation and review of purchase agreements'], footerLine: 'Quick, easy, happy.', quickContact: 'Quick contact', call: 'Call', email: 'Send an email', cookiesTitle: 'Your privacy choices', cookiesText: 'We use essential cookies to run this site. With your permission, we may also use analytics cookies.', acceptCookies: 'Accept all', rejectCookies: 'Essential only', cookieSettings: 'Settings', cookieNecessary: 'Essential', cookieAnalytics: 'Analytics', saveChoices: 'Save choices', close: 'Close', noResults: 'No properties match these filters.', priceFrom: 'Price on request',
@@ -115,7 +117,7 @@ const languages = {
     eyebrow: 'Агентство недвижимости в Латвии', heroTitle: 'Продайте недвижимость.\nПо лучшей цене.', heroBody: 'Профессиональная поддержка от первого разговора до завершения сделки. Понятный процесс, продуманная стратегия и человек на вашей стороне.', heroAction: 'Оценить недвижимость', videoAction: 'Познакомьтесь с нами', heroNote: 'Более 150 довольных клиентов',
     searchTitle: 'Найдите свою недвижимость', searchType: 'Тип недвижимости', searchPrice: 'Максимальная цена', searchPlace: 'Место или ключевое слово', searchAction: 'Искать', allTypes: 'Все типы', allPrices: 'Любая цена',
     propertiesEyebrow: 'Земля и недвижимость на продажу', propertiesTitle: 'Объекты, заслуживающие внимания', propertiesLead: 'Посмотрите актуальные предложения и свяжитесь с нами, чтобы узнать подробности.', viewAll: 'Все объекты', propertyCount: 'объектов', details: 'Посмотреть объект',
-    sellEyebrow: 'Продажа без лишнего стресса', sellTitle: 'Индивидуальный подход к каждому объекту', sellLead: 'Точная оценка и понятный план помогают принимать верные решения.', apartment: 'Квартира', apartmentText: 'Оценим рынок, подготовим объявление и найдем подходящего покупателя.', house: 'Дом', houseText: 'Поможем пройти процесс продажи, даже если ситуация нестандартная.', land: 'Земля или лес', landText: 'Сравним похожие сделки, чтобы определить обоснованную цену и возможности.', sellAction: 'Записаться на консультацию',
+    sellEyebrow: 'Продажа без лишнего стресса', sellTitle: 'Индивидуальный подход к каждому объекту', sellLead: 'Точная оценка и понятный план помогают принимать верные решения.', apartment: 'Квартира', apartmentText: 'Мы продали более 100 квартир. Цену определяем по реальным сделкам и своевременно приводим в порядок документы.', house: 'Дом', houseText: 'Правильная цена ускоряет продажу. Приводим в порядок площади и документы, чтобы покупатель получил финансирование.', land: 'Земля', landText: 'Проверяем зонирование и возможность раздела, а также рассчитываем затраты на коммуникации.', farmland: 'Сельскохозяйственная земля', farmlandText: 'Знаем цены на лес и сельскохозяйственную землю по типу земли и возрасту насаждений по всей Латвии.', sellAction: 'Записаться на консультацию',
     reviewsEyebrow: 'Отзывы наших клиентов', reviewsTitle: 'Хорошие сделки начинаются с доверия', reviewCount: 'Более 150 довольных клиентов', blogEyebrow: 'Советы и полезные материалы', blogTitle: 'Статьи в блогах', readArticle: 'Читать статью', teamEyebrow: 'Люди на вашей стороне', teamTitle: 'Наша команда', agent: 'Агент по недвижимости',
     contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', localNote: 'Демонстрационная форма - заявка не отправляется.', formConsent: 'Я согласен на обработку персональных данных согласно политике конфиденциальности', loadMore: 'Показать больше статей', viewMoreProperties: 'Показать все объекты', formPhoneCode: 'Код страны', formPhoneInvalid: 'Введите корректный номер телефона.', formEmailInvalid: 'Введите корректный адрес эл. почты.', formCaptchaFailed: 'Проверка безопасности не удалась. Попробуйте ещё раз.', termsLabel: 'Условия использования', recaptchaNote: 'Этот сайт защищён reCAPTCHA. Применяются [privacy] и [terms] Google.',
     legalTitle: 'Юридическая поддержка', legalItems: ['Выкуп объектов с юридическими обременениями', 'Раздел недвижимости и присвоение названий', 'Вопросы наследства', 'Вопросы взыскания долгов', 'Подготовка и проверка договоров купли-продажи'], footerLine: 'Быстро, удобно, счастливо.', quickContact: 'Быстрая связь', call: 'Позвонить', email: 'Написать', cookiesTitle: 'Настройки конфиденциальности', cookiesText: 'Для работы сайта используются необходимые cookie. С вашего разрешения также могут использоваться аналитические cookie.', acceptCookies: 'Разрешить все', rejectCookies: 'Только необходимые', cookieSettings: 'Настройки', cookieNecessary: 'Необходимые', cookieAnalytics: 'Аналитика', saveChoices: 'Сохранить выбор', close: 'Закрыть', noResults: 'По этим критериям объекты не найдены.', priceFrom: 'Цена по запросу',
@@ -125,7 +127,7 @@ const languages = {
     eyebrow: 'Immobilienagentur in Lettland', heroTitle: 'Verkaufen Sie Ihre Immobilie.\nZum besten Preis.', heroBody: 'Professionelle Unterstützung vom ersten Gespräch bis zum Abschluss. Ein klarer Ablauf, eine durchdachte Strategie und jemand an Ihrer Seite.', heroAction: 'Immobilie bewerten lassen', videoAction: 'Lernen Sie uns kennen', heroNote: 'Mehr als 150 zufriedene Kunden',
     searchTitle: 'Finden Sie Ihre nächste Immobilie', searchType: 'Immobilientyp', searchPrice: 'Höchstpreis', searchPlace: 'Ort oder Stichwort', searchAction: 'Suchen', allTypes: 'Alle Typen', allPrices: 'Jeder Preis',
     propertiesEyebrow: 'Grundstücke und Immobilien zum Verkauf', propertiesTitle: 'Immobilien, die einen Blick wert sind', propertiesLead: 'Entdecken Sie aktuelle Angebote und fragen Sie uns nach weiteren Informationen.', viewAll: 'Alle Immobilien ansehen', propertyCount: 'Immobilien', details: 'Immobilie ansehen',
-    sellEyebrow: 'Verkaufen ohne unnötigen Stress', sellTitle: 'Ein passender Weg für jede Immobilie', sellLead: 'Eine genaue Bewertung und ein klarer Plan helfen bei guten Entscheidungen.', apartment: 'Wohnung', apartmentText: 'Wir bewerten den Markt, erstellen das Angebot und finden den passenden Käufer.', house: 'Haus', houseText: 'Wir begleiten den Verkauf auch in besonderen Situationen.', land: 'Grundstück oder Wald', landText: 'Wir vergleichen ähnliche Verkäufe, um einen fairen Preis und Möglichkeiten zu finden.', sellAction: 'Beratung anfragen',
+    sellEyebrow: 'Verkaufen ohne unnötigen Stress', sellTitle: 'Ein passender Weg für jede Immobilie', sellLead: 'Eine genaue Bewertung und ein klarer Plan helfen bei guten Entscheidungen.', apartment: 'Wohnung', apartmentText: 'Wir haben über 100 Wohnungen verkauft. Den Preis bestimmen wir anhand realer Verkäufe und bringen die Unterlagen rechtzeitig in Ordnung.', house: 'Haus', houseText: 'Ein korrekter Preis beschleunigt den Verkauf. Wir klären Flächen und Unterlagen, damit der Käufer eine Finanzierung erhält.', land: 'Grundstück', landText: 'Wir prüfen Bebauungsplan und Teilungsmöglichkeiten und berechnen die Kosten für die Erschließung.', farmland: 'Landwirtschaftliche Fläche', farmlandText: 'Wir kennen die Preise für Wald und landwirtschaftliche Flächen nach Landtyp und Bestandsalter in ganz Lettland.', sellAction: 'Beratung anfragen',
     reviewsEyebrow: 'Das sagen unsere Kunden', reviewsTitle: 'Gute Geschäfte beginnen mit Vertrauen', reviewCount: 'Mehr als 150 zufriedene Kunden', blogEyebrow: 'Tipps und hilfreiche Informationen', blogTitle: 'Blog-Artikel', readArticle: 'Artikel lesen', teamEyebrow: 'Menschen an Ihrer Seite', teamTitle: 'Unser Team', agent: 'Immobilienmakler',
     contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', localNote: 'Vorschauformular - die Anfrage wird nicht gesendet.', formConsent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzerklärung zu', loadMore: 'Mehr Artikel anzeigen', viewMoreProperties: 'Alle Objekte anzeigen', formPhoneCode: 'Ländervorwahl', formPhoneInvalid: 'Bitte eine gültige Telefonnummer eingeben.', formEmailInvalid: 'Bitte eine gültige E-Mail-Adresse eingeben.', formCaptchaFailed: 'Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.', termsLabel: 'Nutzungsbedingungen', recaptchaNote: 'Diese Website ist durch reCAPTCHA geschützt. Es gelten die [privacy] und die [terms] von Google.',
     legalTitle: 'Rechtliche Unterstützung', legalItems: ['Ankauf rechtlich belasteter Immobilien', 'Teilung und Benennung von Grundstücken', 'Erbschaftsangelegenheiten', 'Fragen zur Forderungsvollstreckung', 'Vorbereitung und Prüfung von Kaufverträgen'], footerLine: 'Schnell, einfach, glücklich.', quickContact: 'Schnellkontakt', call: 'Anrufen', email: 'E-Mail senden', cookiesTitle: 'Ihre Datenschutzeinstellungen', cookiesText: 'Für den Betrieb der Website verwenden wir notwendige Cookies. Mit Ihrer Einwilligung können auch Analyse-Cookies eingesetzt werden.', acceptCookies: 'Alle akzeptieren', rejectCookies: 'Nur notwendige', cookieSettings: 'Einstellungen', cookieNecessary: 'Notwendig', cookieAnalytics: 'Analyse', saveChoices: 'Auswahl speichern', close: 'Schließen', noResults: 'Keine Immobilien für diese Kriterien gefunden.', priceFrom: 'Preis auf Anfrage',
@@ -152,7 +154,7 @@ const extendedTranslations = {
     urgentEyebrow: 'Kad laiks ir svarīgs', urgentTitle: 'Pārdod īpašumu 3 dienu laikā', urgentLead: 'Steidzamai realizācijai - saziņa vienas stundas laikā un skaidri nākamie soļi.',
     urgentSteps: [['01 / diena', 'Saziņa un izvērtēšana', 'Sazvanīšanās, ātrās realizācijas vērtības noteikšana un īpašuma dokumentu analīze.'], ['02 / diena', 'Piedāvājums', 'Veicam ātrās realizācijas izpēti, piedāvājam cenu un vienojamies par tikšanos pie notāra.'], ['03 / diena', 'Darījuma noslēgums', 'Tiekamies pie notāra un pēc darījuma nauda tiek pārskaitīta tavā kontā.']],
     urgentAction: 'Pieteikt steidzamu pārdošanu', faqTitle: 'Biežāk uzdotie jautājumi',
-    faqItems: [['Kādas ir izmaksas, pārdodot īpašumu ar mums?', 'Maksa ir atkarīga no darījuma sarežģītības un visbiežāk sākas no 5%. Slēdzam ekskluzīvu vienošanos un sadarbojamies ar aģentiem visā Latvijā.'], ['Vai es varu pārdot īpašumu pats?', 'Protams. Mēs piedāvājam tirgus analīzi, mārketinga stratēģiju, komunikācijas vadību un juridisko formalitāšu atbalstu, lai pārdošanas process būtu drošs un pārskatāms.'], ['Cik ātri var pārdot īpašumu?', 'Pēc tirgus analīzes un cenas noteikšanas īpašumu reizēm izdodas pārdot nedēļas laikā. Dārgāki objekti var tikt tirgoti no viena līdz sešiem mēnešiem.'], ['Kas nepieciešams pirms īpašuma pārdošanas?', 'Sākumā pietiek ar lēmumu pārdot. Kopā izanalizēsim dokumentus, izpētīsim tirgu un noteiksim īpašuma patieso vērtību.']],
+    faqItems: [['Kādas ir izmaksas, pārdodot īpašumu ar mums?', 'Maksa ir atkarīga no darījuma sarežģītības un visbiežāk sākas no 5%. Slēdzam ekskluzīvu vienošanos un sadarbojamies ar aģentiem visā Latvijā.'], ['Vai es varu pārdot īpašumu pats?', 'Protams. Mēs piedāvājam tirgus analīzi, mārketinga stratēģiju, komunikācijas vadību un juridisko formalitāšu atbalstu, lai pārdošanas process būtu drošs un pārskatāms.'], ['Cik ilgi aizņem pārdošana?', 'Atklāti un patiesi: pēc precīzas tirgus analīzes un pareizi noteiktas cenas īpašumu dažkārt izdodas pārdot nedēļas laikā. Visbiežāk tas aizņem no viena līdz diviem mēnešiem, bet dārgāku vai sarežģītāku objektu pārdošana var ilgt līdz gadam.'], ['Kas nepieciešams pirms īpašuma pārdošanas?', 'Sākumā pietiek ar lēmumu pārdot. Kopā izanalizēsim dokumentus, izpētīsim tirgu un noteiksim īpašuma patieso vērtību.']],
     podcastTitle: 'Vairāk noderīga satura', podcastLead: 'Apskati mūsu YouTube kanālu un Spotify podkāstu par nekustamo īpašumu.', youtube: 'YouTube kanāls', spotify: 'Spotify podkāsts',
   },
   en: {
@@ -168,7 +170,7 @@ const extendedTranslations = {
     urgentEyebrow: 'When time matters', urgentTitle: 'Sell your property in 3 days', urgentLead: 'For urgent sales, we will contact you within one hour and explain the next steps.',
     urgentSteps: [['DAY 01', 'Get in touch', 'We discuss the property, estimate its quick-sale value, and review the documents.'], ['DAY 02', 'Receive an offer', 'We assess quick-sale options, make an offer, and arrange a notary appointment.'], ['DAY 03', 'Complete the sale', 'We meet at the notary and the sale proceeds are transferred to your account.']],
     urgentAction: 'Request an urgent sale', faqTitle: 'Frequently asked questions',
-    faqItems: [['What does it cost to sell with you?', 'Fees depend on the complexity of the transaction and most often start at 5%. We agree on the terms in advance and work with agents across Latvia.'], ['Can I sell my property myself?', 'Of course. We provide market analysis, a marketing strategy, communication support, and help with legal formalities.'], ['How quickly can a property be sold?', 'After market analysis and pricing, some properties can sell within a week. Higher-priced properties may take one to six months.'], ['What do I need before selling?', 'First, decide that you want to sell. We will review the documents, research the market, and estimate the property’s value.']],
+    faqItems: [['What does it cost to sell with you?', 'Fees depend on the complexity of the transaction and most often start at 5%. We agree on the terms in advance and work with agents across Latvia.'], ['Can I sell my property myself?', 'Of course. We provide market analysis, a marketing strategy, communication support, and help with legal formalities.'], ['How long does a sale take?', 'Openly and honestly: after a precise market analysis and correct pricing, a property sometimes sells within weeks. Most often it takes one to two months, but a more expensive or complex property can take up to a year.'], ['What do I need before selling?', 'First, decide that you want to sell. We will review the documents, research the market, and estimate the property’s value.']],
     podcastTitle: 'More useful content', podcastLead: 'Explore our YouTube channel and Spotify podcast about real estate.', youtube: 'YouTube channel', spotify: 'Spotify podcast',
   },
   ru: {
@@ -184,7 +186,7 @@ const extendedTranslations = {
     urgentEyebrow: 'Когда важно время', urgentTitle: 'Продайте недвижимость за 3 дня', urgentLead: 'При срочной продаже мы свяжемся с вами в течение часа и объясним следующие шаги.',
     urgentSteps: [['ДЕНЬ 01', 'Свяжитесь с нами', 'Обсудим недвижимость, оценим стоимость быстрой продажи и проверим документы.'], ['ДЕНЬ 02', 'Получите предложение', 'Изучим варианты быстрой продажи, предложим цену и договоримся о встрече у нотариуса.'], ['ДЕНЬ 03', 'Завершите сделку', 'Встретимся у нотариуса, после чего деньги поступят на ваш счет.']],
     urgentAction: 'Запросить срочную продажу', faqTitle: 'Часто задаваемые вопросы',
-    faqItems: [['Сколько стоит продать недвижимость с вами?', 'Стоимость зависит от сложности сделки и чаще всего начинается от 5%. Условия согласовываются заранее, мы работаем с агентами по всей Латвии.'], ['Можно ли продать недвижимость самостоятельно?', 'Конечно. Мы предлагаем анализ рынка, маркетинговую стратегию, поддержку в общении и помощь с юридическими формальностями.'], ['Как быстро можно продать недвижимость?', 'После анализа рынка и определения цены некоторые объекты продаются за неделю. Более дорогие объекты могут продаваться от одного до шести месяцев.'], ['Что нужно для начала продажи?', 'Сначала достаточно принять решение о продаже. Мы проверим документы, изучим рынок и оценим реальную стоимость.']],
+    faqItems: [['Сколько стоит продать недвижимость с вами?', 'Стоимость зависит от сложности сделки и чаще всего начинается от 5%. Условия согласовываются заранее, мы работаем с агентами по всей Латвии.'], ['Можно ли продать недвижимость самостоятельно?', 'Конечно. Мы предлагаем анализ рынка, маркетинговую стратегию, поддержку в общении и помощь с юридическими формальностями.'], ['Сколько времени занимает продажа?', 'Честно и открыто: после точного анализа рынка и правильно определённой цены недвижимость иногда удаётся продать за недели. Чаще всего это занимает от одного до двух месяцев, но продажа более дорогого или сложного объекта может длиться до года.'], ['Что нужно для начала продажи?', 'Сначала достаточно принять решение о продаже. Мы проверим документы, изучим рынок и оценим реальную стоимость.']],
     podcastTitle: 'Больше полезных материалов', podcastLead: 'Смотрите наш YouTube-канал и слушайте подкаст Spotify о недвижимости.', youtube: 'Канал YouTube', spotify: 'Подкаст Spotify',
   },
   de: {
@@ -200,7 +202,7 @@ const extendedTranslations = {
     urgentEyebrow: 'Wenn Zeit wichtig ist', urgentTitle: 'Immobilie in 3 Tagen verkaufen', urgentLead: 'Bei einem dringenden Verkauf melden wir uns innerhalb einer Stunde und erklären die nächsten Schritte.',
     urgentSteps: [['TAG 01', 'Kontakt aufnehmen', 'Wir besprechen die Immobilie, schätzen den schnellen Verkaufspreis und prüfen die Unterlagen.'], ['TAG 02', 'Angebot erhalten', 'Wir prüfen die Möglichkeiten, unterbreiten ein Angebot und vereinbaren einen Notartermin.'], ['TAG 03', 'Verkauf abschließen', 'Wir treffen uns beim Notar und der Verkaufserlös wird auf Ihr Konto überwiesen.']],
     urgentAction: 'Dringenden Verkauf anfragen', faqTitle: 'Häufig gestellte Fragen',
-    faqItems: [['Was kostet ein Verkauf mit Ihnen?', 'Die Kosten hängen von der Komplexität des Geschäfts ab und beginnen meist bei 5%. Die Bedingungen vereinbaren wir im Voraus.'], ['Kann ich meine Immobilie selbst verkaufen?', 'Natürlich. Wir bieten Marktanalyse, Marketingstrategie, Kommunikationsunterstützung und Hilfe bei rechtlichen Formalitäten.'], ['Wie schnell kann eine Immobilie verkauft werden?', 'Nach Marktanalyse und Preisfestlegung können manche Immobilien innerhalb einer Woche verkauft werden. Hochpreisige Objekte benötigen oft ein bis sechs Monate.'], ['Was brauche ich vor dem Verkauf?', 'Zunächst müssen Sie sich für den Verkauf entscheiden. Wir prüfen gemeinsam die Unterlagen, den Markt und den realistischen Wert.']],
+    faqItems: [['Was kostet ein Verkauf mit Ihnen?', 'Die Kosten hängen von der Komplexität des Geschäfts ab und beginnen meist bei 5%. Die Bedingungen vereinbaren wir im Voraus.'], ['Kann ich meine Immobilie selbst verkaufen?', 'Natürlich. Wir bieten Marktanalyse, Marketingstrategie, Kommunikationsunterstützung und Hilfe bei rechtlichen Formalitäten.'], ['Wie lange dauert ein Verkauf?', 'Offen und ehrlich: Nach einer genauen Marktanalyse und korrekter Preisbestimmung lässt sich eine Immobilie manchmal innerhalb weniger Wochen verkaufen. Meist dauert es ein bis zwei Monate, ein teureres oder komplexeres Objekt kann jedoch bis zu einem Jahr in Anspruch nehmen.'], ['Was brauche ich vor dem Verkauf?', 'Zunächst müssen Sie sich für den Verkauf entscheiden. Wir prüfen gemeinsam die Unterlagen, den Markt und den realistischen Wert.']],
     podcastTitle: 'Weitere hilfreiche Inhalte', podcastLead: 'Entdecken Sie unseren YouTube-Kanal und Spotify-Podcast rund um Immobilien.', youtube: 'YouTube-Kanal', spotify: 'Spotify-Podcast',
   },
 };
@@ -312,6 +314,27 @@ const BRAND_LOGO = `${assetUrl('/images/brand/logo.svg')}?v=2`;
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
 /**
+ * Migrated WordPress media that now lives in this repository. The article and
+ * page copy still carries the original /wp-content/... paths (the CRM holds the
+ * same HTML, see its resources/site/wordpress-media-manifest.json), so the URLs
+ * are swapped here, where BASE_URL is known - a stored body cannot know whether
+ * the site is served from /new/ or from the domain root. Anything not listed is
+ * left alone, so a reference that was never migrated keeps working.
+ */
+const LOCAL_MEDIA = {
+  '/wp-content/uploads/2023/05/broceni-5.mp4': '/video/posts/pardosana-broceni-5.mp4',
+  '/wp-content/uploads/2023/10/2023-10-16-19-06-10.mp4': '/video/posts/mvp-darijums-kuldiga.mp4',
+  '/wp-content/uploads/2023/10/Darijumi-Saldus-pilseta-un-cenubanka.lv_.mp4': '/video/posts/darijumi-saldus-pilseta-un-cenubanka.mp4',
+  '/wp-content/uploads/2023/10/kas-ir-pardod-laimigs.mp4': '/video/posts/kas-ir-pardod-laimigs.mp4',
+  '/wp-content/uploads/2023/10/pardod-laimigs-intro.mp4': '/video/pardod-laimigs-intro.mp4',
+  '/wp-content/uploads/2025/09/Ka-rikoties-sanemot-mantojuma-zemi-vai-ipasumu.pdf': '/files/ka-rikoties-sanemot-mantojuma.pdf',
+};
+const localMediaHtml = (html = '') => html.replace(
+  /(?:https?:\/\/(?:www\.)?pardodlaimigs\.lv)?(\/wp-content\/uploads\/[^"'?<>\s]+)/g,
+  (match, path) => (LOCAL_MEDIA[path] ? assetUrl(LOCAL_MEDIA[path]) : match),
+);
+
+/**
  * The preview keeps the URL shapes of the site it is migrating to -
  * /ipasums/<slug>/, /<post-slug>/, /blog/ and /<page-slug>/ - so links and
  * bookmarks survive the move off WordPress. Every route is emitted as its own
@@ -408,7 +431,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
         <p class="property-detail-price">${escapeHtml(property.price || t('priceFrom'))}</p>
         ${property.facts?.length ? `<ul class="property-detail-facts">${property.facts.map((fact) => `<li><strong>${escapeHtml(fact.value)}</strong><span>${escapeHtml(factLabel(fact.label))}</span></li>`).join('')}</ul>` : ''}
         <p class="property-detail-text">${escapeHtml(fullText ? propertyDescription(property) : propertySummary(property))}</p>
-        <div class="property-detail-agent"><span>${escapeHtml(t('agent'))}</span><strong>${escapeHtml(property.agent)}</strong><a href="tel:${escapeHtml(agent.phone.replace(/\s/g, ''))}">${escapeHtml(agent.phone)}</a></div>
+        <div class="property-detail-agent"><span>${escapeHtml(t('agent'))}</span><div class="property-detail-agent-values"><strong>${escapeHtml(property.agent)}</strong><a href="tel:${escapeHtml(agent.phone.replace(/\s/g, ''))}">${escapeHtml(agent.phone)}</a></div></div>
         <div class="property-detail-actions">
           <button class="button button-dark" type="button" id="property-enquire">${escapeHtml(t('enquire'))}</button>
           ${currentRoute().name === 'property' ? '' : `<a class="button button-outline" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}">${escapeHtml(t('fullListing'))}<i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>`}
@@ -500,7 +523,7 @@ function postView(slug) {
           <h1>${escapeHtml(copy.title)}</h1>
           <p class="post-date">${escapeHtml(post.date)}</p>
           ${post.image ? `<img class="post-cover" src="${escapeHtml(assetUrl(post.image))}" alt="">` : ''}
-          <div class="post-body">${copy.html}</div>
+          <div class="post-body">${localMediaHtml(copy.html)}</div>
         </div>
       </article>
       ${contactSection()}`;
@@ -514,7 +537,7 @@ function pageView(slug) {
       <section class="section content-page">
         <div class="container content-layout">
           <h1>${escapeHtml(copy.title)}</h1>
-          <div class="post-body">${copy.html}</div>
+          <div class="post-body">${localMediaHtml(copy.html)}</div>
         </div>
       </section>`;
 }
@@ -528,6 +551,12 @@ function notFoundView() {
         </div>
       </section>`;
 }
+
+/**
+ * The path the shell currently shows, so a popstate that only changed the hash
+ * can be told apart from a real page change (see bindNavigation).
+ */
+let lastRenderedPath = '';
 
 /**
  * Client-side navigation between the preview's own pages. Anything the preview
@@ -563,11 +592,20 @@ function bindNavigation() {
     else window.scrollTo({ top: 0, behavior: 'auto' });
   });
 
-  window.addEventListener('popstate', () => renderRoute());
+  window.addEventListener('popstate', () => {
+    // An in-page anchor (such as the urgent-sale call to action, or any nav
+    // link on the home page) also fires popstate, after only the hash changed.
+    // The browser scrolls to the fragment itself, so the shell must not be
+    // rebuilt for it - doing so would wipe whatever the visitor has already
+    // filled into the form.
+    if (currentPath() === lastRenderedPath) return;
+    renderRoute();
+  });
 }
 
 /** Re-render whatever route the URL points at. */
 function renderRoute({ keepScroll = false } = {}) {
+  lastRenderedPath = currentPath();
   const offset = keepScroll ? window.scrollY : 0;
   renderShell();
   if (keepScroll) window.scrollTo({ top: offset, behavior: 'auto' });
@@ -576,8 +614,8 @@ function renderRoute({ keepScroll = false } = {}) {
 function contactSection() {
   return `      <section class="contact-section" id="kontakti" aria-labelledby="contact-title">
         <div class="container contact-layout">
-          <div class="contact-copy"><p class="eyebrow" data-i18n="contactEyebrow"></p><h2 id="contact-title" data-i18n="contactTitle"></h2><p data-i18n="contactBody"></p><div class="contact-direct"><a href="tel:+37124922942"><span class="contact-label">Roberts</span><strong>+371 2492 2942</strong></a></div></div>
-          <form id="contact-form" class="contact-form">
+          <div class="contact-copy reveal"><p class="eyebrow" data-i18n="contactEyebrow"></p><h2 id="contact-title" data-i18n="contactTitle"></h2><p data-i18n="contactBody"></p><div class="contact-direct"><a href="tel:+37124922942"><span class="contact-label">Roberts</span><strong>+371 2492 2942</strong></a></div></div>
+          <form id="contact-form" class="contact-form reveal">
             <div class="form-row"><label><span data-i18n="formType"></span><select name="property_type" required><option value="" selected disabled data-i18n="formChoose"></option><option value="apartment" data-i18n="formApartment"></option><option value="house" data-i18n="formHouse"></option><option value="land" data-i18n="formLand"></option><option value="forest" data-i18n="formForest"></option></select></label><label><span data-i18n="formArea"></span><input name="area" inputmode="decimal" required></label></div>
             <label><span data-i18n="formLocation"></span><input name="location" required></label>
             <div class="form-row"><label><span data-i18n="formCadastre"></span><input name="cadastre" required></label><label><span data-i18n="formDesiredPrice"></span><input name="desired_price" inputmode="decimal"></label></div>
@@ -650,7 +688,7 @@ function homeView() {
 
       <section class="section properties-section" id="ipasumi" aria-labelledby="properties-title">
         <div class="container">
-          <div class="section-heading section-heading-row">
+          <div class="section-heading section-heading-row reveal">
             <div><p class="eyebrow eyebrow-green" data-i18n="propertiesEyebrow"></p><h2 id="properties-title" data-i18n="propertiesTitle"></h2><p class="section-lead" data-i18n="propertiesLead"></p></div>
             <a class="text-link desktop-link" href="#ipasumi" id="view-all-top"><span data-i18n="viewAll"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
           </div>
@@ -662,33 +700,34 @@ function homeView() {
 
       <section class="section selling-section" id="pardot" aria-labelledby="selling-title">
         <div class="container">
-          <div class="section-heading section-heading-centered"><p class="eyebrow eyebrow-green" data-i18n="sellEyebrow"></p><h2 id="selling-title" data-i18n="sellTitle"></h2><p class="section-lead" data-i18n="sellLead"></p></div>
+          <div class="section-heading section-heading-centered reveal"><p class="eyebrow eyebrow-green" data-i18n="sellEyebrow"></p><h2 id="selling-title" data-i18n="sellTitle"></h2><p class="section-lead" data-i18n="sellLead"></p></div>
           <div class="selling-grid">
-            <article class="selling-item"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="apartment"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
-            <article class="selling-item"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="house"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
-            <article class="selling-item"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="land"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item reveal"><span class="selling-number">01</span><h3 data-i18n="apartment"></h3><p data-i18n="apartmentText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="apartment"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item reveal"><span class="selling-number">02</span><h3 data-i18n="house"></h3><p data-i18n="houseText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="house"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item reveal"><span class="selling-number">03</span><h3 data-i18n="land"></h3><p data-i18n="landText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="land"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
+            <article class="selling-item reveal"><span class="selling-number">04</span><h3 data-i18n="farmland"></h3><p data-i18n="farmlandText"></p><a class="text-link" href="${homeAnchor('kontakti')}" data-preselect="land"><span data-i18n="sellAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></article>
           </div>
         </div>
       </section>
 
       <section class="section urgent-section" id="steidzami" aria-labelledby="urgent-title">
         <div class="container">
-          <div class="section-heading section-heading-centered"><p class="eyebrow eyebrow-green" data-i18n="urgentEyebrow"></p><h2 id="urgent-title" data-i18n="urgentTitle"></h2><p class="section-lead" data-i18n="urgentLead"></p></div>
+          <div class="section-heading section-heading-centered reveal"><p class="eyebrow eyebrow-green" data-i18n="urgentEyebrow"></p><h2 id="urgent-title" data-i18n="urgentTitle"></h2><p class="section-lead" data-i18n="urgentLead"></p></div>
           <ol class="urgent-steps" id="urgent-steps"></ol>
-          <div class="section-action"><a class="button button-dark" href="${homeAnchor('kontakti')}"><span data-i18n="urgentAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+          <div class="section-action"><a class="button button-dark" href="${homeAnchor('kontakti')}" data-preselect-urgent><span data-i18n="urgentAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
         </div>
       </section>
 
       <section class="reviews-section" aria-labelledby="reviews-title">
         <div class="container reviews-layout">
-          <div class="reviews-intro"><p class="eyebrow" data-i18n="reviewsEyebrow"></p><h2 id="reviews-title" data-i18n="reviewsTitle"></h2><div class="review-score"><span class="proof-stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><strong>5/5</strong><span data-i18n="reviewCount"></span></div><a class="text-link link-light" href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer"><span data-i18n="googleReviews"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
-          <article class="review-card" aria-live="polite"><span class="quote-mark" aria-hidden="true">“</span><p id="review-quote"></p><div class="review-author"><strong id="review-name"></strong><span class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div><div class="review-controls"><button id="review-prev" type="button" aria-label="${escapeHtml(t('previousReview'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button><span id="review-position"></span><button id="review-next" type="button" aria-label="${escapeHtml(t('nextReview'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div></article>
+          <div class="reviews-intro reveal"><p class="eyebrow" data-i18n="reviewsEyebrow"></p><h2 id="reviews-title" data-i18n="reviewsTitle"></h2><div class="review-score"><span class="proof-stars" aria-hidden="true"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span><strong>5/5</strong><span data-i18n="reviewCount"></span></div><a class="text-link link-light" href="https://g.page/r/CRZd6XZu2hhmEAE/review" target="_blank" rel="noreferrer"><span data-i18n="googleReviews"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
+          <article class="review-card reveal" aria-live="polite"><span class="quote-mark" aria-hidden="true">“</span><p id="review-quote"></p><div class="review-author"><strong id="review-name"></strong><span class="review-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span></div><div class="review-controls"><button id="review-prev" type="button" aria-label="${escapeHtml(t('previousReview'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button><span id="review-position"></span><button id="review-next" type="button" aria-label="${escapeHtml(t('nextReview'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div></article>
         </div>
       </section>
 
       <section class="section blog-section" id="blog" aria-labelledby="blog-title">
         <div class="container">
-          <div class="section-heading"><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h2 id="blog-title" data-i18n="blogTitle"></h2></div>
+          <div class="section-heading reveal"><p class="eyebrow eyebrow-green" data-i18n="blogEyebrow"></p><h2 id="blog-title" data-i18n="blogTitle"></h2></div>
           <div class="article-grid" id="article-grid"></div>
           <div class="section-action"><button class="button button-outline" id="load-more-posts" type="button" data-i18n="loadMore"></button></div>
         </div>
@@ -697,15 +736,15 @@ function homeView() {
       ${usefulSection()}
 
       <section class="podcast-section">
-        <div class="container podcast-layout"><div><p class="eyebrow" data-i18n="podcastTitle"></p><p data-i18n="podcastLead"></p></div><div class="podcast-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i><span data-i18n="youtube"></span><i class="fa-solid fa-arrow-right podcast-link-arrow" aria-hidden="true"></i></a><a href="https://open.spotify.com/show/5Tansq4D8byHA7ciR9DA2n" target="_blank" rel="noreferrer"><i class="fa-brands fa-spotify" aria-hidden="true"></i><span data-i18n="spotify"></span><i class="fa-solid fa-arrow-right podcast-link-arrow" aria-hidden="true"></i></a></div></div>
+        <div class="container podcast-layout reveal"><div><p class="eyebrow" data-i18n="podcastTitle"></p><p data-i18n="podcastLead"></p></div><div class="podcast-links"><a href="https://www.youtube.com/@pardodlaimigs" target="_blank" rel="noreferrer"><i class="fa-brands fa-youtube" aria-hidden="true"></i><span data-i18n="youtube"></span><i class="fa-solid fa-arrow-right podcast-link-arrow" aria-hidden="true"></i></a><a href="https://open.spotify.com/show/5Tansq4D8byHA7ciR9DA2n" target="_blank" rel="noreferrer"><i class="fa-brands fa-spotify" aria-hidden="true"></i><span data-i18n="spotify"></span><i class="fa-solid fa-arrow-right podcast-link-arrow" aria-hidden="true"></i></a></div></div>
       </section>
 
       <section class="section team-section" id="komanda" aria-labelledby="team-title">
         <div class="container team-layout">
-          <div class="team-heading"><p class="eyebrow eyebrow-green" data-i18n="teamEyebrow"></p><h2 id="team-title" data-i18n="teamTitle"></h2><p class="section-lead" data-i18n="teamLead"></p></div>
+          <div class="team-heading reveal"><p class="eyebrow eyebrow-green" data-i18n="teamEyebrow"></p><h2 id="team-title" data-i18n="teamTitle"></h2><p class="section-lead" data-i18n="teamLead"></p></div>
           <div class="team-grid">
             ${AGENTS.map((agent) => `
-              <article class="agent-card${agent.portrait ? ' agent-card--portrait' : ''}">
+              <article class="agent-card reveal${agent.portrait ? ' agent-card--portrait' : ''}">
                 <button class="agent-photo" type="button" data-agent="${agent.slug}" aria-label="${escapeHtml(agent.name)}"><img src="${escapeHtml(assetUrl(agent.photo))}" alt="" loading="lazy"></button>
                 <div>
                   <p class="agent-role" data-i18n="agent"></p>
@@ -719,7 +758,7 @@ function homeView() {
 
       <section class="legal-section" aria-labelledby="legal-title">
         <div class="container">
-          <div class="legal-head">
+          <div class="legal-head reveal">
             <p class="eyebrow" data-i18n="legalEyebrow"></p>
             <h2 id="legal-title" data-i18n="legalTitle"></h2>
             <p data-i18n="legalLead"></p>
@@ -894,6 +933,7 @@ ${viewMarkup()}
   }
   bindEvents();
   setupCookies();
+  setupReveal();
   const year = document.querySelector('#current-year');
   if (year) year.textContent = new Date().getFullYear();
 }
@@ -1019,12 +1059,12 @@ function usefulSection() {
   return `
       <section class="section info-section" aria-labelledby="info-title">
         <div class="container">
-          <div class="section-heading"><h2 id="info-title">${escapeHtml(useful.title)}</h2></div>
+          <div class="section-heading reveal"><h2 id="info-title">${escapeHtml(useful.title)}</h2></div>
           <div class="info-list">
             ${useful.tabs.map((tab) => `
-              <details class="info-item">
+              <details class="info-item reveal" name="useful-info">
                 <summary>${escapeHtml(tab.title)}</summary>
-                <div class="post-body">${tab.html}</div>
+                <div class="post-body">${localMediaHtml(tab.html)}</div>
               </details>`).join('')}
           </div>
         </div>
@@ -1033,7 +1073,7 @@ function usefulSection() {
 
 function articleCard(post, index) {
   return `
-    <article class="article-card"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}">
+    <article class="article-card reveal"><a href="${escapeHtml(siteUrl(`${post.slug}/`))}">
       ${post.image
         ? `<img src="${escapeHtml(assetUrl(post.image))}" alt="" loading="lazy">`
         : `<div class="article-placeholder" aria-hidden="true"><img src="${assetUrl('/images/favicon-180x180.jpg')}" alt=""></div>`}
@@ -1060,6 +1100,7 @@ function loadMorePosts() {
   requestAnimationFrame(() => {
     state.blogVisible = Math.min(state.blogVisible + BLOG_BATCH, state.posts.length);
     renderArticles();
+    setupReveal();
     button.setAttribute('aria-busy', 'false');
   });
 }
@@ -1185,16 +1226,16 @@ function setupMobileMenu() {
 
 function renderLegalList() {
   document.querySelector('#legal-list').innerHTML = t('legalItems')
-    .map((item, index) => `<li><span class="legal-number">${String(index + 1).padStart(2, '0')}</span><p>${escapeHtml(item)}</p></li>`)
+    .map((item, index) => `<li class="reveal"><span class="legal-number">${String(index + 1).padStart(2, '0')}</span><p>${escapeHtml(item)}</p></li>`)
     .join('');
 }
 
 function renderUrgentSteps() {
-  document.querySelector('#urgent-steps').innerHTML = t('urgentSteps').map(([day, title, description]) => `<li class="urgent-step"><span class="urgent-day">${escapeHtml(day)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p></li>`).join('');
+  document.querySelector('#urgent-steps').innerHTML = t('urgentSteps').map(([day, title, description]) => `<li class="urgent-step reveal"><span class="urgent-day">${escapeHtml(day)}</span><h3>${escapeHtml(title)}</h3><p>${escapeHtml(description)}</p></li>`).join('');
 }
 
 function renderFaq() {
-  document.querySelector('#faq-list').innerHTML = t('faqItems').map(([question, answer]) => `<details class="faq-item"><summary>${escapeHtml(question)}</summary><p>${escapeHtml(answer)}</p></details>`).join('');
+  document.querySelector('#faq-list').innerHTML = t('faqItems').map(([question, answer]) => `<details class="faq-item reveal"><summary>${escapeHtml(question)}</summary><p>${escapeHtml(answer)}</p></details>`).join('');
 }
 
 function setLanguage(code) {
@@ -1505,6 +1546,14 @@ function bindEvents() {
     });
   });
 
+  // "Pieteikt steidzamu pārdošanu" also ticks the urgency box in the form.
+  document.querySelectorAll('[data-preselect-urgent]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const urgent = document.querySelector('.contact-form input[name="urgent"]');
+      if (urgent) urgent.checked = true;
+    });
+  });
+
   setupAgentDialog();
   setupVideoDialog();
   on('#open-video', 'click', () => document.querySelector('#video-dialog')?.showModal());
@@ -1537,6 +1586,36 @@ function bindEvents() {
   on('#open-cookie-settings', 'click', openCookieSettings);
   on('#manage-cookies', 'click', openCookieSettings);
   on('#save-cookie-settings', 'click', () => saveCookieConsent(document.querySelector('#analytics-cookies').checked));
+}
+
+/**
+ * Sections and cards drift up as they enter the viewport. The elements carry
+ * the .reveal class in the markup (see style.css), so they are already hidden
+ * on the first paint; elements that are on screen when this runs simply get the
+ * .is-visible class at once, which gives the page load its own fade-in.
+ * Re-run this after adding cards to the page - bound elements are remembered.
+ */
+const revealBound = new WeakSet();
+const revealObserver = 'IntersectionObserver' in window
+  ? new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -60px 0px' })
+  : null;
+
+function setupReveal() {
+  document.querySelectorAll('.reveal').forEach((element) => {
+    if (revealBound.has(element)) return;
+    revealBound.add(element);
+    if (!revealObserver || element.getBoundingClientRect().top < window.innerHeight - 60) {
+      element.classList.add('is-visible');
+    } else {
+      revealObserver.observe(element);
+    }
+  });
 }
 
 function setupCookies() {
