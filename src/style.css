@@ -718,13 +718,15 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .post-body video { width: 100%; aspect-ratio: 16 / 9; margin: 18px 0; }
 /* The notes in the copied articles are marked with icons instead of emoji
    (see the migration): keep them on the text's optical line, inset them and
-   let them take the article's accent colour. */
-.post-body i.fa-solid { margin-right: .45em; color: var(--accent); font-size: .95em; vertical-align: -.125em; }
+   let them take the article's accent colour. The icon font's usual -0.125em
+   nudge pulls them a couple of pixels below that line, so the default baseline
+   alignment is left alone - it centres them on the text. */
+.post-body i.fa-solid { margin-right: .45em; color: var(--accent); font-size: .95em; }
 /* Video links inside migrated posts get an icon in front of them, drawn with
    the icon font so the stored WordPress HTML stays untouched. They stay inline
    so the sentence wraps and the icon keeps its place in the text flow. */
 .site-video-link a { color: var(--brand); font-weight: 600; }
-.site-video-link a::before { content: '\f03d'; margin-right: .5em; font-family: 'Font Awesome 6 Free'; font-size: .95em; font-weight: 900; vertical-align: -.125em; }
+.site-video-link a::before { content: '\f03d'; margin-right: .5em; font-family: 'Font Awesome 6 Free'; font-size: .95em; font-weight: 900; }
 .agent-page { padding: 96px 0 40px; }
 .agent-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 46px; align-items: center; }
 .agent-portrait { width: 100%; max-height: 460px; object-fit: cover; object-position: center 30%; }
