@@ -383,6 +383,13 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .property-nav-prev { left: 16px; }
 .property-nav-next { right: 16px; }
 .property-gallery-position { position: absolute; z-index: 2; top: 16px; left: 16px; padding: 6px 10px; color: #fff; background: rgb(16 34 31 / 55%); font-size: 13px; letter-spacing: .06em; white-space: nowrap; }
+.property-gallery-fullscreen { position: absolute; z-index: 3; top: 16px; right: 16px; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgb(255 255 255 / 45%); border-radius: 50%; cursor: pointer; color: #fff; background: rgb(16 34 31 / 42%); transition: background .18s ease, color .18s ease; }
+.property-gallery-fullscreen i { font-size: 15px; }
+.property-gallery-fullscreen:hover, .property-gallery-fullscreen:focus-visible { color: var(--brand-dark); border-color: #fff; background: #fff; }
+/* In fullscreen the whole photo must stay visible; the filmstrip stays on top of it. */
+.property-detail-media:fullscreen { background: #091613; }
+.property-detail-media:fullscreen > img { height: 100%; min-height: 0; object-fit: contain; }
+.property-detail-media:fullscreen .property-detail-thumbs { position: absolute; right: 0; bottom: 0; left: 0; background: linear-gradient(to top, rgb(9 22 19 / 55%), rgb(9 22 19 / 0%)); }
 /* The thumbnails sit flush on the image as a filmstrip: no inset, no gaps,
    no white borders - the current one is simply the opaque tile with a gold
    marker, and hairlines separate the rest. */
@@ -634,6 +641,8 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .property-nav { width: 38px; height: 38px; }
   .property-nav-prev { left: 10px; }
   .property-nav-next { right: 10px; }
+  /* Clear of the dialog's close button, which sits over the image on a phone. */
+  .property-dialog .property-gallery-fullscreen { top: 12px; right: 54px; }
   .property-detail-place { flex-direction: column; align-items: stretch; gap: 12px; }
   .property-detail-place .property-detail-address { max-width: none; }
   /* Narrow card: the label, name and phone each take their own row, all left. */

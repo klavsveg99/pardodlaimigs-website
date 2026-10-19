@@ -146,7 +146,7 @@ const extendedTranslations = {
     navFaq: 'BUJ', faqEyebrow: 'BUJ', privacyLabel: 'Privātuma politika', googleReviews: 'Google atsauksmes',
     heroCarouselLabel: 'Īpašumu attēlu galerija', previousSlide: 'Iepriekšējais attēls', nextSlide: 'Nākamais attēls',
     legalEyebrow: 'Papildu pakalpojumi', legalLead: 'Kad darījums nav vienkāršs, palīdzam arī ar juridiskiem jautājumiem - no dokumentu izpētes līdz reģistrācijai Zemesgrāmatā.',
-    photos: 'foto', photo: 'Attēls', galleryLabel: 'Īpašuma attēli', enquire: 'Sazināties par īpašumu', fullListing: 'Atvērt sludinājumu',
+    photos: 'foto', photo: 'Attēls', galleryLabel: 'Īpašuma attēli', viewFullscreen: 'Rādīt pilnekrāna režīmā', exitFullscreen: 'Iziet no pilnekrāna režīma', enquire: 'Sazināties par īpašumu', fullListing: 'Atvērt sludinājumu',
     reserved: 'Rezervēts',
     preciseLocation: 'Precīza atrašanās vieta', openInMaps: 'Atvērt Google Maps',
     allArticles: 'Visi raksti',
@@ -163,7 +163,7 @@ const extendedTranslations = {
     navFaq: 'FAQ', faqEyebrow: 'FAQ', privacyLabel: 'Privacy policy', googleReviews: 'Google reviews',
     heroCarouselLabel: 'Property image gallery', previousSlide: 'Previous image', nextSlide: 'Next image',
     legalEyebrow: 'Additional services', legalLead: 'When a transaction is not straightforward, we also help with legal matters, from reviewing documents to registering them in the Land Register.',
-    photos: 'photos', photo: 'Image', galleryLabel: 'Property images', enquire: 'Enquire about this property', fullListing: 'Open full listing',
+    photos: 'photos', photo: 'Image', galleryLabel: 'Property images', viewFullscreen: 'View fullscreen', exitFullscreen: 'Exit fullscreen', enquire: 'Enquire about this property', fullListing: 'Open full listing',
     reserved: 'Reserved',
     preciseLocation: 'Precise location', openInMaps: 'Open in Google Maps',
     allArticles: 'All articles', teamLead: 'Experience, a personal approach and care for every detail, from the first conversation to handing over the keys.',
@@ -180,7 +180,7 @@ const extendedTranslations = {
     navFaq: 'FAQ', faqEyebrow: 'Вопросы', privacyLabel: 'Политика конфиденциальности', googleReviews: 'Отзывы Google',
     heroCarouselLabel: 'Галерея изображений объектов', previousSlide: 'Предыдущее изображение', nextSlide: 'Следующее изображение',
     legalEyebrow: 'Дополнительные услуги', legalLead: 'Если сделка непростая, мы помогаем и с юридическими вопросами - от проверки документов до регистрации в Земельной книге.',
-    photos: 'фото', photo: 'Изображение', galleryLabel: 'Изображения объекта', enquire: 'Связаться по объекту', fullListing: 'Открыть объявление',
+    photos: 'фото', photo: 'Изображение', galleryLabel: 'Изображения объекта', viewFullscreen: 'Открыть на весь экран', exitFullscreen: 'Выйти из полноэкранного режима', enquire: 'Связаться по объекту', fullListing: 'Открыть объявление',
     reserved: 'Забронировано',
     preciseLocation: 'Точное местоположение', openInMaps: 'Открыть в Google Maps',
     allArticles: 'Все статьи', teamLead: 'Опыт, внимательное отношение и забота о каждой детали - от первого разговора до передачи ключей.',
@@ -197,7 +197,7 @@ const extendedTranslations = {
     navFaq: 'FAQ', faqEyebrow: 'FAQ', privacyLabel: 'Datenschutzerklärung', googleReviews: 'Google-Bewertungen',
     heroCarouselLabel: 'Bildergalerie der Immobilien', previousSlide: 'Vorheriges Bild', nextSlide: 'Nächstes Bild',
     legalEyebrow: 'Zusätzliche Leistungen', legalLead: 'Wenn ein Geschäft nicht einfach ist, helfen wir auch bei rechtlichen Fragen - von der Prüfung der Unterlagen bis zur Eintragung ins Grundbuch.',
-    photos: 'Fotos', photo: 'Bild', galleryLabel: 'Bilder der Immobilie', enquire: 'Zur Immobilie anfragen', fullListing: 'Inserat öffnen',
+    photos: 'Fotos', photo: 'Bild', galleryLabel: 'Bilder der Immobilie', viewFullscreen: 'Vollbild anzeigen', exitFullscreen: 'Vollbild beenden', enquire: 'Zur Immobilie anfragen', fullListing: 'Inserat öffnen',
     reserved: 'Reserviert',
     preciseLocation: 'Genauer Standort', openInMaps: 'In Google Maps öffnen',
     allArticles: 'Alle Artikel', teamLead: 'Erfahrung, persönliche Betreuung und Sorgfalt bei jedem Detail - vom ersten Gespräch bis zur Schlüsselübergabe.',
@@ -535,6 +535,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
     <div class="property-detail">
       <div class="property-detail-media">
         <img id="property-detail-image" src="${escapeHtml(assetUrl(images[0]))}" alt="${escapeHtml(property.title)}">
+        <button class="property-gallery-fullscreen" type="button" id="property-gallery-fullscreen" data-gallery-fullscreen aria-label="${escapeHtml(t('viewFullscreen'))}" aria-pressed="false"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
         ${images.length > 1 ? `
           <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
           <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
@@ -593,6 +594,10 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
   }
 
   const media = document.querySelector('.property-detail-media');
+  document.querySelector('#property-gallery-fullscreen')?.addEventListener('click', () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else media?.requestFullscreen?.();
+  });
   let touchStart = null;
   media.addEventListener('touchstart', (event) => { touchStart = event.changedTouches[0].clientX; }, { passive: true });
   media.addEventListener('touchend', (event) => {
@@ -621,6 +626,17 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
     document.querySelector('#kontakti')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
+
+/** Keep the gallery's fullscreen button in step with the browser (ESC included). */
+document.addEventListener('fullscreenchange', () => {
+  document.querySelectorAll('[data-gallery-fullscreen]').forEach((button) => {
+    const open = document.fullscreenElement !== null && document.fullscreenElement === button.closest('.property-detail-media');
+    button.setAttribute('aria-pressed', String(open));
+    button.setAttribute('aria-label', t(open ? 'exitFullscreen' : 'viewFullscreen'));
+    const icon = button.querySelector('i');
+    if (icon) icon.className = `fa-solid ${open ? 'fa-compress' : 'fa-expand'}`;
+  });
+});
 
 function propertyView(slug) {
   const property = propertyBySlug(slug);
