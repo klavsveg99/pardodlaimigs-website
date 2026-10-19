@@ -369,7 +369,8 @@ function propertySignature(property) {
 /** Map one CRM feed row onto the shape the site renders. */
 function liveProperty(live, fallback = null) {
   const images = (live.images || []).filter((image) => image && image.url);
-  const gallery = images.slice(0, 6).map((image) => image.url);
+  const gallery = images.map((image) => image.url);
+  const galleryThumbs = images.map((image) => image.thumb_url || image.url);
   const price = formatPrice(live.price, live.currency);
   const facts = liveFacts(live);
 
@@ -387,6 +388,7 @@ function liveProperty(live, fallback = null) {
     lng: Number.isFinite(live.lng) ? live.lng : (fallback?.lng ?? null),
     image: images[0]?.thumb_url || images[0]?.url || fallback?.image || fallback?.image_local || '',
     gallery: gallery.length ? gallery : (fallback?.gallery || []),
+    gallery_thumbs: gallery.length ? galleryThumbs : (fallback?.gallery_thumbs || []),
     gallery_count: images.length || fallback?.gallery_count || '',
     facts: facts.length ? facts : (fallback?.facts || []),
     // The hero carousel keeps the locally cropped image for listings that
@@ -526,6 +528,7 @@ function galleryOf(property) {
 /** Header, gallery and copy of a property. Shared by the dialog and the page. */
 function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {}) {
   const images = galleryOf(property);
+  const thumbs = property.gallery_thumbs?.length === images.length ? property.gallery_thumbs : images;
   const agent = agents[property.agent] ?? { phone: '+371 2492 2942' };
   const hasLocation = Number.isFinite(property.lat) && Number.isFinite(property.lng);
   return `
@@ -537,7 +540,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
           <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
           <span class="property-gallery-position" id="property-gallery-position">1 / ${images.length}</span>
           <div class="property-detail-thumbs" role="group" aria-label="${escapeHtml(t('galleryLabel'))}">
-            ${images.map((image, index) => `<button type="button" class="property-thumb${index === 0 ? ' is-active' : ''}" data-gallery-index="${index}" aria-label="${escapeHtml(`${t('photo')} ${index + 1}`)}"><img src="${escapeHtml(assetUrl(image))}" alt="" loading="lazy"></button>`).join('')}
+            ${images.map((image, index) => `<button type="button" class="property-thumb${index === 0 ? ' is-active' : ''}" data-gallery-index="${index}" aria-label="${escapeHtml(`${t('photo')} ${index + 1}`)}"><img src="${escapeHtml(assetUrl(thumbs[index] || image))}" alt="" loading="lazy"></button>`).join('')}
           </div>` : ''}
       </div>
       <div class="property-detail-copy">
@@ -1110,11 +1113,21 @@ function propertySummary(property) {
  * facts block already shows. The page uses the prose, the dialog a teaser.
  */
 function propertyDescription(property) {
-  let text = (property.description || '').replace(/^\[LV\]/, '').split(/Galvenie parametri/i)[0].trim();
+  const source = (property.description || '').split(/Galvenie parametri/i)[0];
+  let text = plainText(source).replace(/^\[LV\]/i, '').trim();
   const title = property.title.trim();
   if (text.endsWith(title)) text = text.slice(0, -title.length).trim();
   return text
     .replace(/([a-zāčēģīķļņšūž0-9])([A-ZĀČĒĢĪĶĻŅŠŪŽ])/g, '$1 $2')
+    .trim();
+}
+
+/** The live feed stores listing copy as HTML; both the page and the dialog show text. */
+function plainText(html = '') {
+  const spaced = String(html)
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<\/(?:p|div|li|h[1-6]|tr|td|ul|ol)>/gi, ' ');
+  return (new DOMParser().parseFromString(spaced, 'text/html').body.textContent || '')
     .replace(/\s+/g, ' ')
     .trim();
 }
