@@ -710,7 +710,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 @media (min-width: 681px) {
   .property-page .property-detail { align-items: start; }
   .property-page .property-detail-media { position: sticky; top: 100px; }
-  .property-page .property-detail-media:not(:fullscreen) > img { height: auto; min-height: 0; max-height: 620px; }
+  .property-page .property-detail-media:not(:fullscreen) > img { height: auto; min-height: 0; max-height: none; object-fit: contain; }
 }
 .property-page-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 46px; align-items: start; }
 .property-page-media { position: relative; background: #122924; }
