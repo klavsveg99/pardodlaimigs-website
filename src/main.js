@@ -616,7 +616,11 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
     else media?.requestFullscreen?.();
   });
   let touchStart = null;
-  media.addEventListener('touchstart', (event) => { touchStart = event.changedTouches[0].clientX; }, { passive: true });
+  // Swiping the thumbnail strip scrolls it; it must not also step the main image.
+  const isGalleryControl = (target) => target instanceof Element && !!target.closest('.property-detail-thumbs, .property-nav, .property-gallery-fullscreen');
+  media.addEventListener('touchstart', (event) => {
+    touchStart = isGalleryControl(event.target) ? null : event.changedTouches[0].clientX;
+  }, { passive: true });
   media.addEventListener('touchend', (event) => {
     if (touchStart === null) return;
     const delta = event.changedTouches[0].clientX - touchStart;
