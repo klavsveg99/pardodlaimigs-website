@@ -705,8 +705,13 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; color: var(--muted); font-size: 14px; }
 .breadcrumb a { color: var(--brand); font-weight: 600; }
 .property-page { padding: 96px 0 40px; }
-/* The copy column can be long, so the photo keeps its own aspect (capped on
-   portrait shots) and the gallery follows the reader while the copy scrolls. */
+/* On the full listing the selector sits under the photo; only the quick-view
+   dialog keeps the filmstrip over the image. */
+.property-page .property-detail-media { background: transparent; }
+.property-page .property-detail-media > img { background: #122924; }
+.property-page .property-detail-thumbs { position: static; margin-top: 10px; background: none; }
+/* The copy column can be long, so the photo keeps its own aspect
+   and the gallery follows the reader while the copy scrolls. */
 @media (min-width: 681px) {
   .property-page .property-detail { align-items: start; }
   .property-page .property-detail-media { position: sticky; top: 100px; }
