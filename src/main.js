@@ -531,6 +531,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
   const thumbs = property.gallery_thumbs?.length === images.length ? property.gallery_thumbs : images;
   const agent = agents[property.agent] ?? { phone: '+371 2492 2942' };
   const hasLocation = Number.isFinite(property.lat) && Number.isFinite(property.lng);
+  const description = fullText ? descriptionHtml(property) : '';
   return `
     <div class="property-detail">
       <div class="property-detail-media">
@@ -554,7 +555,9 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
         ${hasLocation ? '<div class="property-map" id="property-map" hidden></div>' : ''}
         <p class="property-detail-price">${escapeHtml(property.price || t('priceFrom'))}</p>
         ${property.facts?.length ? `<ul class="property-detail-facts">${property.facts.map((fact) => `<li><strong>${escapeHtml(fact.value)}</strong><span>${escapeHtml(factLabel(fact.label))}</span></li>`).join('')}</ul>` : ''}
-        <p class="property-detail-text">${escapeHtml(fullText ? propertyDescription(property) : propertySummary(property))}</p>
+        ${description
+          ? `<div class="property-detail-text property-detail-description">${description}</div>`
+          : `<p class="property-detail-text">${escapeHtml(propertySummary(property))}</p>`}
         <div class="property-detail-agent"><span>${escapeHtml(t('agent'))}</span><div class="property-detail-agent-values"><strong>${escapeHtml(property.agent)}</strong><a href="tel:${escapeHtml(agent.phone.replace(/\s/g, ''))}">${escapeHtml(agent.phone)}</a></div></div>
         <div class="property-detail-actions">
           <button class="button button-dark" type="button" id="property-enquire">${escapeHtml(t('enquire'))}</button>
@@ -1121,6 +1124,57 @@ function priceNumber(value) {
 function propertySummary(property) {
   const summary = propertyDescription(property);
   return summary.length > 260 ? `${summary.slice(0, 257).replace(/\s+\S*$/, '')}…` : summary;
+}
+
+const DESCRIPTION_TAGS = new Set(['P', 'BR', 'STRONG', 'B', 'EM', 'I', 'UL', 'OL', 'LI', 'H2', 'H3', 'H4', 'BLOCKQUOTE', 'A']);
+
+/**
+ * The CRM stores the listing copy as HTML. Render it with its paragraphs,
+ * breaks, emphasis, lists and links intact, minus the parameter dump that the
+ * facts block already shows. Everything else is sanitised: only inline
+ * formatting and http(s) links survive.
+ */
+function descriptionHtml(property) {
+  const body = new DOMParser().parseFromString(String(property.description || ''), 'text/html').body;
+
+  // Descriptions open with a "[LV]" label that is not part of the copy.
+  const label = body.querySelector('strong, b');
+  if (label && /^\s*\[LV\]\s*$/i.test(label.textContent)) {
+    label.remove();
+    const firstBreak = body.querySelector('br');
+    if (firstBreak && !firstBreak.previousSibling?.textContent?.trim()) firstBreak.remove();
+  }
+
+  // The facts block repeats the "Galvenie parametri" / "Main parameters" dump.
+  body.querySelectorAll('p, div').forEach((element) => {
+    const heading = element.querySelector('strong, b');
+    if (heading && /^\s*(galvenie\s+parametri|main\s+parameters|key\s+parameters)\s*:?\s*$/i.test(heading.textContent)) {
+      element.remove();
+    }
+  });
+
+  for (const element of [...body.querySelectorAll('*')]) {
+    if (!DESCRIPTION_TAGS.has(element.tagName)) {
+      element.replaceWith(...element.childNodes);
+      continue;
+    }
+    const href = element.tagName === 'A' ? element.getAttribute('href') : null;
+    for (const attribute of [...element.attributes]) element.removeAttribute(attribute.name);
+    if (element.tagName !== 'A') continue;
+    if (/^https?:\/\//i.test(href || '')) {
+      element.setAttribute('href', href);
+      element.setAttribute('target', '_blank');
+      element.setAttribute('rel', 'noopener noreferrer');
+    } else {
+      element.replaceWith(...element.childNodes);
+    }
+  }
+
+  body.querySelectorAll('p').forEach((paragraph) => {
+    if (!paragraph.textContent.trim()) paragraph.remove();
+  });
+
+  return body.innerHTML.trim();
 }
 
 /**

@@ -422,7 +422,16 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .property-detail-facts li { display: grid; gap: 4px; }
 .property-detail-facts strong { font-family: var(--serif); font-size: 17px; }
 .property-detail-facts span { color: var(--muted); font-size: 13px; }
-.property-detail-text { margin: 0 0 24px; color: var(--muted); font-size: 15px; line-height: 1.4; }
+.property-detail-text { margin: 0 0 24px; color: var(--muted); font-size: 15px; line-height: 1.55; }
+/* The CRM copy is real HTML: keep its paragraphs, lists, emphasis and links. */
+.property-detail-description p { margin: 0 0 1em; }
+.property-detail-description p:last-child { margin-bottom: 0; }
+.property-detail-description strong, .property-detail-description b { color: var(--ink); }
+.property-detail-description ul, .property-detail-description ol { margin: 0 0 1em; padding-left: 1.25em; }
+.property-detail-description li { margin: 0 0 .35em; }
+.property-detail-description li p { margin: 0; }
+.property-detail-description a { color: var(--brand); text-decoration: underline; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.property-detail-description h2, .property-detail-description h3, .property-detail-description h4 { margin: 1.2em 0 .5em; color: var(--ink); font-size: 1.05em; line-height: 1.3; }
 .property-detail-agent { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 26px; padding: 15px 18px; background: #f1f4f0; font-size: 14px; }
 .property-detail-agent span { color: var(--muted); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
 .property-detail-agent strong { font-size: 15px; }
@@ -696,6 +705,13 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; color: var(--muted); font-size: 14px; }
 .breadcrumb a { color: var(--brand); font-weight: 600; }
 .property-page { padding: 96px 0 40px; }
+/* The copy column can be long, so the photo keeps its own aspect (capped on
+   portrait shots) and the gallery follows the reader while the copy scrolls. */
+@media (min-width: 681px) {
+  .property-page .property-detail { align-items: start; }
+  .property-page .property-detail-media { position: sticky; top: 100px; }
+  .property-page .property-detail-media:not(:fullscreen) > img { height: auto; min-height: 0; max-height: 620px; }
+}
 .property-page-layout { display: grid; grid-template-columns: 1.15fr 1fr; gap: 46px; align-items: start; }
 .property-page-media { position: relative; background: #122924; }
 .property-page-media > img { width: 100%; height: 520px; object-fit: cover; }
