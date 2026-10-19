@@ -532,6 +532,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
   const agent = agents[property.agent] ?? { phone: '+371 2492 2942' };
   const hasLocation = Number.isFinite(property.lat) && Number.isFinite(property.lng);
   const description = fullText ? descriptionHtml(property) : '';
+  const category = categoryLabel(property.category);
   return `
     <div class="property-detail">
       <div class="property-detail-media">
@@ -546,7 +547,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
           </div>` : ''}
       </div>
       <div class="property-detail-copy">
-        <div class="property-type">${property.status === RESERVED ? `<span class="property-status-chip">${escapeHtml(t('reserved'))}</span>` : ''}<span class="property-type-blob">${escapeHtml(categoryLabel(property.category) || t('priceFrom'))}</span>${images.length > 1 ? `<span class="property-photo-count">${images.length} ${escapeHtml(t('photos'))}</span>` : ''}</div>
+        <div class="property-type">${property.status === RESERVED ? `<span class="property-status-chip">${escapeHtml(t('reserved'))}</span>` : ''}${category ? `<span class="property-type-blob">${escapeHtml(category)}</span>` : ''}${images.length > 1 ? `<span class="property-photo-count">${images.length} ${escapeHtml(t('photos'))}</span>` : ''}</div>
         <${heading} id="property-detail-title">${escapeHtml(property.title)}</${heading}>
         <div class="property-detail-place">
           <p class="property-detail-address">${escapeHtml(property.address)}</p>
