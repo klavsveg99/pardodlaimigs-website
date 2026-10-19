@@ -157,6 +157,9 @@ h1, h2, h3 { font-family: var(--serif); }
 .property-image-button img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
 .property-image-button:hover img, .property-image-button:focus-visible img { transform: scale(1.035); }
 .property-category { position: absolute; top: 14px; left: 14px; display: inline-flex; padding: 7px 10px; color: var(--brand-dark); background: #fff; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+/* "Rezervēts" mark on the card photo: gold, so it reads as a status next to
+   the white category chip and never competes with it for the same corner. */
+.property-reserved { position: absolute; top: 14px; right: 14px; display: inline-flex; padding: 7px 12px; color: #fff; background: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .photo-count { position: absolute; bottom: 12px; right: 12px; padding: 6px 8px; color: #fff; background: rgb(20 34 31 / 75%); font-size: 13px; }
 .property-card-body { padding: 17px 18px 15px; }
 .property-card-top { display: flex; justify-content: space-between; gap: 12px; color: var(--accent); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
@@ -393,6 +396,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .property-detail-copy { overflow-y: auto; padding: 44px 40px 38px; }
 .property-type { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
 .property-type-blob { display: inline-flex; min-height: 34px; align-items: center; padding: 0 14px; color: #fff; background: var(--brand); font-size: 13px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; }
+.property-status-chip { display: inline-flex; min-height: 34px; align-items: center; padding: 0 14px; color: #fff; background: var(--accent); font-size: 13px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
 .property-photo-count { color: var(--muted); font-size: 13px; }
 .property-detail-copy h2 { margin: 0 0 10px; font-size: 30px; line-height: 1.16; letter-spacing: -.045em; }
 .property-detail-address { margin: 0 0 14px; color: var(--muted); font-size: 14px; line-height: 1.4; }
@@ -668,6 +672,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .language-name { font-size: 13px; }
   .property-image-button { height: 200px; }
   .property-category { top: 8px; left: 8px; padding: 6px 7px; font-size: 11px; }
+  .property-reserved { top: 8px; right: 8px; padding: 6px 8px; font-size: 11px; }
   .property-card h3 { font-size: 14px; }
   .property-price { font-size: 15px; }
   .agent-photo img { height: 160px; }

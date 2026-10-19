@@ -10,7 +10,7 @@
     "category": "Māja",
     "gallery_count": "81",
     "slug": "pardod-lauku-ipasumu-pie-baltijas-juras-bangas-ziemupe",
-    "image_local": "/images/listings/pardod-lauku-ipasumu-pie-baltijas-juras-bangas-ziemupe.jpg",
+    "image_local": "/images/listings/pardod-lauku-ipasumu-pie-baltijas-juras-bangas-ziemupe.jpg?v=2",
     "facts": [
       {
         "value": "5.3 ha",
@@ -36,7 +36,8 @@
     "hero_image": "/images/hero/pardod-lauku-ipasumu-pie-baltijas-juras-bangas-ziemupe.jpg",
     "city": "Vērgales pag.",
     "lat": 56.776332,
-    "lng": 21.067809
+    "lng": 21.067809,
+    "status": "published"
   },
   {
     "title": "Ezera vilnīši - īpašums pie Cieceres ezera",
@@ -49,7 +50,7 @@
     "category": "Māja",
     "gallery_count": "20",
     "slug": "ezera-vilnisi-ipasums-pie-cieceres-ezera",
-    "image_local": "/images/listings/ezera-vilnisi-ipasums-pie-cieceres-ezera.jpg",
+    "image_local": "/images/listings/ezera-vilnisi-ipasums-pie-cieceres-ezera.jpg?v=2",
     "facts": [
       {
         "value": "0.5 ha",
@@ -75,7 +76,8 @@
     "hero_image": "/images/hero/ezera-vilnisi-ipasums-pie-cieceres-ezera.jpg",
     "city": "Brocēni",
     "lat": 56.677832,
-    "lng": 22.560283
+    "lng": 22.560283,
+    "status": "published"
   },
   {
     "title": "“Līdaciņas”, atpūtas komplekss pie ūdens Saldus novadā",
@@ -88,7 +90,7 @@
     "category": "Zeme",
     "gallery_count": "35",
     "slug": "lidacinas-atputas-komplekss-pie-udens-saldus-novada",
-    "image_local": "/images/listings/lidacinas-atputas-komplekss-pie-udens-saldus-novada.jpg",
+    "image_local": "/images/listings/lidacinas-atputas-komplekss-pie-udens-saldus-novada.jpg?v=2",
     "facts": [
       {
         "value": "1.62 ha",
@@ -114,7 +116,8 @@
     "hero_image": "/images/hero/lidacinas-atputas-komplekss-pie-udens-saldus-novada.jpg",
     "city": "Novadnieku pagasts",
     "lat": 56.637355,
-    "lng": 22.420559
+    "lng": 22.420559,
+    "status": "published"
   },
   {
     "title": "Zeme un maza mājiņa pie jūras Mērsragā",
@@ -127,7 +130,7 @@
     "category": "Zeme",
     "gallery_count": "18",
     "slug": "zeme-un-maza-majina-pie-juras-mersraga",
-    "image_local": "/images/listings/zeme-un-maza-majina-pie-juras-mersraga.jpg",
+    "image_local": "/images/listings/zeme-un-maza-majina-pie-juras-mersraga.jpg?v=2",
     "facts": [
       {
         "value": "1.1 ha",
@@ -153,7 +156,8 @@
     "hero_image": "/images/hero/zeme-un-maza-majina-pie-juras-mersraga.jpg",
     "city": "Mērsrags",
     "lat": 57.36403,
-    "lng": 23.122213
+    "lng": 23.122213,
+    "status": "published"
   },
   {
     "title": "“Pakalniņi” - plašs lauku īpašums Saldus novadā",
@@ -166,7 +170,7 @@
     "category": "Māja",
     "gallery_count": "48",
     "slug": "pakalnini-plass-lauku-ipasums-saldus-novada",
-    "image_local": "/images/listings/pakalnini-plass-lauku-ipasums-saldus-novada.jpg",
+    "image_local": "/images/listings/pakalnini-plass-lauku-ipasums-saldus-novada.jpg?v=2",
     "facts": [
       {
         "value": "1.57 ha",
@@ -192,7 +196,8 @@
     "hero_image": "/images/hero/pakalnini-plass-lauku-ipasums-saldus-novada.jpg",
     "city": "Pakalniņi",
     "lat": 56.639767,
-    "lng": 22.484531
+    "lng": 22.484531,
+    "status": "published"
   },
   {
     "title": "Moderns un mēbelēts 2-istabu dzīvoklis Brocēnos",
@@ -205,7 +210,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "32",
     "slug": "moderns-un-mebelets-2-istabu-dzivoklis-brocenos",
-    "image_local": "/images/listings/moderns-un-mebelets-2-istabu-dzivoklis-brocenos.jpg",
+    "image_local": "/images/listings/moderns-un-mebelets-2-istabu-dzivoklis-brocenos.jpg?v=2",
     "facts": [
       {
         "value": "48 m²",
@@ -231,7 +236,8 @@
     "hero_image": "/images/hero/moderns-un-mebelets-2-istabu-dzivoklis-brocenos.jpg",
     "city": "Brocēni",
     "lat": 56.678596,
-    "lng": 22.570793
+    "lng": 22.570793,
+    "status": "published"
   },
   {
     "title": "“Siguldas”, foreļu dīķi lauku īpašums, Saldus nov.",
@@ -244,7 +250,7 @@
     "category": "Māja",
     "gallery_count": "39",
     "slug": "siguldas-forelu-diki-lauku-ipasums-saldus-nov",
-    "image_local": "/images/listings/siguldas-forelu-diki-lauku-ipasums-saldus-nov.jpg",
+    "image_local": "/images/listings/siguldas-forelu-diki-lauku-ipasums-saldus-nov.jpg?v=2",
     "facts": [
       {
         "value": "15.3 ha",
@@ -270,7 +276,8 @@
     "city": "Sātiņi",
     "hero_image": "/images/hero/siguldas-forelu-diki-lauku-ipasums-saldus-nov.jpg",
     "lat": 56.648462,
-    "lng": 22.419665
+    "lng": 22.419665,
+    "status": "published"
   },
   {
     "title": "Zeme Bernātos pie jūras - 2840 m²",
@@ -283,7 +290,7 @@
     "category": "Zeme",
     "gallery_count": "11",
     "slug": "zeme-bernatos-pie-juras-2840-m2",
-    "image_local": "/images/listings/zeme-bernatos-pie-juras-2840-m2.jpg",
+    "image_local": "/images/listings/zeme-bernatos-pie-juras-2840-m2.jpg?v=2",
     "facts": [
       {
         "value": "0.28 ha",
@@ -301,7 +308,8 @@
     "city": "Nīca parish",
     "hero_image": "/images/hero/zeme-bernatos-pie-juras-2840-m2.jpg",
     "lat": 56.368798,
-    "lng": 20.971727
+    "lng": 20.971727,
+    "status": "published"
   },
   {
     "title": "2 istabu dzīvoklis Saldus centrā, Jelgavas ielā",
@@ -314,7 +322,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "15",
     "slug": "2-istabu-dzivoklis-saldus-centra-jelgavas-iela",
-    "image_local": "/images/listings/2-istabu-dzivoklis-saldus-centra-jelgavas-iela.jpg",
+    "image_local": "/images/listings/2-istabu-dzivoklis-saldus-centra-jelgavas-iela.jpg?v=2",
     "facts": [
       {
         "value": "39 m²",
@@ -339,7 +347,8 @@
     ],
     "city": "Saldus",
     "lat": 56.666743,
-    "lng": 22.500478
+    "lng": 22.500478,
+    "status": "published"
   },
   {
     "title": "Plašs 3 istabu dzīvoklis Saldus pagastā",
@@ -352,7 +361,7 @@
     "category": "",
     "gallery_count": "23",
     "slug": "plass-3-istabu-dzivoklis-saldus-pagasta",
-    "image_local": "/images/listings/plass-3-istabu-dzivoklis-saldus-pagasta.jpg",
+    "image_local": "/images/listings/plass-3-istabu-dzivoklis-saldus-pagasta.jpg?v=2",
     "facts": [
       {
         "value": "64 m²",
@@ -377,7 +386,8 @@
     ],
     "city": "Saldus pagasts",
     "lat": 56.687988,
-    "lng": 22.468214
+    "lng": 22.468214,
+    "status": "published"
   },
   {
     "title": "Plašs un funkcionāls 3 istabu dzīvoklis Druvā",
@@ -390,7 +400,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "32",
     "slug": "plass-un-funkcionals-3-istabu-dzivoklis-druva",
-    "image_local": "/images/listings/plass-un-funkcionals-3-istabu-dzivoklis-druva.jpg",
+    "image_local": "/images/listings/plass-un-funkcionals-3-istabu-dzivoklis-druva.jpg?v=2",
     "facts": [
       {
         "value": "89 m²",
@@ -415,7 +425,8 @@
     ],
     "city": "Druva",
     "lat": 56.695924,
-    "lng": 22.444194
+    "lng": 22.444194,
+    "status": "published"
   },
   {
     "title": "Plaša atjaunojama privātmāja/ofisa ēka Saldū",
@@ -428,7 +439,7 @@
     "category": "Māja",
     "gallery_count": "19",
     "slug": "plasa-atjaunojama-privatmajaofisa-eka-saldu",
-    "image_local": "/images/listings/plasa-atjaunojama-privatmajaofisa-eka-saldu.jpg",
+    "image_local": "/images/listings/plasa-atjaunojama-privatmajaofisa-eka-saldu.jpg?v=2",
     "facts": [
       {
         "value": "0.15 ha",
@@ -449,7 +460,8 @@
     ],
     "city": "Saldus",
     "lat": 56.679476,
-    "lng": 22.475557
+    "lng": 22.475557,
+    "status": "published"
   },
   {
     "title": "Plašas daudzfunkcionālas telpas 230.6 m² Sātiņos",
@@ -462,7 +474,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "38",
     "slug": "plasas-daudzfunkcionalas-telpas-2306-m2-satinos",
-    "image_local": "/images/listings/plasas-daudzfunkcionalas-telpas-2306-m2-satinos.jpg",
+    "image_local": "/images/listings/plasas-daudzfunkcionalas-telpas-2306-m2-satinos.jpg?v=2",
     "facts": [
       {
         "value": "230 m²",
@@ -479,7 +491,8 @@
     ],
     "city": "Sātiņi",
     "lat": 56.645468,
-    "lng": 22.437245
+    "lng": 22.437245,
+    "status": "published"
   },
   {
     "title": "Gaišs 1 istabas dzīvoklis Saldū, Slimnīcas ielā",
@@ -492,7 +505,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "17",
     "slug": "gaiss-1-istabas-dzivoklis-saldu-slimnicas-iela",
-    "image_local": "/images/listings/gaiss-1-istabas-dzivoklis-saldu-slimnicas-iela.jpg",
+    "image_local": "/images/listings/gaiss-1-istabas-dzivoklis-saldu-slimnicas-iela.jpg?v=2",
     "facts": [
       {
         "value": "34 m²",
@@ -517,7 +530,8 @@
     ],
     "city": "Saldus",
     "lat": 56.673605,
-    "lng": 22.490378
+    "lng": 22.490378,
+    "status": "published"
   },
   {
     "title": "Gaišs 1-istabas dzīvoklis Saldus centrā",
@@ -530,7 +544,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "16",
     "slug": "gaiss-1-istabas-dzivoklis-saldus-centra",
-    "image_local": "/images/listings/gaiss-1-istabas-dzivoklis-saldus-centra.jpg",
+    "image_local": "/images/listings/gaiss-1-istabas-dzivoklis-saldus-centra.jpg?v=2",
     "facts": [
       {
         "value": "25 m²",
@@ -551,7 +565,8 @@
     ],
     "city": "Saldus",
     "lat": 56.662295,
-    "lng": 22.493912
+    "lng": 22.493912,
+    "status": "published"
   },
   {
     "title": "2 istabu dzīvoklis Ezerē, Parka ielā 3",
@@ -564,7 +579,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "30",
     "slug": "2-istabu-dzivoklis-ezere-parka-iela-3",
-    "image_local": "/images/listings/2-istabu-dzivoklis-ezere-parka-iela-3.jpg",
+    "image_local": "/images/listings/2-istabu-dzivoklis-ezere-parka-iela-3.jpg?v=2",
     "facts": [
       {
         "value": "51 m²",
@@ -589,7 +604,8 @@
     ],
     "city": "Ezere",
     "lat": 56.404331,
-    "lng": 22.356798
+    "lng": 22.356798,
+    "status": "published"
   },
   {
     "title": "1-istabas dzīvoklis Brocēnos, Skolas ielā 22",
@@ -602,7 +618,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "15",
     "slug": "1-istabas-dzivoklis-brocenos-skolas-iela-22",
-    "image_local": "/images/listings/1-istabas-dzivoklis-brocenos-skolas-iela-22.jpg",
+    "image_local": "/images/listings/1-istabas-dzivoklis-brocenos-skolas-iela-22.jpg?v=2",
     "facts": [
       {
         "value": "34 m²",
@@ -627,7 +643,8 @@
     ],
     "city": "Brocēni",
     "lat": 56.675638,
-    "lng": 22.569963
+    "lng": 22.569963,
+    "status": "published"
   },
   {
     "title": "Lauku īpašums ar plašu zemi Bēnes pagastā",
@@ -640,7 +657,7 @@
     "category": "Zeme",
     "gallery_count": "23",
     "slug": "lauku-ipasums-ar-plasu-zemi-benes-pagasta",
-    "image_local": "/images/listings/lauku-ipasums-ar-plasu-zemi-benes-pagasta.jpg",
+    "image_local": "/images/listings/lauku-ipasums-ar-plasu-zemi-benes-pagasta.jpg?v=2",
     "facts": [
       {
         "value": "0 m²",
@@ -657,7 +674,8 @@
     ],
     "city": "Gurķi",
     "lat": 56.443231,
-    "lng": 23.058556
+    "lng": 23.058556,
+    "status": "published"
   },
   {
     "title": "2-istabu dzīvoklis renovētā mājā Brocēnos",
@@ -670,7 +688,7 @@
     "category": "Dzīvoklis",
     "gallery_count": "13",
     "slug": "2-istabu-dzivoklis-renoveta-maja-brocenos",
-    "image_local": "/images/listings/2-istabu-dzivoklis-renoveta-maja-brocenos.jpg",
+    "image_local": "/images/listings/2-istabu-dzivoklis-renoveta-maja-brocenos.jpg?v=2",
     "facts": [
       {
         "value": "47 m²",
@@ -695,7 +713,8 @@
     ],
     "city": "Brocēni",
     "lat": 56.675741,
-    "lng": 22.568292
+    "lng": 22.568292,
+    "status": "published"
   },
   {
     "title": "Plašs īpašums ar māju un lielu zemi Saldū",
@@ -708,7 +727,7 @@
     "category": "Māja",
     "gallery_count": "26",
     "slug": "plass-ipasums-ar-maju-un-lielu-zemi-saldu",
-    "image_local": "/images/listings/plass-ipasums-ar-maju-un-lielu-zemi-saldu.jpg",
+    "image_local": "/images/listings/plass-ipasums-ar-maju-un-lielu-zemi-saldu.jpg?v=2",
     "facts": [
       {
         "value": "0.18 ha",
@@ -729,7 +748,8 @@
     ],
     "city": "Saldus",
     "lat": 56.659573,
-    "lng": 22.494041
+    "lng": 22.494041,
+    "status": "published"
   },
   {
     "title": "Pārdod dzīvojamo māju Saldū, Ziedonis dārzos",
@@ -742,7 +762,7 @@
     "category": "Māja",
     "gallery_count": "41",
     "slug": "pardod-dzivojamo-maju-saldu-ziedonis-darzos",
-    "image_local": "/images/listings/pardod-dzivojamo-maju-saldu-ziedonis-darzos.jpg",
+    "image_local": "/images/listings/pardod-dzivojamo-maju-saldu-ziedonis-darzos.jpg?v=2",
     "facts": [
       {
         "value": "0.11 ha",
@@ -767,7 +787,8 @@
     ],
     "city": "Saldus pagasts",
     "lat": 56.683771,
-    "lng": 22.49591
+    "lng": 22.49591,
+    "status": "published"
   },
   {
     "title": "Investīciju attīstībai 1ha Saldū",
@@ -780,7 +801,7 @@
     "category": "Zeme",
     "gallery_count": "13",
     "slug": "investiciju-attistibai-1ha-saldu",
-    "image_local": "/images/listings/investiciju-attistibai-1ha-saldu.jpg",
+    "image_local": "/images/listings/investiciju-attistibai-1ha-saldu.jpg?v=2",
     "facts": [
       {
         "value": "1.01 ha",
@@ -797,7 +818,8 @@
     ],
     "city": "Saldus",
     "lat": 56.665928,
-    "lng": 22.493622
+    "lng": 22.493622,
+    "status": "published"
   },
   {
     "title": "Komerckomplekss Saldus",
@@ -810,7 +832,7 @@
     "category": "Komerciāls",
     "gallery_count": "57",
     "slug": "komerckomplekss-saldus",
-    "image_local": "/images/listings/komerckomplekss-saldus.jpg",
+    "image_local": "/images/listings/komerckomplekss-saldus.jpg?v=2",
     "facts": [
       {
         "value": "1.6 ha",
@@ -827,7 +849,8 @@
     ],
     "city": "Saldus",
     "lat": 56.677047,
-    "lng": 22.481511
+    "lng": 22.481511,
+    "status": "published"
   },
   {
     "title": "74ha LIZ + Meži Saldus nov.",
@@ -840,7 +863,7 @@
     "category": "Zeme",
     "gallery_count": "24",
     "slug": "74ha-liz-mezi-saldus-nov",
-    "image_local": "/images/listings/74ha-liz-mezi-saldus-nov.jpg",
+    "image_local": "/images/listings/74ha-liz-mezi-saldus-nov.jpg?v=2",
     "facts": [
       {
         "value": "74 ha",
@@ -857,7 +880,8 @@
     ],
     "city": "Saldus novads",
     "lat": 56.517986,
-    "lng": 22.376767
+    "lng": 22.376767,
+    "status": "published"
   },
   {
     "title": "Zemesgabals Mērsragā",
@@ -870,7 +894,7 @@
     "category": "Zeme",
     "gallery_count": "9",
     "slug": "zemesgabals-mersraga",
-    "image_local": "/images/listings/zemesgabals-mersraga.jpg",
+    "image_local": "/images/listings/zemesgabals-mersraga.jpg?v=2",
     "facts": [
       {
         "value": "3.17 ha",
@@ -887,6 +911,7 @@
     ],
     "city": "Mērsraga pag.",
     "lat": 57.343264,
-    "lng": 23.094878
+    "lng": 23.094878,
+    "status": "published"
   }
 ]

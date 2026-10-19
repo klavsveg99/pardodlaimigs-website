@@ -146,6 +146,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Īpašumu attēlu galerija', previousSlide: 'Iepriekšējais attēls', nextSlide: 'Nākamais attēls',
     legalEyebrow: 'Papildu pakalpojumi', legalLead: 'Kad darījums nav vienkāršs, palīdzam arī ar juridiskiem jautājumiem - no dokumentu izpētes līdz reģistrācijai Zemesgrāmatā.',
     photos: 'foto', photo: 'Attēls', galleryLabel: 'Īpašuma attēli', enquire: 'Sazināties par īpašumu', fullListing: 'Atvērt sludinājumu',
+    reserved: 'Rezervēts',
     preciseLocation: 'Precīza atrašanās vieta', openInMaps: 'Atvērt Google Maps',
     allArticles: 'Visi raksti',
     teamLead: 'Pieredze, cilvēcīga attieksme un rūpes par katru detaļu - no pirmās sarunas līdz atslēgu nodošanai.',
@@ -162,6 +163,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Property image gallery', previousSlide: 'Previous image', nextSlide: 'Next image',
     legalEyebrow: 'Additional services', legalLead: 'When a transaction is not straightforward, we also help with legal matters, from reviewing documents to registering them in the Land Register.',
     photos: 'photos', photo: 'Image', galleryLabel: 'Property images', enquire: 'Enquire about this property', fullListing: 'Open full listing',
+    reserved: 'Reserved',
     preciseLocation: 'Precise location', openInMaps: 'Open in Google Maps',
     allArticles: 'All articles', teamLead: 'Experience, a personal approach and care for every detail, from the first conversation to handing over the keys.',
     articleTitles: ['The Land Register - the key document in real estate transactions', 'How much does farmland cost in Latvia? 2025 price review', 'The Saldus real estate market: current prices and opportunities'],
@@ -178,6 +180,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Галерея изображений объектов', previousSlide: 'Предыдущее изображение', nextSlide: 'Следующее изображение',
     legalEyebrow: 'Дополнительные услуги', legalLead: 'Если сделка непростая, мы помогаем и с юридическими вопросами - от проверки документов до регистрации в Земельной книге.',
     photos: 'фото', photo: 'Изображение', galleryLabel: 'Изображения объекта', enquire: 'Связаться по объекту', fullListing: 'Открыть объявление',
+    reserved: 'Забронировано',
     preciseLocation: 'Точное местоположение', openInMaps: 'Открыть в Google Maps',
     allArticles: 'Все статьи', teamLead: 'Опыт, внимательное отношение и забота о каждой детали - от первого разговора до передачи ключей.',
     articleTitles: ['Земельная книга - главный документ в сделках с недвижимостью', 'Сколько стоит сельскохозяйственная земля в Латвии? Обзор цен за 2025 год', 'Рынок недвижимости в Салдусе: актуальные цены и возможности'],
@@ -194,6 +197,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Bildergalerie der Immobilien', previousSlide: 'Vorheriges Bild', nextSlide: 'Nächstes Bild',
     legalEyebrow: 'Zusätzliche Leistungen', legalLead: 'Wenn ein Geschäft nicht einfach ist, helfen wir auch bei rechtlichen Fragen - von der Prüfung der Unterlagen bis zur Eintragung ins Grundbuch.',
     photos: 'Fotos', photo: 'Bild', galleryLabel: 'Bilder der Immobilie', enquire: 'Zur Immobilie anfragen', fullListing: 'Inserat öffnen',
+    reserved: 'Reserviert',
     preciseLocation: 'Genauer Standort', openInMaps: 'In Google Maps öffnen',
     allArticles: 'Alle Artikel', teamLead: 'Erfahrung, persönliche Betreuung und Sorgfalt bei jedem Detail - vom ersten Gespräch bis zur Schlüsselübergabe.',
     articleTitles: ['Das Grundbuch - das wichtigste Dokument bei Immobiliengeschäften', 'Was kostet Ackerland in Lettland? Preisübersicht 2025', 'Der Immobilienmarkt in Saldus: aktuelle Preise und Möglichkeiten'],
@@ -314,6 +318,57 @@ const BRAND_LOGO = `${assetUrl('/images/brand/logo.svg')}?v=2`;
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
 /**
+ * Listing status is live even though this site is a static build: the CRM
+ * exposes a public slug -> status map (no key) and the listing merges it on
+ * load, so a property marked "Rezervēts" in the CRM is badged and moved to
+ * the bottom without a rebuild. If the CRM is unreachable the snapshot's own
+ * "status" is kept, so the listing still renders.
+ */
+const CRM_STATUS_URL = 'https://crm.pardodlaimigs.lv/api/public/property-statuses';
+const RESERVED = 'reserved';
+// Statuses that must not appear in the public listing.
+const HIDDEN_STATUSES = new Set(['draft', 'sold', 'deleted']);
+
+/** Reserved properties stay visible but drop below the active listings. */
+function orderProperties() {
+  state.properties = state.properties
+    .filter((property) => !HIDDEN_STATUSES.has(property.status))
+    .sort((a, b) => Number(a.status === RESERVED) - Number(b.status === RESERVED));
+}
+
+/**
+ * Pull the live statuses and report whether any of them differ from what the
+ * snapshot already has, so the caller only re-renders when something changed.
+ */
+async function refreshLiveStatuses() {
+  if (!/(^|\.)pardodlaimigs\.lv$/i.test(window.location.hostname)) return false;
+
+  try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 3000);
+    const response = await fetch(`${CRM_STATUS_URL}?t=${Date.now()}`, { cache: 'no-store', signal: controller.signal });
+    clearTimeout(timer);
+    if (!response.ok) return false;
+
+    const payload = await response.json();
+    const statuses = new Map((payload.properties || []).map((item) => [item.slug, item.status]));
+    let changed = false;
+    state.properties.forEach((property) => {
+      const status = statuses.get(property.slug);
+      if (status && status !== property.status) {
+        property.status = status;
+        changed = true;
+      }
+    });
+
+    return changed;
+  } catch (error) {
+    console.warn('CRM status feed unavailable; keeping the snapshot statuses.', error);
+    return false;
+  }
+}
+
+/**
  * Migrated WordPress media that now lives in this repository. The article and
  * page copy still carries the original /wp-content/... paths (the CRM holds the
  * same HTML, see its resources/site/wordpress-media-manifest.json), so the URLs
@@ -421,7 +476,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
           </div>` : ''}
       </div>
       <div class="property-detail-copy">
-        <div class="property-type"><span class="property-type-blob">${escapeHtml(categoryLabel(property.category) || t('priceFrom'))}</span>${images.length > 1 ? `<span class="property-photo-count">${images.length} ${escapeHtml(t('photos'))}</span>` : ''}</div>
+        <div class="property-type">${property.status === RESERVED ? `<span class="property-status-chip">${escapeHtml(t('reserved'))}</span>` : ''}<span class="property-type-blob">${escapeHtml(categoryLabel(property.category) || t('priceFrom'))}</span>${images.length > 1 ? `<span class="property-photo-count">${images.length} ${escapeHtml(t('photos'))}</span>` : ''}</div>
         <${heading} id="property-detail-title">${escapeHtml(property.title)}</${heading}>
         <div class="property-detail-place">
           <p class="property-detail-address">${escapeHtml(property.address)}</p>
@@ -1020,6 +1075,7 @@ function renderProperties() {
     <article class="property-card" style="--card-index:${index}">
       <button class="property-image-button" type="button" data-property="${escapeHtml(property.slug)}" aria-label="${escapeHtml(t('details'))}: ${escapeHtml(property.title)}">
         <img src="${escapeHtml(assetUrl(property.image_local || property.image))}" alt="${escapeHtml(property.title)}" ${index < 3 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+        ${property.status === RESERVED ? `<span class="property-reserved">${escapeHtml(t('reserved'))}</span>` : ''}
         ${property.category ? `<span class="property-category">${escapeHtml(categoryLabel(property.category))}</span>` : ''}
         ${property.gallery_count ? `<span class="photo-count">${escapeHtml(property.gallery_count)} foto</span>` : ''}
       </button>
@@ -1683,9 +1739,17 @@ async function start() {
     state.pages = pages;
     state.useful = useful;
     state.agentBios = agentBios;
+    orderProperties();
     renderRoute();
     bindNavigation();
     trackStickyHeader();
+
+    // The snapshot renders first; the live statuses then correct it in place.
+    refreshLiveStatuses().then((changed) => {
+      if (!changed) return;
+      orderProperties();
+      renderRoute({ keepScroll: true });
+    });
   } catch (error) {
     document.querySelector('#app').innerHTML = '<main class="load-error">Could not load local content. Run the project using <code>npm run dev</code>.</main>';
     console.error(error);
