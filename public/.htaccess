@@ -1,0 +1,7 @@
+# /new/ is a static build. Properties added in the CRM after the last build
+# have no generated directory yet, so send unknown paths to the app shell and
+# let src/main.js resolve the slug from the live CRM feed.
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.html [L]

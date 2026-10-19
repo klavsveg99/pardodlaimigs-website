@@ -74,7 +74,8 @@ const languages = {
     urgentCheckbox: 'Vēlos pārdot steidzami',
     formMessage: 'Par īpašumu',
     formSubmit: 'Pieteikt konsultāciju',
-    localNote: 'Priekšskatījuma forma - pieteikums netiek nosūtīts.',
+    formSuccess: 'Paldies! Sazināsimies ar Jums tuvākajā laikā.',
+    formError: 'Neizdevās nosūtīt pieteikumu. Lūdzu, mēģiniet vēlreiz vai zvaniet mums.',
     formConsent: 'Piekrītu personas datu apstrādei saskaņā ar privātuma politiku',
     loadMore: 'Rādīt vairāk rakstu',
     viewMoreProperties: 'Skatīt visus īpašumus',
@@ -109,7 +110,7 @@ const languages = {
     propertiesEyebrow: 'Land and homes for sale', propertiesTitle: 'Properties worth a closer look', propertiesLead: 'Browse current listings and get in touch to find out more.', viewAll: 'View all properties', propertyCount: 'properties', details: 'View property',
     sellEyebrow: 'A smoother way to sell', sellTitle: 'A considered approach for every property', sellLead: 'An accurate valuation and a clear plan help you make better decisions.', apartment: 'Apartment', apartmentText: 'We have sold more than 100 apartments. We set the price from real transactions and get the documents in order in good time.', house: 'House', houseText: 'A correct price speeds up the sale. We sort out the areas and documents so the buyer can obtain financing.', land: 'Land', landText: 'We check zoning and subdivision options, and calculate the cost of building utilities.', farmland: 'Farmland', farmlandText: 'We know forest and farmland prices by land type and stand age across Latvia.', sellAction: 'Request a consultation',
     reviewsEyebrow: 'What our clients say', reviewsTitle: 'Good deals start with trust', reviewCount: '150+ happy clients', blogEyebrow: 'Advice, ideas and useful resources', blogTitle: 'Blog articles', readArticle: 'Read article', teamEyebrow: 'People on your side', teamTitle: 'Our team', agent: 'Real estate agent',
-    contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', localNote: 'Preview form - your request is not sent.', formConsent: 'I agree to the processing of my personal data under the privacy policy', loadMore: 'Show more articles', viewMoreProperties: 'View all properties', formPhoneCode: 'Country code', formPhoneInvalid: 'Enter a valid phone number.', formEmailInvalid: 'Enter a valid email address.', formCaptchaFailed: 'The security check failed. Please try again.', termsLabel: 'Terms of Service', recaptchaNote: 'This site is protected by reCAPTCHA and the Google [privacy] and [terms] apply.',
+    contactEyebrow: 'Let’s talk about your property', contactTitle: 'Taking the first step is easy', contactBody: 'Tell us what you would like to sell. We will talk through your situation and agree on next steps.', formName: 'Name', formPhone: 'Phone', formEmail: 'Email', formType: 'Property type', formArea: 'Area', formLocation: 'Location', formCadastre: 'Cadastral number', formDesiredPrice: 'Desired price (€)', formDescription: 'Property description', formComment: 'Additional notes', formApartment: 'Apartment', formHouse: 'House', formLand: 'Land', formForest: 'Forest', urgentCheckbox: 'I want to sell urgently', formMessage: 'About the property', formSubmit: 'Request a valuation', formSuccess: 'Thank you! We will contact you shortly.', formError: 'Could not send your request. Please try again or call us.', formConsent: 'I agree to the processing of my personal data under the privacy policy', loadMore: 'Show more articles', viewMoreProperties: 'View all properties', formPhoneCode: 'Country code', formPhoneInvalid: 'Enter a valid phone number.', formEmailInvalid: 'Enter a valid email address.', formCaptchaFailed: 'The security check failed. Please try again.', termsLabel: 'Terms of Service', recaptchaNote: 'This site is protected by reCAPTCHA and the Google [privacy] and [terms] apply.',
     legalTitle: 'Legal support', legalItems: ['Purchase of properties with legal encumbrances', 'Subdivision and naming of properties', 'Inheritance matters', 'Debt recovery matters', 'Preparation and review of purchase agreements'], footerLine: 'Quick, easy, happy.', quickContact: 'Quick contact', call: 'Call', email: 'Send an email', cookiesTitle: 'Your privacy choices', cookiesText: 'We use essential cookies to run this site. With your permission, we may also use analytics cookies.', acceptCookies: 'Accept all', rejectCookies: 'Essential only', cookieSettings: 'Settings', cookieNecessary: 'Essential', cookieAnalytics: 'Analytics', saveChoices: 'Save choices', close: 'Close', noResults: 'No properties match these filters.', priceFrom: 'Price on request',
   },
   ru: {
@@ -119,7 +120,7 @@ const languages = {
     propertiesEyebrow: 'Земля и недвижимость на продажу', propertiesTitle: 'Объекты, заслуживающие внимания', propertiesLead: 'Посмотрите актуальные предложения и свяжитесь с нами, чтобы узнать подробности.', viewAll: 'Все объекты', propertyCount: 'объектов', details: 'Посмотреть объект',
     sellEyebrow: 'Продажа без лишнего стресса', sellTitle: 'Индивидуальный подход к каждому объекту', sellLead: 'Точная оценка и понятный план помогают принимать верные решения.', apartment: 'Квартира', apartmentText: 'Мы продали более 100 квартир. Цену определяем по реальным сделкам и своевременно приводим в порядок документы.', house: 'Дом', houseText: 'Правильная цена ускоряет продажу. Приводим в порядок площади и документы, чтобы покупатель получил финансирование.', land: 'Земля', landText: 'Проверяем зонирование и возможность раздела, а также рассчитываем затраты на коммуникации.', farmland: 'Сельскохозяйственная земля', farmlandText: 'Знаем цены на лес и сельскохозяйственную землю по типу земли и возрасту насаждений по всей Латвии.', sellAction: 'Записаться на консультацию',
     reviewsEyebrow: 'Отзывы наших клиентов', reviewsTitle: 'Хорошие сделки начинаются с доверия', reviewCount: 'Более 150 довольных клиентов', blogEyebrow: 'Советы и полезные материалы', blogTitle: 'Статьи в блогах', readArticle: 'Читать статью', teamEyebrow: 'Люди на вашей стороне', teamTitle: 'Наша команда', agent: 'Агент по недвижимости',
-    contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', localNote: 'Демонстрационная форма - заявка не отправляется.', formConsent: 'Я согласен на обработку персональных данных согласно политике конфиденциальности', loadMore: 'Показать больше статей', viewMoreProperties: 'Показать все объекты', formPhoneCode: 'Код страны', formPhoneInvalid: 'Введите корректный номер телефона.', formEmailInvalid: 'Введите корректный адрес эл. почты.', formCaptchaFailed: 'Проверка безопасности не удалась. Попробуйте ещё раз.', termsLabel: 'Условия использования', recaptchaNote: 'Этот сайт защищён reCAPTCHA. Применяются [privacy] и [terms] Google.',
+    contactEyebrow: 'Обсудим вашу недвижимость', contactTitle: 'Сделать первый шаг просто', contactBody: 'Расскажите, что вы хотите продать. Мы обсудим ситуацию и договоримся о следующих шагах.', formName: 'Имя', formPhone: 'Телефон', formEmail: 'Эл. почта', formType: 'Тип недвижимости', formArea: 'Площадь', formLocation: 'Местоположение', formCadastre: 'Кадастровый номер', formDesiredPrice: 'Желаемая цена (€)', formDescription: 'Описание недвижимости', formComment: 'Дополнительная информация', formApartment: 'Квартира', formHouse: 'Дом', formLand: 'Земля', formForest: 'Лес', urgentCheckbox: 'Хочу продать срочно', formMessage: 'О недвижимости', formSubmit: 'Запросить оценку', formSuccess: 'Спасибо! Мы свяжемся с вами в ближайшее время.', formError: 'Не удалось отправить заявку. Попробуйте ещё раз или позвоните нам.', formConsent: 'Я согласен на обработку персональных данных согласно политике конфиденциальности', loadMore: 'Показать больше статей', viewMoreProperties: 'Показать все объекты', formPhoneCode: 'Код страны', formPhoneInvalid: 'Введите корректный номер телефона.', formEmailInvalid: 'Введите корректный адрес эл. почты.', formCaptchaFailed: 'Проверка безопасности не удалась. Попробуйте ещё раз.', termsLabel: 'Условия использования', recaptchaNote: 'Этот сайт защищён reCAPTCHA. Применяются [privacy] и [terms] Google.',
     legalTitle: 'Юридическая поддержка', legalItems: ['Выкуп объектов с юридическими обременениями', 'Раздел недвижимости и присвоение названий', 'Вопросы наследства', 'Вопросы взыскания долгов', 'Подготовка и проверка договоров купли-продажи'], footerLine: 'Быстро, удобно, счастливо.', quickContact: 'Быстрая связь', call: 'Позвонить', email: 'Написать', cookiesTitle: 'Настройки конфиденциальности', cookiesText: 'Для работы сайта используются необходимые cookie. С вашего разрешения также могут использоваться аналитические cookie.', acceptCookies: 'Разрешить все', rejectCookies: 'Только необходимые', cookieSettings: 'Настройки', cookieNecessary: 'Необходимые', cookieAnalytics: 'Аналитика', saveChoices: 'Сохранить выбор', close: 'Закрыть', noResults: 'По этим критериям объекты не найдены.', priceFrom: 'Цена по запросу',
   },
   de: {
@@ -129,7 +130,7 @@ const languages = {
     propertiesEyebrow: 'Grundstücke und Immobilien zum Verkauf', propertiesTitle: 'Immobilien, die einen Blick wert sind', propertiesLead: 'Entdecken Sie aktuelle Angebote und fragen Sie uns nach weiteren Informationen.', viewAll: 'Alle Immobilien ansehen', propertyCount: 'Immobilien', details: 'Immobilie ansehen',
     sellEyebrow: 'Verkaufen ohne unnötigen Stress', sellTitle: 'Ein passender Weg für jede Immobilie', sellLead: 'Eine genaue Bewertung und ein klarer Plan helfen bei guten Entscheidungen.', apartment: 'Wohnung', apartmentText: 'Wir haben über 100 Wohnungen verkauft. Den Preis bestimmen wir anhand realer Verkäufe und bringen die Unterlagen rechtzeitig in Ordnung.', house: 'Haus', houseText: 'Ein korrekter Preis beschleunigt den Verkauf. Wir klären Flächen und Unterlagen, damit der Käufer eine Finanzierung erhält.', land: 'Grundstück', landText: 'Wir prüfen Bebauungsplan und Teilungsmöglichkeiten und berechnen die Kosten für die Erschließung.', farmland: 'Landwirtschaftliche Fläche', farmlandText: 'Wir kennen die Preise für Wald und landwirtschaftliche Flächen nach Landtyp und Bestandsalter in ganz Lettland.', sellAction: 'Beratung anfragen',
     reviewsEyebrow: 'Das sagen unsere Kunden', reviewsTitle: 'Gute Geschäfte beginnen mit Vertrauen', reviewCount: 'Mehr als 150 zufriedene Kunden', blogEyebrow: 'Tipps und hilfreiche Informationen', blogTitle: 'Blog-Artikel', readArticle: 'Artikel lesen', teamEyebrow: 'Menschen an Ihrer Seite', teamTitle: 'Unser Team', agent: 'Immobilienmakler',
-    contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', localNote: 'Vorschauformular - die Anfrage wird nicht gesendet.', formConsent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzerklärung zu', loadMore: 'Mehr Artikel anzeigen', viewMoreProperties: 'Alle Objekte anzeigen', formPhoneCode: 'Ländervorwahl', formPhoneInvalid: 'Bitte eine gültige Telefonnummer eingeben.', formEmailInvalid: 'Bitte eine gültige E-Mail-Adresse eingeben.', formCaptchaFailed: 'Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.', termsLabel: 'Nutzungsbedingungen', recaptchaNote: 'Diese Website ist durch reCAPTCHA geschützt. Es gelten die [privacy] und die [terms] von Google.',
+    contactEyebrow: 'Sprechen wir über Ihre Immobilie', contactTitle: 'Der erste Schritt ist ganz einfach', contactBody: 'Erzählen Sie uns, was Sie verkaufen möchten. Wir besprechen Ihre Situation und die nächsten Schritte.', formName: 'Name', formPhone: 'Telefon', formEmail: 'E-Mail', formType: 'Immobilientyp', formArea: 'Fläche', formLocation: 'Standort', formCadastre: 'Katasternummer', formDesiredPrice: 'Gewünschter Preis (€)', formDescription: 'Beschreibung der Immobilie', formComment: 'Zusätzliche Angaben', formApartment: 'Wohnung', formHouse: 'Haus', formLand: 'Grundstück', formForest: 'Wald', urgentCheckbox: 'Ich möchte dringend verkaufen', formMessage: 'Zur Immobilie', formSubmit: 'Bewertung anfragen', formSuccess: 'Vielen Dank! Wir melden uns in Kürze bei Ihnen.', formError: 'Die Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut oder rufen Sie uns an.', formConsent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der Datenschutzerklärung zu', loadMore: 'Mehr Artikel anzeigen', viewMoreProperties: 'Alle Objekte anzeigen', formPhoneCode: 'Ländervorwahl', formPhoneInvalid: 'Bitte eine gültige Telefonnummer eingeben.', formEmailInvalid: 'Bitte eine gültige E-Mail-Adresse eingeben.', formCaptchaFailed: 'Die Sicherheitsprüfung ist fehlgeschlagen. Bitte versuchen Sie es erneut.', termsLabel: 'Nutzungsbedingungen', recaptchaNote: 'Diese Website ist durch reCAPTCHA geschützt. Es gelten die [privacy] und die [terms] von Google.',
     legalTitle: 'Rechtliche Unterstützung', legalItems: ['Ankauf rechtlich belasteter Immobilien', 'Teilung und Benennung von Grundstücken', 'Erbschaftsangelegenheiten', 'Fragen zur Forderungsvollstreckung', 'Vorbereitung und Prüfung von Kaufverträgen'], footerLine: 'Schnell, einfach, glücklich.', quickContact: 'Schnellkontakt', call: 'Anrufen', email: 'E-Mail senden', cookiesTitle: 'Ihre Datenschutzeinstellungen', cookiesText: 'Für den Betrieb der Website verwenden wir notwendige Cookies. Mit Ihrer Einwilligung können auch Analyse-Cookies eingesetzt werden.', acceptCookies: 'Alle akzeptieren', rejectCookies: 'Nur notwendige', cookieSettings: 'Einstellungen', cookieNecessary: 'Notwendig', cookieAnalytics: 'Analyse', saveChoices: 'Auswahl speichern', close: 'Schließen', noResults: 'Keine Immobilien für diese Kriterien gefunden.', priceFrom: 'Preis auf Anfrage',
   },
 };
@@ -276,7 +277,7 @@ const phonePrefixes = [
   ['UA', '380', 9, 9],
   ['US', '1', 10, 10],
 ];
-const DEFAULT_PREFIX = '371';
+const DEFAULT_PREFIX = 'LV';
 
 /**
  * Google reCAPTCHA v3 - the key the WordPress site already uses (WPForms), so
@@ -318,13 +319,13 @@ const BRAND_LOGO = `${assetUrl('/images/brand/logo.svg')}?v=2`;
 const escapeHtml = (value = '') => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 
 /**
- * Listing status is live even though this site is a static build: the CRM
- * exposes a public slug -> status map (no key) and the listing merges it on
- * load, so a property marked "Rezervēts" in the CRM is badged and moved to
- * the bottom without a rebuild. If the CRM is unreachable the snapshot's own
- * "status" is kept, so the listing still renders.
+ * Listings and the contact form talk to the CRM even though this site is a
+ * static build. The bundled snapshot renders first, then the public property
+ * feed is merged over it: new listings appear, changed fields update and
+ * properties that are no longer public disappear - without a rebuild. If the
+ * CRM is unreachable the snapshot simply stays on screen.
  */
-const CRM_STATUS_URL = 'https://crm.pardodlaimigs.lv/api/public/property-statuses';
+const CRM_API_BASE = import.meta.env.VITE_CRM_API_BASE || 'https://crm.pardodlaimigs.lv/api/public';
 const RESERVED = 'reserved';
 // Statuses that must not appear in the public listing.
 const HIDDEN_STATUSES = new Set(['draft', 'sold', 'deleted']);
@@ -336,34 +337,98 @@ function orderProperties() {
     .sort((a, b) => Number(a.status === RESERVED) - Number(b.status === RESERVED));
 }
 
-/**
- * Pull the live statuses and report whether any of them differ from what the
- * snapshot already has, so the caller only re-renders when something changed.
- */
-async function refreshLiveStatuses() {
-  if (!/(^|\.)pardodlaimigs\.lv$/i.test(window.location.hostname)) return false;
+/** "€300,000", the same shape the snapshot uses. */
+function formatPrice(price, currency = 'EUR') {
+  const amount = Number(price);
+  if (!Number.isFinite(amount) || amount <= 0) return '';
+  return `${currency === 'EUR' ? '€' : `${currency} `}${Math.round(amount).toLocaleString('en-US')}`;
+}
 
+/** Facts use the labels the site already translates (see factLabels). */
+function liveFacts(property) {
+  const facts = [];
+  const land = Number(property.land_m2);
+  const size = Number(property.size_m2);
+  if (land > 0) facts.push({ value: `${Number((land / 10000).toFixed(2))} ha`, label: 'Zemes platība' });
+  else if (size > 0) facts.push({ value: `${size} m²`, label: 'Telpu platība' });
+  if (Number(property.beds) > 0) facts.push({ value: String(property.beds), label: 'Istabas' });
+  if (Number(property.baths) > 0) facts.push({ value: String(property.baths), label: 'Vannasistabas' });
+  return facts;
+}
+
+/** Everything the cards and pages render, so a refresh only re-renders on a real change. */
+function propertySignature(property) {
+  return JSON.stringify([
+    property.slug, property.title, property.description, property.price,
+    property.address, property.agent, property.category, property.status,
+    property.city, property.lat, property.lng, property.gallery_count,
+    property.facts, property.image, property.gallery?.[0], property.hero_image,
+  ]);
+}
+
+/** Map one CRM feed row onto the shape the site renders. */
+function liveProperty(live, fallback = null) {
+  const images = (live.images || []).filter((image) => image && image.url);
+  const gallery = images.slice(0, 6).map((image) => image.url);
+  const price = formatPrice(live.price, live.currency);
+  const facts = liveFacts(live);
+
+  return {
+    slug: live.slug,
+    title: live.title || fallback?.title || '',
+    description: live.description || fallback?.description || '',
+    price: price || fallback?.price || '',
+    address: live.address || live.city || fallback?.address || '',
+    agent: live.agent_name || fallback?.agent || '',
+    category: live.category || fallback?.category || '',
+    status: live.status || 'published',
+    city: live.city || fallback?.city || '',
+    lat: Number.isFinite(live.lat) ? live.lat : (fallback?.lat ?? null),
+    lng: Number.isFinite(live.lng) ? live.lng : (fallback?.lng ?? null),
+    image: images[0]?.thumb_url || images[0]?.url || fallback?.image || fallback?.image_local || '',
+    gallery: gallery.length ? gallery : (fallback?.gallery || []),
+    gallery_count: images.length || fallback?.gallery_count || '',
+    facts: facts.length ? facts : (fallback?.facts || []),
+    // The hero carousel keeps the locally cropped image for listings that
+    // already had one; a brand new listing uses its first CRM photo.
+    hero_image: fallback?.hero_image || images[0]?.url || '',
+  };
+}
+
+/**
+ * Merge the public CRM feed over the bundled snapshot. Returns the merged list
+ * and whether anything visible changed.
+ */
+function mergeLiveProperties(liveProperties) {
+  const snapshot = new Map(state.properties.map((property) => [property.slug, property]));
+  const before = state.properties.map(propertySignature).join('|');
+
+  // The CRM feed order is the admin's sort order, so the live list replaces
+  // the bundled order entirely. Snapshot entries only supply fallback data
+  // (and the hero crop) for slugs that are still public.
+  state.properties = liveProperties.map((property) => liveProperty(property, snapshot.get(property.slug) ?? null));
+
+  return state.properties.map(propertySignature).join('|') !== before;
+}
+
+/**
+ * Pull the live listings and report whether anything changed, so the caller
+ * only re-renders when needed (a re-render resets an open form).
+ */
+async function refreshLiveProperties() {
   try {
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 3000);
-    const response = await fetch(`${CRM_STATUS_URL}?t=${Date.now()}`, { cache: 'no-store', signal: controller.signal });
+    const response = await fetch(`${CRM_API_BASE}/properties?t=${Date.now()}`, { cache: 'no-store', signal: controller.signal });
     clearTimeout(timer);
     if (!response.ok) return false;
 
     const payload = await response.json();
-    const statuses = new Map((payload.properties || []).map((item) => [item.slug, item.status]));
-    let changed = false;
-    state.properties.forEach((property) => {
-      const status = statuses.get(property.slug);
-      if (status && status !== property.status) {
-        property.status = status;
-        changed = true;
-      }
-    });
+    if (!Array.isArray(payload.properties)) return false;
 
-    return changed;
+    return mergeLiveProperties(payload.properties);
   } catch (error) {
-    console.warn('CRM status feed unavailable; keeping the snapshot statuses.', error);
+    console.warn('CRM property feed unavailable; keeping the bundled snapshot.', error);
     return false;
   }
 }
@@ -680,7 +745,7 @@ function contactSection() {
               <label><span data-i18n="formPhone"></span>
                 <span class="phone-field">
                   <select name="phone_prefix" aria-label="${escapeHtml(t('formPhoneCode'))}">
-                    ${phonePrefixes.map(([iso, dial]) => `<option value="${dial}"${dial === DEFAULT_PREFIX ? ' selected' : ''}>${iso} +${dial}</option>`).join('')}
+                    ${phonePrefixes.map(([iso, dial]) => `<option value="${iso}"${iso === DEFAULT_PREFIX ? ' selected' : ''}>${iso} +${dial}</option>`).join('')}
                   </select>
                   <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required>
                 </span>
@@ -1544,7 +1609,7 @@ function validateContactForm(form) {
 
   const phone = form.phone;
   clearFieldError(phone);
-  const rule = phonePrefixes.find(([, dial]) => dial === form.phone_prefix.value) ?? phonePrefixes[0];
+  const rule = phonePrefixes.find(([iso]) => iso === form.phone_prefix.value) ?? phonePrefixes[0];
   const digits = phone.value.replace(/\D/g, '');
   if (digits.length < rule[2] || digits.length > rule[3]) {
     setFieldError(phone, t('formPhoneInvalid'));
@@ -1623,13 +1688,31 @@ function bindEvents() {
       form.querySelector('[aria-invalid="true"]')?.focus();
       return;
     }
-    withRecaptchaToken((token) => {
-      // The preview stops here: there is no server to verify the token against
-      // (the CRM's PublicSiteLeadController does that). The token is fetched so
-      // the widget behaves exactly as it will in production.
-      const feedback = document.querySelector('#form-feedback');
-      feedback.textContent = t('localNote');
-      feedback.hidden = false;
+    const feedback = form.querySelector('#form-feedback');
+    const submit = form.querySelector('button[type="submit"]');
+    feedback.hidden = true;
+    submit.disabled = true;
+
+    withRecaptchaToken(async (token) => {
+      try {
+        // FormData keeps the fields the CRM validator expects and avoids a
+        // JSON preflight; the CRM is a different origin from this site.
+        const body = new FormData(form);
+        body.set('locale', state.language);
+        body.set('recaptcha_token', token);
+
+        const response = await fetch(`${CRM_API_BASE}/leads`, { method: 'POST', body });
+        if (!response.ok) throw new Error(`CRM responded ${response.status}`);
+
+        form.reset();
+        feedback.textContent = t('formSuccess');
+      } catch (error) {
+        console.warn('Contact form submission failed.', error);
+        feedback.textContent = t('formError');
+      } finally {
+        feedback.hidden = false;
+        submit.disabled = false;
+      }
     });
   });
   on('#contact-form', 'input', (event) => {
@@ -1740,12 +1823,24 @@ async function start() {
     state.useful = useful;
     state.agentBios = agentBios;
     orderProperties();
+
+    // The snapshot renders first; the live listings then correct it in place.
+    const live = refreshLiveProperties();
+
+    // A property added after the last build has no generated route file. Wait
+    // for the feed before deciding the page does not exist, so a direct link
+    // to a new listing opens instead of flashing "not found".
+    const route = currentRoute();
+    if (route.name === 'property' && !propertyBySlug(route.slug)) {
+      await live;
+      orderProperties();
+    }
+
     renderRoute();
     bindNavigation();
     trackStickyHeader();
 
-    // The snapshot renders first; the live statuses then correct it in place.
-    refreshLiveStatuses().then((changed) => {
+    live.then((changed) => {
       if (!changed) return;
       orderProperties();
       renderRoute({ keepScroll: true });

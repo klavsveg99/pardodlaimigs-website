@@ -30,12 +30,12 @@ Listings, thumbnails, hero images, per-property galleries and each property's ex
 
 `public/data/posts.json` and `public/data/pages.json` carry the article and page copy (all four languages) migrated from WordPress into the CRM, so the preview and the CRM site render the same text. The dates come from the live posts, and one wrong date in the earlier snapshot was corrected.
 
-The live CRM remains the source of truth for properties. Nothing in the preview links back to the old WordPress site. The valuation form validates the email shape and the phone number against the chosen country's dial code, and asks Google for a reCAPTCHA v3 token using the same key the live site uses - the preview has no server, so it stops after the token (the CRM verifies it). Cookie choices are local-only: they do not load analytics.
+The live CRM is the source of truth for properties. `public/data/properties.json` is only the first paint and the fallback: on load the app fetches the CRM's public listing feed and replaces the bundled list, so new properties, edits, removals and the admin's row order show up without a rebuild. A property added after the last build has no generated directory, so `public/.htaccess` sends unknown paths to the app shell and the same feed resolves the slug.
+
+The valuation form posts to the CRM's public lead endpoint (cross-origin, JSON), which stores it in the same `wpform_entries` inbox as the WordPress form and verifies the reCAPTCHA v3 token. Cookie choices are local-only: they do not load analytics.
 
 ## Still to do before launch
 
-- Replace the listing snapshot with a live CRM feed, and migrate full galleries, the map, and listing filters.
 - Migrate the remaining eight blog posts (the preview carries the three the homepage features), keeping their existing URLs.
-- Wire the valuation form to a real endpoint, and add live lead handling.
 - Serve or migrate the media library, and add 301 redirects plus a sitemap.
 - Replace the keyless Google Maps embed in the property view with the Google Maps key already used by the site.
