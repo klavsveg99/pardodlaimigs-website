@@ -704,7 +704,9 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .property-page h1, .post-page h1, .content-page h1, .blog-index h1, .agent-page h1 { color: var(--ink); }
 .breadcrumb { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 26px; color: var(--muted); font-size: 14px; }
 .breadcrumb a { color: var(--brand); font-weight: 600; }
-.property-page { padding: 96px 0 40px; }
+.property-page { padding: 32px 0 40px; }
+/* The breadcrumb sits midway between the header and the listing below it. */
+.property-page .breadcrumb { margin-bottom: 32px; }
 /* On the full listing the selector sits under the photo; only the quick-view
    dialog keeps the filmstrip over the image. */
 .property-page .property-detail-media { background: transparent; }
@@ -785,6 +787,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 }
 @media (max-width: 680px) {
   .property-page, .content-page, .post-page, .agent-page, .listings-page { padding: 72px 0 24px; }
+  .property-page { padding-top: 32px; }
   .property-page, .post-page { padding-bottom: 56px; }
   .property-page-media > img { height: 260px; }
   .property-page-thumbs { grid-template-columns: repeat(auto-fill, minmax(74px, 1fr)); }
