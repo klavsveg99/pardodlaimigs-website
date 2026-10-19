@@ -575,13 +575,26 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
 
   const counter = document.querySelector('#property-gallery-position');
   const thumbs = [...document.querySelectorAll('[data-gallery-index]')];
+  const strip = document.querySelector('.property-detail-thumbs');
+  const scrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   let index = 0;
+
+  /** Keep the selected thumbnail visible as the gallery moves. */
+  const centerThumb = (position) => {
+    const thumb = thumbs[position];
+    if (!strip || !thumb) return;
+    const stripRect = strip.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+    const left = strip.scrollLeft + (thumbRect.left - stripRect.left) - (stripRect.width - thumbRect.width) / 2;
+    strip.scrollTo({ left: Math.max(0, left), behavior: scrollBehavior });
+  };
 
   const show = (next) => {
     index = ((next % images.length) + images.length) % images.length;
     main.src = assetUrl(images[index]);
     if (counter) counter.textContent = `${index + 1} / ${images.length}`;
     thumbs.forEach((thumb, position) => thumb.classList.toggle('is-active', position === index));
+    centerThumb(index);
   };
 
   thumbs.forEach((thumb) => thumb.addEventListener('click', () => show(Number(thumb.dataset.galleryIndex))));
