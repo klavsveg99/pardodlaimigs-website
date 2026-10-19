@@ -145,6 +145,8 @@ h1, h2, h3 { font-family: var(--serif); }
 .section-heading h2, .team-heading h2 { margin: 0; color: var(--ink); font-size: clamp(29px, 3.2vw, 43px); letter-spacing: -.05em; line-height: 1.15; font-weight: 600; }
 .section-lead { max-width: 565px; margin: 13px 0 0; color: var(--muted); font-size: 16px; line-height: 1.4; }
 .text-link { display: inline-flex; align-items: center; gap: 13px; padding: 6px 0; color: var(--brand); font-size: 14px; font-weight: 700; }
+/* .button/.text-link set display, which otherwise beats the hidden attribute. */
+.button[hidden], .text-link[hidden] { display: none; }
 .text-link i { font-size: 16px; }
 .text-link:hover { color: var(--accent); }
 .results-line { min-height: 24px; display: flex; justify-content: space-between; margin: 0 0 15px; color: #7b847f; font-size: 13px; }

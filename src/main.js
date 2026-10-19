@@ -1154,8 +1154,9 @@ function renderProperties() {
     </article>`).join('');
   document.querySelector('#property-count').textContent = `${results.length} ${t('propertyCount')}`;
   document.querySelector('#filter-summary').textContent = results.length === 0 ? t('noResults') : '';
-  document.querySelector('#view-all').hidden = state.showAll || results.length <= state.visibleCount;
-  document.querySelector('#view-all-top').hidden = results.length === 0;
+  const allShown = state.showAll || results.length <= state.visibleCount;
+  document.querySelector('#view-all').hidden = allShown;
+  document.querySelector('#view-all-top').hidden = allShown;
   grid.querySelectorAll('[data-property]').forEach((button) => button.addEventListener('click', () => openProperty(button.dataset.property)));
 }
 
