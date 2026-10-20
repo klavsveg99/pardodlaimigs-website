@@ -378,7 +378,7 @@ function liveProperty(live, fallback = null) {
     slug: live.slug,
     title: live.title || fallback?.title || '',
     description: live.description || fallback?.description || '',
-    price: price || fallback?.price || '',
+    price: price,
     address: live.address || live.city || fallback?.address || '',
     agent: live.agent_name || fallback?.agent || '',
     category: live.category || fallback?.category || '',
