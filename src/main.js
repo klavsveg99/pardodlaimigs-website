@@ -536,12 +536,15 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
   return `
     <div class="property-detail">
       <div class="property-detail-media">
-        <img id="property-detail-image" src="${escapeHtml(assetUrl(images[0]))}" alt="${escapeHtml(property.title)}">
-        <button class="property-gallery-fullscreen" type="button" id="property-gallery-fullscreen" data-gallery-fullscreen aria-label="${escapeHtml(t('viewFullscreen'))}" aria-pressed="false"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+        <div class="property-detail-photo">
+          <img id="property-detail-image" src="${escapeHtml(assetUrl(images[0]))}" alt="${escapeHtml(property.title)}">
+          <button class="property-gallery-fullscreen" type="button" id="property-gallery-fullscreen" data-gallery-fullscreen aria-label="${escapeHtml(t('viewFullscreen'))}" aria-pressed="false"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+          ${images.length > 1 ? `
+            <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+            <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+            <span class="property-gallery-position" id="property-gallery-position">1 / ${images.length}</span>` : ''}
+        </div>
         ${images.length > 1 ? `
-          <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
-          <button class="property-nav property-nav-next" type="button" data-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
-          <span class="property-gallery-position" id="property-gallery-position">1 / ${images.length}</span>
           <div class="property-detail-thumbs" role="group" aria-label="${escapeHtml(t('galleryLabel'))}">
             ${images.map((image, index) => `<button type="button" class="property-thumb${index === 0 ? ' is-active' : ''}" data-gallery-index="${index}" aria-label="${escapeHtml(`${t('photo')} ${index + 1}`)}"><img src="${escapeHtml(assetUrl(thumbs[index] || image))}" alt="" loading="lazy"></button>`).join('')}
           </div>` : ''}
