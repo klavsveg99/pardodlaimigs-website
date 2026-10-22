@@ -1,0 +1,33 @@
+# pardodlaimigs.lv - static site (the WordPress install has been retired).
+#
+# Every route has its own index.html from the build; the fallback below lets a
+# property added in the CRM after the build still render through the app shell.
+RewriteEngine On
+
+# Old WordPress URLs that have no matching page in the new site.
+RewriteRule ^(home|properties|sakums|paldies)/?$ / [R=301,L]
+RewriteRule ^agent(/.*)?$ / [R=301,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^sitemap(?:_index)?\.xml$ /sitemap.xml [R=301,L]
+
+# WordPress is gone. Only the listing media it still serves is kept, and that
+# directory is never allowed to execute PHP.
+RewriteRule ^wp-content/(?!uploads/) - [G,L]
+RewriteRule ^wp-content/uploads/.*\.(php|phtml|phar)$ - [F,L,NC]
+RewriteRule ^wp-content/uploads/ - [L]
+RewriteRule ^(wp-admin|wp-includes|wp-json)(/|$) - [G,L]
+RewriteRule ^wp-(login|signup|activate|comments-post|mail|cron|trackback|links-opml|config-sample)\.php$ - [G,L]
+RewriteRule ^(xmlrpc\.php|license\.txt|readme\.html|wp-sitemap\.xml)$ - [G,L]
+RewriteRule ^(feed|comments/feed)/?$ - [G,L]
+RewriteRule ^go(/|$) - [G,L]
+
+# The CRM keeps its own routing.
+RewriteRule ^crm(/|$) - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.html [L]
+
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>

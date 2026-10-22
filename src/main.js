@@ -389,7 +389,9 @@ function liveProperty(live, fallback = null) {
     lng: Number.isFinite(live.lng) ? live.lng : (fallback?.lng ?? null),
     // Cards use the 800px preview so the grid stays sharp on wide cards and
     // high-density screens; the full file is only for the property gallery.
-    image: images[0]?.preview_url || images[0]?.thumb_url || images[0]?.url || fallback?.image || fallback?.image_local || '',
+    // The bundled card image is local; fallback.image still points at the old
+    // WordPress uploads and is only useful while that install exists.
+    image: images[0]?.preview_url || images[0]?.thumb_url || images[0]?.url || fallback?.image_local || fallback?.image || '',
     gallery: gallery.length ? gallery : (fallback?.gallery || []),
     gallery_thumbs: gallery.length ? galleryThumbs : (fallback?.gallery_thumbs || []),
     gallery_count: images.length || fallback?.gallery_count || '',
