@@ -463,7 +463,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .enquiry-head { padding: 34px 34px 0; }
 .enquiry-head h2 { margin: 0 34px 8px 0; font-size: 27px; letter-spacing: -.04em; }
 .enquiry-head > p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
-.enquiry-head > .enquiry-property { display: flex; flex-wrap: wrap; gap: 5px 9px; margin-top: 12px; }
+.enquiry-head > .enquiry-property { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 5px 9px; margin-top: 12px; }
 .enquiry-property span { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .enquiry-property strong { color: var(--ink); font-size: 14px; }
 .enquiry-agent { display: flex; align-items: center; gap: 14px; margin: 18px 34px 0; padding: 13px 15px; background: #f1f4f0; }
