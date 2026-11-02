@@ -148,6 +148,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Īpašumu attēlu galerija', previousSlide: 'Iepriekšējais attēls', nextSlide: 'Nākamais attēls',
     legalEyebrow: 'Papildu pakalpojumi', legalLead: 'Kad darījums nav vienkāršs, palīdzam arī ar juridiskiem jautājumiem - no dokumentu izpētes līdz reģistrācijai Zemesgrāmatā.',
     photos: 'foto', photo: 'Attēls', galleryLabel: 'Īpašuma attēli', viewFullscreen: 'Rādīt pilnekrāna režīmā', exitFullscreen: 'Iziet no pilnekrāna režīma', enquire: 'Sazināties par īpašumu', fullListing: 'Atvērt sludinājumu',
+    enquiryLead: 'Aizpildiet formu, un aģents sazināsies ar Jums.', enquiryProperty: 'Īpašums', enquiryMessage: 'Ziņa', enquirySubmit: 'Nosūtīt pieprasījumu', enquirySuccess: 'Paldies! Aģents sazināsies ar Jums tuvākajā laikā.',
     reserved: 'Rezervēts',
     preciseLocation: 'Precīza atrašanās vieta', openInMaps: 'Atvērt Google Maps',
     allArticles: 'Visi raksti',
@@ -165,6 +166,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Property image gallery', previousSlide: 'Previous image', nextSlide: 'Next image',
     legalEyebrow: 'Additional services', legalLead: 'When a transaction is not straightforward, we also help with legal matters, from reviewing documents to registering them in the Land Register.',
     photos: 'photos', photo: 'Image', galleryLabel: 'Property images', viewFullscreen: 'View fullscreen', exitFullscreen: 'Exit fullscreen', enquire: 'Enquire about this property', fullListing: 'Open full listing',
+    enquiryLead: 'Fill in the form and the agent will get in touch.', enquiryProperty: 'Property', enquiryMessage: 'Message', enquirySubmit: 'Send enquiry', enquirySuccess: 'Thank you! The agent will contact you shortly.',
     reserved: 'Reserved',
     preciseLocation: 'Precise location', openInMaps: 'Open in Google Maps',
     allArticles: 'All articles', teamLead: 'Experience, a personal approach and care for every detail, from the first conversation to handing over the keys.',
@@ -182,6 +184,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Галерея изображений объектов', previousSlide: 'Предыдущее изображение', nextSlide: 'Следующее изображение',
     legalEyebrow: 'Дополнительные услуги', legalLead: 'Если сделка непростая, мы помогаем и с юридическими вопросами - от проверки документов до регистрации в Земельной книге.',
     photos: 'фото', photo: 'Изображение', galleryLabel: 'Изображения объекта', viewFullscreen: 'Открыть на весь экран', exitFullscreen: 'Выйти из полноэкранного режима', enquire: 'Связаться по объекту', fullListing: 'Открыть объявление',
+    enquiryLead: 'Заполните форму, и агент свяжется с вами.', enquiryProperty: 'Объект', enquiryMessage: 'Сообщение', enquirySubmit: 'Отправить запрос', enquirySuccess: 'Спасибо! Агент свяжется с вами в ближайшее время.',
     reserved: 'Забронировано',
     preciseLocation: 'Точное местоположение', openInMaps: 'Открыть в Google Maps',
     allArticles: 'Все статьи', teamLead: 'Опыт, внимательное отношение и забота о каждой детали - от первого разговора до передачи ключей.',
@@ -199,6 +202,7 @@ const extendedTranslations = {
     heroCarouselLabel: 'Bildergalerie der Immobilien', previousSlide: 'Vorheriges Bild', nextSlide: 'Nächstes Bild',
     legalEyebrow: 'Zusätzliche Leistungen', legalLead: 'Wenn ein Geschäft nicht einfach ist, helfen wir auch bei rechtlichen Fragen - von der Prüfung der Unterlagen bis zur Eintragung ins Grundbuch.',
     photos: 'Fotos', photo: 'Bild', galleryLabel: 'Bilder der Immobilie', viewFullscreen: 'Vollbild anzeigen', exitFullscreen: 'Vollbild beenden', enquire: 'Zur Immobilie anfragen', fullListing: 'Inserat öffnen',
+    enquiryLead: 'Füllen Sie das Formular aus und der Makler meldet sich bei Ihnen.', enquiryProperty: 'Immobilie', enquiryMessage: 'Nachricht', enquirySubmit: 'Anfrage senden', enquirySuccess: 'Vielen Dank! Der Makler meldet sich in Kürze bei Ihnen.',
     reserved: 'Reserviert',
     preciseLocation: 'Genauer Standort', openInMaps: 'In Google Maps öffnen',
     allArticles: 'Alle Artikel', teamLead: 'Erfahrung, persönliche Betreuung und Sorgfalt bei jedem Detail - vom ersten Gespräch bis zur Schlüsselübergabe.',
@@ -650,10 +654,7 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
     if (open) map.scrollIntoView({ block: 'nearest' });
   });
 
-  document.querySelector('#property-enquire')?.addEventListener('click', () => {
-    document.querySelector('#property-enquire').closest('dialog')?.close();
-    document.querySelector('#kontakti')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
+  document.querySelector('#property-enquire')?.addEventListener('click', () => openEnquiryDialog(property));
 }
 
 /** Keep the gallery's fullscreen button in step with the browser (ESC included). */
@@ -797,14 +798,14 @@ function contactSection() {
                   </select>
                   <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required>
                 </span>
-                <p class="field-error" id="phone-error" hidden></p>
+                <p class="field-error" data-field-error="phone" hidden></p>
               </label>
             </div>
-            <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required><p class="field-error" id="email-error" hidden></p></label>
+            <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required><p class="field-error" data-field-error="email" hidden></p></label>
             <label><span data-i18n="formComment"></span><textarea name="comment" rows="2"></textarea></label>
             <label class="form-check"><input name="consent" type="checkbox" required><span data-i18n="formConsent"></span></label>
             <div class="form-submit-row"><button class="button button-dark" type="submit"><span data-i18n="formSubmit"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
-            <p class="form-feedback" id="form-feedback" role="status" hidden></p>
+            <p class="form-feedback" data-form-feedback role="status" hidden></p>
             <p class="recaptcha-note"></p>
           </form>
         </div>
@@ -1081,6 +1082,46 @@ ${viewMarkup()}
     </dialog>
 
     <dialog class="property-dialog" id="property-dialog" aria-labelledby="property-detail-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><div id="property-dialog-content"></div></dialog>
+    <dialog class="enquiry-dialog" id="enquiry-dialog" aria-labelledby="enquiry-title">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="${escapeHtml(t('close'))}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      <div class="enquiry-head">
+        <h2 id="enquiry-title" data-i18n="enquire"></h2>
+        <p data-i18n="enquiryLead"></p>
+        <p class="enquiry-property"><span data-i18n="enquiryProperty"></span><strong id="enquiry-property-title"></strong></p>
+      </div>
+      <div class="enquiry-agent">
+        <img id="enquiry-agent-photo" src="" alt="" hidden>
+        <div class="enquiry-agent-copy">
+          <span data-i18n="agent"></span>
+          <strong id="enquiry-agent-name"></strong>
+          <div class="enquiry-agent-links">
+            <a id="enquiry-agent-phone" href=""><i class="fa-solid fa-phone" aria-hidden="true"></i><span></span></a>
+            <a id="enquiry-agent-whatsapp" href="" target="_blank" rel="noreferrer"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i>WhatsApp</a>
+          </div>
+        </div>
+      </div>
+      <form id="enquiry-form" class="contact-form enquiry-form">
+        <input type="hidden" name="property_slug">
+        <div class="form-row">
+          <label><span data-i18n="formName"></span><input name="name" autocomplete="name" required></label>
+          <label><span data-i18n="formPhone"></span>
+            <span class="phone-field">
+              <select name="phone_prefix" aria-label="${escapeHtml(t('formPhoneCode'))}">
+                ${phonePrefixes.map(([iso, dial]) => `<option value="${iso}"${iso === DEFAULT_PREFIX ? ' selected' : ''}>${iso} +${dial}</option>`).join('')}
+              </select>
+              <input name="phone" type="tel" inputmode="tel" autocomplete="tel-national" required>
+            </span>
+            <p class="field-error" data-field-error="phone" hidden></p>
+          </label>
+        </div>
+        <label><span data-i18n="formEmail"></span><input name="email" type="email" autocomplete="email" required><p class="field-error" data-field-error="email" hidden></p></label>
+        <label><span data-i18n="enquiryMessage"></span><textarea name="message" rows="3"></textarea></label>
+        <label class="form-check"><input name="consent" type="checkbox" required><span data-i18n="formConsent"></span></label>
+        <button class="button button-dark" type="submit"><span data-i18n="enquirySubmit"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        <p class="form-feedback" data-form-feedback role="status" hidden></p>
+        <p class="recaptcha-note"></p>
+      </form>
+    </dialog>
     <dialog class="cookie-dialog" id="cookie-dialog" aria-labelledby="cookie-dialog-title"><button class="dialog-close" type="button" data-close-dialog aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><h2 id="cookie-dialog-title" data-i18n="cookiesTitle"></h2><p data-i18n="cookiesText"></p><label class="cookie-option"><span data-i18n="cookieNecessary"></span><input type="checkbox" checked disabled></label><label class="cookie-option"><span data-i18n="cookieAnalytics"></span><input id="analytics-cookies" type="checkbox"></label><button class="button button-dark" id="save-cookie-settings" type="button" data-i18n="saveChoices"></button></dialog>
   `;
 
@@ -1127,12 +1168,12 @@ function applyTranslations() {
   document.querySelectorAll('[data-close-dialog]').forEach((button) => button.setAttribute('aria-label', t('close')));
   const viewAllTop = document.querySelector('#view-all-top span');
   if (viewAllTop) viewAllTop.textContent = t('viewAll');
-  const recaptchaNote = document.querySelector('.recaptcha-note');
-  if (recaptchaNote) {
-    recaptchaNote.innerHTML = escapeHtml(t('recaptchaNote'))
+  const recaptchaNote = t('recaptchaNote');
+  document.querySelectorAll('.recaptcha-note').forEach((note) => {
+    note.innerHTML = escapeHtml(recaptchaNote)
       .replace('[privacy]', `<a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">${escapeHtml(t('privacyLabel'))}</a>`)
       .replace('[terms]', `<a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">${escapeHtml(t('termsLabel'))}</a>`);
-  }
+  });
   document.querySelector('#manage-cookies').textContent = state.language === 'lv' ? 'Sīkdatņu iestatījumi' : t('cookieSettings');
 }
 
@@ -1277,6 +1318,44 @@ function openProperty(slug) {
   content.innerHTML = propertyDetailHtml(property);
   bindPropertyDetail(property);
   content.scrollTop = 0;
+  dialog.showModal();
+}
+
+/**
+ * The buyer's enquiry form: the listing's agent and a short contact form,
+ * separate from the valuation form that sellers use further down the page.
+ */
+function openEnquiryDialog(property) {
+  const dialog = document.querySelector('#enquiry-dialog');
+  const form = document.querySelector('#enquiry-form');
+  if (!dialog || !form) return;
+
+  const agent = AGENTS.find((item) => item.name === property.agent);
+  const phone = agent?.phone ?? agents[property.agent]?.phone ?? '+371 2492 2942';
+  const tel = phone.replace(/\s/g, '');
+
+  form.reset();
+  form.elements.property_slug.value = property.slug;
+  form.querySelector('[data-form-feedback]').hidden = true;
+  clearFieldError(form.elements.email);
+  clearFieldError(form.elements.phone);
+
+  document.querySelector('#enquiry-property-title').textContent = property.title;
+  document.querySelector('#enquiry-agent-name').textContent = property.agent || agent?.name || AGENTS[0].name;
+
+  const photo = document.querySelector('#enquiry-agent-photo');
+  photo.hidden = !agent?.photo;
+  photo.src = agent?.photo ? assetUrl(agent.photo) : '';
+  photo.alt = property.agent || '';
+  dialog.classList.toggle('is-portrait', Boolean(agent?.portrait));
+
+  const phoneLink = document.querySelector('#enquiry-agent-phone');
+  phoneLink.href = `tel:${tel}`;
+  phoneLink.querySelector('span').textContent = phone;
+  document.querySelector('#enquiry-agent-whatsapp').href = `https://wa.me/${tel.replace(/^\+/, '')}`;
+
+  const propertyDialog = document.querySelector('#property-dialog');
+  if (propertyDialog?.open) propertyDialog.close();
   dialog.showModal();
 }
 /**
@@ -1690,7 +1769,7 @@ function setupVideoDialog() {
 }
 
 function setFieldError(field, message) {
-  const error = document.querySelector(`#${field.name}-error`);
+  const error = field.form?.querySelector(`[data-field-error="${field.name}"]`);
   field.setAttribute('aria-invalid', 'true');
   if (error) {
     error.textContent = message;
@@ -1699,7 +1778,8 @@ function setFieldError(field, message) {
 }
 
 function clearFieldError(field) {
-  const error = document.querySelector(`#${field.name}-error`);
+  if (!field) return;
+  const error = field.form?.querySelector(`[data-field-error="${field.name}"]`);
   field.removeAttribute('aria-invalid');
   if (error) error.hidden = true;
 }
@@ -1729,10 +1809,46 @@ function validateContactForm(form) {
   return valid;
 }
 
+/** Validate, fetch a reCAPTCHA token and post the form to a public CRM endpoint. */
+function submitLeadForm(form, endpoint, successMessage) {
+  if (!validateContactForm(form)) {
+    form.querySelector('[aria-invalid="true"]')?.focus();
+    return;
+  }
+  const feedback = form.querySelector('[data-form-feedback]');
+  const submit = form.querySelector('button[type="submit"]');
+  feedback.hidden = true;
+  submit.disabled = true;
+
+  withRecaptchaToken(async (token) => {
+    try {
+      // FormData keeps the fields the CRM validator expects and avoids a
+      // JSON preflight; the CRM is a different origin from this site.
+      const slug = form.elements.property_slug?.value;
+      const body = new FormData(form);
+      body.set('locale', state.language);
+      body.set('recaptcha_token', token);
+
+      const response = await fetch(endpoint, { method: 'POST', body });
+      if (!response.ok) throw new Error(`CRM responded ${response.status}`);
+
+      form.reset();
+      if (slug) form.elements.property_slug.value = slug;
+      feedback.textContent = successMessage;
+    } catch (error) {
+      console.warn('Lead form submission failed.', error);
+      feedback.textContent = t('formError');
+    } finally {
+      feedback.hidden = false;
+      submit.disabled = false;
+    }
+  });
+}
+
 function bindEvents() {
   setupLanguageSwitcher();
   setupMobileMenu();
-  if (document.querySelector('#contact-form')) loadRecaptcha();
+  if (document.querySelector('#contact-form, #enquiry-form')) loadRecaptcha();
 
   on('#property-search', 'submit', (event) => {
     event.preventDefault();
@@ -1793,42 +1909,18 @@ function bindEvents() {
 
   on('#contact-form', 'submit', (event) => {
     event.preventDefault();
-    const form = event.target;
-    if (!validateContactForm(form)) {
-      form.querySelector('[aria-invalid="true"]')?.focus();
-      return;
-    }
-    const feedback = form.querySelector('#form-feedback');
-    const submit = form.querySelector('button[type="submit"]');
-    feedback.hidden = true;
-    submit.disabled = true;
-
-    withRecaptchaToken(async (token) => {
-      try {
-        // FormData keeps the fields the CRM validator expects and avoids a
-        // JSON preflight; the CRM is a different origin from this site.
-        const body = new FormData(form);
-        body.set('locale', state.language);
-        body.set('recaptcha_token', token);
-
-        const response = await fetch(`${CRM_API_BASE}/leads`, { method: 'POST', body });
-        if (!response.ok) throw new Error(`CRM responded ${response.status}`);
-
-        form.reset();
-        feedback.textContent = t('formSuccess');
-      } catch (error) {
-        console.warn('Contact form submission failed.', error);
-        feedback.textContent = t('formError');
-      } finally {
-        feedback.hidden = false;
-        submit.disabled = false;
-      }
+    submitLeadForm(event.target, `${CRM_API_BASE}/leads`, t('formSuccess'));
+  });
+  on('#enquiry-form', 'submit', (event) => {
+    event.preventDefault();
+    submitLeadForm(event.target, `${CRM_API_BASE}/enquiries`, t('enquirySuccess'));
+  });
+  ['#contact-form', '#enquiry-form'].forEach((selector) => {
+    on(selector, 'input', (event) => {
+      if (event.target.name === 'email' || event.target.name === 'phone') clearFieldError(event.target);
     });
+    on(`${selector} select[name="phone_prefix"]`, 'change', () => clearFieldError(document.querySelector(`${selector} [name="phone"]`)));
   });
-  on('#contact-form', 'input', (event) => {
-    if (event.target.name === 'email' || event.target.name === 'phone') clearFieldError(event.target);
-  });
-  on('#contact-form select[name="phone_prefix"]', 'change', () => clearFieldError(document.querySelector('#contact-form [name="phone"]')));
 
   on('#accept-cookies', 'click', () => saveCookieConsent(true));
   on('#reject-cookies', 'click', () => saveCookieConsent(false));

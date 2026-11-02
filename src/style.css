@@ -457,6 +457,27 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .property-detail-agent-values { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; width: 100%; }
 .property-detail-agent a { color: var(--brand); font-weight: 700; }
 .property-detail-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+/* The property enquiry popup keeps the site's form look but replaces the
+   valuation fields with a short buyer's message. */
+.enquiry-dialog { width: 600px; max-width: min(600px, calc(100% - 32px)); overflow-y: auto; }
+.enquiry-head { padding: 34px 34px 0; }
+.enquiry-head h2 { margin: 0 34px 8px 0; font-size: 27px; letter-spacing: -.04em; }
+.enquiry-head > p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.enquiry-head > .enquiry-property { display: flex; flex-wrap: wrap; gap: 5px 9px; margin-top: 12px; }
+.enquiry-property span { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.enquiry-property strong { color: var(--ink); font-size: 14px; }
+.enquiry-agent { display: flex; align-items: center; gap: 14px; margin: 18px 34px 0; padding: 13px 15px; background: #f1f4f0; }
+.enquiry-agent img { flex: 0 0 58px; width: 58px; height: 58px; object-fit: cover; object-position: center 25%; }
+.enquiry-dialog.is-portrait .enquiry-agent img { object-position: center 37%; }
+.enquiry-agent img[hidden] { display: none; }
+.enquiry-agent-copy { display: grid; gap: 2px; }
+.enquiry-agent-copy > span { color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.enquiry-agent-copy strong { font-size: 16px; }
+.enquiry-agent-links { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 4px; }
+.enquiry-agent-links a { display: inline-flex; align-items: center; gap: 7px; color: var(--brand); font-size: 13px; font-weight: 700; }
+.enquiry-agent-links i { font-size: 13px; }
+.enquiry-form { gap: 14px; padding: 20px 34px 30px; }
+.enquiry-form .button { width: 100%; }
 .cookie-dialog { width: 420px; padding: 33px; }
 .cookie-dialog h2 { margin: 0 35px 10px 0; font-size: 23px; }
 .cookie-dialog > p { color: var(--muted); font-size: 14px; line-height: 1.4; }
@@ -688,6 +709,10 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .legal-list li { padding-top: 16px; }
   .legal-list p { font-size: 15px; }
   .cookie-dialog { padding: 26px 20px; }
+  .enquiry-head { padding: 26px 20px 0; }
+  .enquiry-head h2 { font-size: 23px; }
+  .enquiry-agent { margin: 16px 20px 0; }
+  .enquiry-form { padding: 18px 20px 24px; }
 }
 
 @media (max-width: 560px) {
