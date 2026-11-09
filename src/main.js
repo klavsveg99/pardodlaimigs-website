@@ -160,6 +160,10 @@ const extendedTranslations = {
     urgentAction: 'Pieteikt steidzamu pārdošanu', faqTitle: 'Biežāk uzdotie jautājumi',
     faqItems: [['Kādas ir izmaksas, pārdodot īpašumu ar mums?', 'Maksa ir atkarīga no darījuma sarežģītības un visbiežāk sākas no 5%. Slēdzam ekskluzīvu vienošanos un sadarbojamies ar aģentiem visā Latvijā.'], ['Vai es varu pārdot īpašumu pats?', 'Jā, taču ar profesionāli sagatavotu pārdošanu iegūsiet vairāk. Tirgus analīze, dokumentu sakārtošana, foto un video, publikācija Vācijas tirgū, juridiskais atbalsts un sadarbība ar notāriem. Jums atliks tikai ierasties pie notāra.'], ['Cik ilgi aizņem pārdošana?', 'Atklāti un patiesi: pēc precīzas tirgus analīzes un pareizi noteiktas cenas īpašumu dažkārt izdodas pārdot nedēļas laikā. Visbiežāk tas aizņem no viena līdz diviem mēnešiem, bet dārgāku vai sarežģītāku objektu pārdošana var ilgt līdz gadam.'], ['Kas nepieciešams pirms īpašuma pārdošanas?', 'Sākumā pietiek ar lēmumu pārdot. Kopā izanalizēsim dokumentus, izpētīsim tirgu un noteiksim īpašuma patieso vērtību.']],
     podcastTitle: 'Vairāk noderīga satura', podcastLead: 'Apskati mūsu YouTube kanālu un Spotify podkāstu par nekustamo īpašumu.', youtube: 'YouTube kanāls', spotify: 'Spotify podkāsts',
+    careersEyebrow: 'Pievienojies komandai', careersTitle: 'Meklējam nekustamo īpašumu aģentus',
+    careersLead: 'Sāc karjeru nekustamo īpašumu jomā kopā ar mums. Pieredze nav nepieciešama - iemācīsim visu, kas jāzina, un būsim blakus katrā darījumā.',
+    careersPoints: ['Apmācība un mentora atbalsts no pirmās dienas', 'Gatavi klientu pieprasījumi un īpašumu portfelis', 'Elastīgs darba laiks un komisija par katru darījumu'],
+    careersAction: 'Skatīt vakanci', vacanciesLabel: 'Vakances',
   },
   en: {
     navFaq: 'FAQ', faqEyebrow: 'FAQ', privacyLabel: 'Privacy policy', googleReviews: 'Google reviews',
@@ -178,6 +182,10 @@ const extendedTranslations = {
     urgentAction: 'Request an urgent sale', faqTitle: 'Frequently asked questions',
     faqItems: [['What does it cost to sell with you?', 'Fees depend on the complexity of the transaction and most often start at 5%. We agree on the terms in advance and work with agents across Latvia.'], ['Can I sell my property myself?', 'Yes, but a professionally prepared sale will get you more. Market analysis, document preparation, photo and video, publication on the German market, legal support and cooperation with notaries. All that is left for you is to come to the notary.'], ['How long does a sale take?', 'Openly and honestly: after a precise market analysis and correct pricing, a property sometimes sells within weeks. Most often it takes one to two months, but a more expensive or complex property can take up to a year.'], ['What do I need before selling?', 'First, decide that you want to sell. We will review the documents, research the market, and estimate the property’s value.']],
     podcastTitle: 'More useful content', podcastLead: 'Explore our YouTube channel and Spotify podcast about real estate.', youtube: 'YouTube channel', spotify: 'Spotify podcast',
+    careersEyebrow: 'Join our team', careersTitle: 'We are hiring real estate agents',
+    careersLead: 'Start a career in real estate with us. No experience needed - we will teach you everything and stand by you in every deal.',
+    careersPoints: ['Training and a mentor from day one', 'Ready client enquiries and a portfolio of properties', 'Flexible hours and commission on every deal'],
+    careersAction: 'View the vacancy', vacanciesLabel: 'Careers',
   },
   ru: {
     navFaq: 'FAQ', faqEyebrow: 'Вопросы', privacyLabel: 'Политика конфиденциальности', googleReviews: 'Отзывы Google',
@@ -196,6 +204,10 @@ const extendedTranslations = {
     urgentAction: 'Запросить срочную продажу', faqTitle: 'Часто задаваемые вопросы',
     faqItems: [['Сколько стоит продать недвижимость с вами?', 'Стоимость зависит от сложности сделки и чаще всего начинается от 5%. Условия согласовываются заранее, мы работаем с агентами по всей Латвии.'], ['Можно ли продать недвижимость самостоятельно?', 'Да, но профессионально подготовленная продажа принесёт вам больше. Анализ рынка, подготовка документов, фото и видео, публикация на немецком рынке, юридическая поддержка и сотрудничество с нотариусами. Вам останется только прийти к нотариусу.'], ['Сколько времени занимает продажа?', 'Честно и открыто: после точного анализа рынка и правильно определённой цены недвижимость иногда удаётся продать за недели. Чаще всего это занимает от одного до двух месяцев, но продажа более дорогого или сложного объекта может длиться до года.'], ['Что нужно для начала продажи?', 'Сначала достаточно принять решение о продаже. Мы проверим документы, изучим рынок и оценим реальную стоимость.']],
     podcastTitle: 'Больше полезных материалов', podcastLead: 'Смотрите наш YouTube-канал и слушайте подкаст Spotify о недвижимости.', youtube: 'Канал YouTube', spotify: 'Подкаст Spotify',
+    careersEyebrow: 'Присоединяйтесь к команде', careersTitle: 'Ищем агентов по недвижимости',
+    careersLead: 'Начните карьеру в сфере недвижимости вместе с нами. Опыт не нужен - мы всему научим и будем рядом на каждой сделке.',
+    careersPoints: ['Обучение и наставник с первого дня', 'Готовые запросы клиентов и портфель объектов', 'Гибкий график и комиссия с каждой сделки'],
+    careersAction: 'Смотреть вакансию', vacanciesLabel: 'Вакансии',
   },
   de: {
     navFaq: 'FAQ', faqEyebrow: 'FAQ', privacyLabel: 'Datenschutzerklärung', googleReviews: 'Google-Bewertungen',
@@ -214,6 +226,10 @@ const extendedTranslations = {
     urgentAction: 'Dringenden Verkauf anfragen', faqTitle: 'Häufig gestellte Fragen',
     faqItems: [['Was kostet ein Verkauf mit Ihnen?', 'Die Kosten hängen von der Komplexität des Geschäfts ab und beginnen meist bei 5%. Die Bedingungen vereinbaren wir im Voraus.'], ['Kann ich meine Immobilie selbst verkaufen?', 'Ja, aber ein professionell vorbereiteter Verkauf bringt Ihnen mehr. Marktanalyse, Aufbereitung der Unterlagen, Foto und Video, Veröffentlichung auf dem deutschen Markt, rechtliche Unterstützung und Zusammenarbeit mit Notaren. Für Sie bleibt nur der Gang zum Notar.'], ['Wie lange dauert ein Verkauf?', 'Offen und ehrlich: Nach einer genauen Marktanalyse und korrekter Preisbestimmung lässt sich eine Immobilie manchmal innerhalb weniger Wochen verkaufen. Meist dauert es ein bis zwei Monate, ein teureres oder komplexeres Objekt kann jedoch bis zu einem Jahr in Anspruch nehmen.'], ['Was brauche ich vor dem Verkauf?', 'Zunächst müssen Sie sich für den Verkauf entscheiden. Wir prüfen gemeinsam die Unterlagen, den Markt und den realistischen Wert.']],
     podcastTitle: 'Weitere hilfreiche Inhalte', podcastLead: 'Entdecken Sie unseren YouTube-Kanal und Spotify-Podcast rund um Immobilien.', youtube: 'YouTube-Kanal', spotify: 'Spotify-Podcast',
+    careersEyebrow: 'Werden Sie Teil unseres Teams', careersTitle: 'Wir suchen Immobilienmakler',
+    careersLead: 'Starten Sie Ihre Immobilienkarriere mit uns. Erfahrung ist nicht nötig - wir bringen Ihnen alles bei und begleiten Sie bei jedem Geschäft.',
+    careersPoints: ['Schulung und Mentor vom ersten Tag an', 'Vorhandene Kundenanfragen und ein Immobilienportfolio', 'Flexible Arbeitszeiten und Provision für jeden Abschluss'],
+    careersAction: 'Stellenanzeige ansehen', vacanciesLabel: 'Karriere',
   },
 };
 
@@ -938,7 +954,17 @@ function homeView() {
 
       ${contactSection()}
 
-      <section class="section faq-section" id="buj" aria-labelledby="faq-title"><div class="container faq-layout"><div><p class="eyebrow eyebrow-green" data-i18n="faqEyebrow"></p><h2 id="faq-title" data-i18n="faqTitle"></h2></div><div class="faq-list" id="faq-list"></div></div></section>`;
+      <section class="section faq-section" id="buj" aria-labelledby="faq-title"><div class="container faq-layout"><div><p class="eyebrow eyebrow-green" data-i18n="faqEyebrow"></p><h2 id="faq-title" data-i18n="faqTitle"></h2></div><div class="faq-list" id="faq-list"></div></div></section>
+
+      <section class="careers-section" id="vakances" aria-labelledby="careers-title">
+        <div class="container careers-layout">
+          <div class="section-heading reveal"><p class="eyebrow eyebrow-green" data-i18n="careersEyebrow"></p><h2 id="careers-title" data-i18n="careersTitle"></h2><p class="section-lead" data-i18n="careersLead"></p></div>
+          <div class="careers-aside reveal">
+            <ul class="careers-points">${t('careersPoints').map((point) => `<li>${escapeHtml(point)}</li>`).join('')}</ul>
+            <a class="button button-dark" href="${siteUrl('vakances/')}"><span data-i18n="careersAction"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </section>`;
 }
 
 function viewMarkup() {
@@ -1044,6 +1070,7 @@ ${viewMarkup()}
         <span>© <span id="current-year"></span> Pārdod Laimīgs</span>
         <div class="footer-legal">
           <button type="button" class="footer-cookie-link" id="manage-cookies">Sīkdatņu iestatījumi</button>
+          <a href="${siteUrl('vakances/')}" data-i18n="vacanciesLabel"></a>
           <a href="${siteUrl('privatuma-politika/')}" data-i18n="privacyLabel"></a>
         </div>
       </div>
