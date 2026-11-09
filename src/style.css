@@ -227,7 +227,7 @@ h1, h2, h3 { font-family: var(--serif); }
 .faq-item[open] summary::after { content: '\f068'; }
 .faq-item p { max-width: 620px; margin: -3px 0 18px; color: var(--muted); font-size: 14px; line-height: 1.4; }
 
-.careers-section { padding: 32px 0 72px; background: var(--brand-light); }
+.careers-section { padding: 72px 0; background: var(--brand-light); }
 .careers-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 8%; align-items: center; }
 .careers-layout .section-heading { margin-bottom: 0; }
 .careers-points { margin: 0 0 26px; padding: 0; list-style: none; border-top: 1px solid #cfd8d1; }
@@ -344,7 +344,7 @@ h1, h2, h3 { font-family: var(--serif); }
 .grecaptcha-badge { visibility: hidden; }
 
 .site-footer { color: rgb(255 255 255 / 76%); background: #183a37; }
-.footer-main { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 26px 0; }
+.footer-main { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 44px 0; }
 .footer-brand-block { display: grid; gap: 12px; justify-items: start; }
 .footer-brand-block p { margin: 0; font-size: 14px; }
 .footer-contact-block { display: grid; gap: 12px; justify-items: end; text-align: right; }
@@ -353,7 +353,7 @@ h1, h2, h3 { font-family: var(--serif); }
 .footer-links { display: flex; gap: 18px; font-size: 13px; }
 .footer-links a:hover, .footer-bottom a:hover, .footer-cookie-link:hover { color: #fff; }
 .footer-phone { color: #fff; font-size: 15px; font-weight: 700; }
-.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-top: 1px solid rgb(255 255 255 / 16%); font-size: 13px; }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 26px 0; border-top: 1px solid rgb(255 255 255 / 16%); font-size: 13px; }
 .footer-legal { display: flex; align-items: center; gap: 20px; }
 .footer-cookie-link { border: 0; padding: 0; cursor: pointer; color: inherit; background: transparent; font-size: inherit; }
 
@@ -662,7 +662,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .podcast-layout { align-items: flex-start; flex-direction: column; }
   .podcast-links { width: 100%; flex-direction: column; }
   .podcast-links a { width: 100%; }
-  .careers-section { padding: 16px 0 56px; }
+  .careers-section { padding: 56px 0; }
   .careers-layout { grid-template-columns: 1fr; gap: 26px; }
   .faq-layout { grid-template-columns: 1fr; gap: 24px; }
   .info-item summary { padding: 17px 32px 17px 0; font-size: 16px; }
@@ -672,10 +672,10 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .contact-form { padding: 19px 16px; }
   .form-row { grid-template-columns: 1fr; }
   .form-submit-row { align-items: start; flex-direction: column; }
-  .site-footer .footer-main { flex-direction: column; align-items: flex-start; gap: 20px; padding: 27px 0; }
+  .site-footer .footer-main { flex-direction: column; align-items: flex-start; gap: 20px; padding: 36px 0; }
   .footer-contact-block { gap: 10px; justify-items: start; text-align: left; }
   .footer-links { flex-wrap: wrap; }
-  .footer-bottom { flex-wrap: wrap; justify-content: flex-start; padding: 16px 0; }
+  .footer-bottom { flex-wrap: wrap; justify-content: flex-start; padding: 22px 0; }
   .footer-bottom > * { margin-right: 12px; }
   .footer-legal { flex-wrap: wrap; gap: 12px; }
   .quick-contact-button { right: 12px; bottom: 12px; width: 44px; min-height: 44px; justify-content: center; padding: 0; font-size: 0; }
