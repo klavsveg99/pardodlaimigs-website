@@ -1744,7 +1744,12 @@ function openAgentDialog(slug) {
   document.querySelector('#agent-dialog-photo').alt = agent.name;
   dialog.classList.toggle('is-portrait', Boolean(agent.portrait));
   document.querySelector('#agent-dialog-name').textContent = agent.name;
-  document.querySelector('#agent-dialog-bio').textContent = bio;
+  document.querySelector('#agent-dialog-bio').innerHTML = String(bio)
+    .split(/\n{2,}/)
+    .map((paragraph) => paragraph.replace(/\s*\n\s*/g, ' ').trim())
+    .filter(Boolean)
+    .map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`)
+    .join('');
   phone.href = `tel:${agent.phone.replace(/\s/g, '')}`;
   phone.querySelector('span').textContent = agent.phone;
 

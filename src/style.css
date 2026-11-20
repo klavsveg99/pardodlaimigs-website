@@ -875,7 +875,9 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
 .agent-dialog.is-portrait .agent-dialog-body > img { object-position: center 37%; }
 .agent-dialog-copy { height: 100%; overflow-y: auto; padding: 34px 34px 32px; }
 .agent-dialog-copy h2 { margin: 0 0 14px; font-size: 26px; letter-spacing: -.04em; }
-.agent-dialog-bio { margin: 0 0 18px; color: var(--muted); font-size: 15px; line-height: 1.4; white-space: pre-line; }
+.agent-dialog-bio { margin: 0 0 18px; color: var(--muted); font-size: 15px; line-height: 1.4; }
+.agent-dialog-bio p { margin: 0 0 12px; }
+.agent-dialog-bio p:last-child { margin-bottom: 0; }
 .agent-dialog-contacts { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; margin-bottom: 24px; }
 .agent-dialog-phone { display: inline-flex; align-items: center; gap: 10px; color: var(--brand); font-size: 14px; font-weight: 700; }
 .agent-dialog-phone i { font-size: 14px; }
