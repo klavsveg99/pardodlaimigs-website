@@ -260,11 +260,13 @@ const flags = {
 const AGENTS = [
   { slug: 'roberts-evarsons', name: 'Roberts Evarsons', phone: '+371 2492 2942', photo: '/images/team/roberts.jpg' },
   { slug: 'inga-dobuma', name: 'Inga Dobuma', phone: '+371 2822 8208', photo: '/images/team/inga.jpg', portrait: true },
+  { slug: 'kristofers-demiters', name: 'Kristofers R. Demiters', phone: '+371 2863 7110', photo: '/images/team/kristofers.jpg' },
 ];
 
 const agents = {
   'Roberts Evarsons': { phone: '+371 2492 2942' },
   'Inga Dobuma': { phone: '+371 2822 8208' },
+  'Kristofers R. Demiters': { phone: '+371 2863 7110' },
 };
 
 /**
@@ -925,7 +927,7 @@ function homeView() {
       </section>
 
       <section class="section team-section" id="komanda" aria-labelledby="team-title">
-        <div class="container team-layout">
+        <div class="container team-layout team-layout--stacked">
           <div class="team-heading reveal"><p class="eyebrow eyebrow-green" data-i18n="teamEyebrow"></p><h2 id="team-title" data-i18n="teamTitle"></h2><p class="section-lead" data-i18n="teamLead"></p></div>
           <div class="team-grid">
             ${AGENTS.map((agent) => `
