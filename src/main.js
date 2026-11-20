@@ -260,7 +260,7 @@ const flags = {
 const AGENTS = [
   { slug: 'roberts-evarsons', name: 'Roberts Evarsons', phone: '+371 2492 2942', photo: '/images/team/roberts.jpg' },
   { slug: 'inga-dobuma', name: 'Inga Dobuma', phone: '+371 2822 8208', photo: '/images/team/inga.jpg', portrait: true },
-  { slug: 'kristofers-demiters', name: 'Kristofers R. Demiters', phone: '+371 2863 7110', photo: '/images/team/kristofers.jpg' },
+  { slug: 'kristofers-demiters', name: 'Kristofers R. Demiters', phone: '+371 2863 7110', photo: '/images/team/kristofers.jpg?v=2' },
 ];
 
 const agents = {
