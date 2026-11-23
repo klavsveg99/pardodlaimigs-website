@@ -167,7 +167,20 @@ h1, h2, h3 { font-family: var(--serif); }
 .property-map-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 20px; color: var(--muted); background: #eef0ec; font-size: 13px; text-align: center; }
 /* display on these classes beats the hidden attribute, so spell it out. */
 .property-map-view[hidden], .property-map-status[hidden], .property-grid[hidden], .section-action[hidden] { display: none; }
-.property-map-card { display: grid; gap: 4px; min-width: 190px; max-width: 230px; }
+.property-map-card { display: grid; width: 232px; gap: 4px; }
+/* Google's close row reserves 48px at the top and floats its button over the
+   photo. Drop the row from the layout and pin its own button to the bubble's
+   top-right corner instead, so the card keeps the same padding on every side. */
+#property-map-canvas .gm-style-iw-c { overflow: visible !important; padding: 12px !important; }
+#property-map-canvas .gm-style-iw-d { overflow: visible !important; }
+#property-map-canvas .gm-style-iw-chr { position: absolute; z-index: 3; top: -15px; right: -15px; display: block; width: 30px; height: 30px; }
+#property-map-canvas .gm-style-iw-ch { display: none; }
+#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect { display: grid !important; width: 30px !important; height: 30px !important; margin: 0 !important; place-items: center; border: 1px solid var(--line) !important; border-radius: 50%; background: #fff !important; box-shadow: 0 3px 10px rgb(12 30 26 / 24%); opacity: 1 !important; }
+#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:hover,
+#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:focus-visible { border-color: var(--brand) !important; background: var(--brand) !important; }
+#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect span { width: 13px !important; height: 13px !important; margin: 0 !important; opacity: 1 !important; background-color: var(--ink) !important; }
+#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:hover span,
+#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:focus-visible span { background-color: #fff !important; }
 .property-map-card-image { width: 100%; height: 128px; margin: 0 0 4px; object-fit: cover; background: #e8ebe6; }
 .property-map-card-price { margin: 0; color: var(--brand); font-size: 14px; font-weight: 700; }
 .property-map-card-title { font-size: 14px; line-height: 1.35; }
