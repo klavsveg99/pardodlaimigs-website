@@ -1376,13 +1376,13 @@ const MAP_STYLE = [
   { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#e0e4de' }] },
   { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#f1f3ed' }] },
   { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
-  { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#e8efeb' }] },
+  { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#e4ede7' }] },
   { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
   { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#e7e9e4' }] },
   { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#efe9df' }] },
   { featureType: 'road', elementType: 'labels', stylers: [{ visibility: 'off' }] },
   { featureType: 'transit', stylers: [{ visibility: 'off' }] },
-  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#dbe7e2' }] },
+  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#bcd5cd' }] },
   { featureType: 'water', elementType: 'labels', stylers: [{ visibility: 'off' }] },
 ];
 
