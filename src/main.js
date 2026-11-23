@@ -1374,6 +1374,7 @@ const MAP_STYLE = [
   { elementType: 'labels.text.fill', stylers: [{ color: '#6f7873' }] },
   { elementType: 'labels.text.stroke', stylers: [{ color: '#fbfaf7' }] },
   { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#e0e4de' }] },
+  { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#9aa89f' }, { weight: 1.6 }] },
   { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#f1f3ed' }] },
   { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
   { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#e4ede7' }] },
