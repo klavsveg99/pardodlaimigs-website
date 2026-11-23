@@ -1,4 +1,5 @@
 import './style.css';
+import { MarkerClusterer, SuperClusterAlgorithm } from '@googlemaps/markerclusterer';
 
 const languages = {
   lv: {
@@ -1388,8 +1389,19 @@ const MAP_STYLE = [
 let viewMap = null;
 let viewMapInfo = null;
 let viewMapMarkers = [];
+let viewMapClusterer = null;
 let viewMapLoading = null;
 let viewMapPin = null;
+
+/**
+ * A tight radius keeps most pins individual at the fitted country view, where
+ * the Saldus listings sit within a few pixels of each other; a bigger radius
+ * swallowed them into one bubble. Pins separate one zoom earlier than the
+ * library default (maxZoom 14), and the fixed 36px bubble stays compact enough
+ * that nearby single pins are not hidden behind it.
+ */
+const MAP_CLUSTER_RADIUS = 32;
+const MAP_CLUSTER_MAX_ZOOM = 14;
 
 function setMapStatus(text) {
   const status = document.querySelector('#property-map-status');
@@ -1409,6 +1421,28 @@ function propertyPinIcon() {
   }
   return viewMapPin;
 }
+
+function clusterIcon() {
+  const size = 36;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><circle cx="${size / 2}" cy="${size / 2}" r="${size / 2 - 3}" fill="#285854" stroke="#fff" stroke-width="3"/></svg>`;
+  return {
+    url: 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg),
+    scaledSize: new google.maps.Size(size, size),
+    anchor: new google.maps.Point(size / 2, size / 2),
+  };
+}
+
+/** Cluster bubbles keep the brand green, white text and a white ring. */
+const MAP_CLUSTER_RENDERER = {
+  render({ count, position }) {
+    return new google.maps.Marker({
+      position,
+      icon: clusterIcon(),
+      label: { text: String(count), color: '#ffffff', fontSize: '13px', fontWeight: '700' },
+      zIndex: Number(google.maps.Marker.MAX_ZINDEX) + count,
+    });
+  },
+};
 
 function loadGoogleMaps() {
   if (window.google?.maps) return Promise.resolve();
@@ -1436,6 +1470,16 @@ function loadGoogleMaps() {
 function openMapProperty(property, marker) {
   const card = document.createElement('div');
   card.className = 'property-map-card';
+
+  const image = assetUrl(property.image);
+  if (image) {
+    const photo = document.createElement('img');
+    photo.className = 'property-map-card-image';
+    photo.src = image;
+    photo.alt = '';
+    photo.loading = 'lazy';
+    card.appendChild(photo);
+  }
 
   if (property.price) {
     const price = document.createElement('p');
@@ -1476,9 +1520,9 @@ function openMapProperty(property, marker) {
 }
 
 function syncPropertyMapMarkers(properties) {
-  if (!viewMap) return;
+  if (!viewMap || !viewMapClusterer) return;
 
-  viewMapMarkers.forEach((marker) => marker.setMap(null));
+  viewMapClusterer.clearMarkers();
   viewMapMarkers = [];
 
   const located = properties.filter((property) => Number.isFinite(property.lat) && Number.isFinite(property.lng));
@@ -1491,11 +1535,12 @@ function syncPropertyMapMarkers(properties) {
   const bounds = new google.maps.LatLngBounds();
   located.forEach((property) => {
     const position = { lat: property.lat, lng: property.lng };
-    const marker = new google.maps.Marker({ position, map: viewMap, title: property.title, icon: propertyPinIcon() });
+    const marker = new google.maps.Marker({ position, title: property.title, icon: propertyPinIcon() });
     marker.addListener('click', () => openMapProperty(property, marker));
     viewMapMarkers.push(marker);
     bounds.extend(position);
   });
+  viewMapClusterer.addMarkers(viewMapMarkers);
 
   if (located.length === 1) {
     viewMap.setCenter(bounds.getCenter());
@@ -1534,6 +1579,11 @@ async function showPropertyMap() {
       styles: MAP_STYLE,
     });
     viewMapInfo = new google.maps.InfoWindow({ maxWidth: 260 });
+    viewMapClusterer = new MarkerClusterer({
+      map: viewMap,
+      renderer: MAP_CLUSTER_RENDERER,
+      algorithm: new SuperClusterAlgorithm({ radius: MAP_CLUSTER_RADIUS, maxZoom: MAP_CLUSTER_MAX_ZOOM }),
+    });
     viewMapMarkers = [];
   }
 
