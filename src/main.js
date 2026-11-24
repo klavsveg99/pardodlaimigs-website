@@ -1537,6 +1537,10 @@ function syncPropertyMapMarkers(properties) {
   viewMapMarkers = [];
 
   const located = properties.filter((property) => Number.isFinite(property.lat) && Number.isFinite(property.lng));
+  if (!properties.length) {
+    setMapStatus(t('noResults'));
+    return;
+  }
   if (!located.length) {
     setMapStatus(t('mapEmpty'));
     return;
@@ -2178,8 +2182,6 @@ function bindEvents() {
     renderProperties();
     document.querySelector('#ipasumi')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
-  ['#search-category', '#search-price'].forEach((selector) => on(selector, 'change', () => { state.showAll = true; renderProperties(); }));
-  on('#search-query', 'input', () => { state.showAll = true; renderProperties(); });
   on('#view-all', 'click', () => { state.showAll = true; renderProperties(); });
   document.querySelectorAll('[data-property-view]').forEach((button) => button.addEventListener('click', () => setPropertyView(button.dataset.propertyView)));
 
