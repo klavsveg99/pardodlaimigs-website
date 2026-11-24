@@ -1806,6 +1806,10 @@ async function showPropertyMap() {
       zoom: 7,
       backgroundColor: '#eef0ec',
       clickableIcons: false,
+      // The Google logo, copyright line and Terms link are required attribution
+      // and must stay; the optional keyboard hint is the one footer item the
+      // API lets us drop.
+      keyboardShortcuts: false,
       fullscreenControl: true,
       fullscreenControlOptions: { position: google.maps.ControlPosition.TOP_RIGHT },
       mapTypeControl: false,
