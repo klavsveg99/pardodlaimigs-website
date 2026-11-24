@@ -1480,8 +1480,12 @@ function loadGoogleMaps() {
 }
 
 function openMapProperty(property, marker) {
-  const card = document.createElement('div');
+  // The whole card is one link to the listing page; the "view property" row is
+  // its visual cue rather than a second control.
+  const card = document.createElement('a');
   card.className = 'property-map-card';
+  card.href = siteUrl(`ipasums/${property.slug}/`);
+  card.setAttribute('aria-label', `${t('details')}: ${property.title}`);
 
   const image = assetUrl(property.image);
   if (image) {
@@ -1512,8 +1516,7 @@ function openMapProperty(property, marker) {
     card.appendChild(address);
   }
 
-  const link = document.createElement('button');
-  link.type = 'button';
+  const link = document.createElement('span');
   link.className = 'property-map-card-link';
   const label = document.createElement('span');
   label.textContent = t('details');
@@ -1521,10 +1524,6 @@ function openMapProperty(property, marker) {
   arrow.className = 'fa-solid fa-arrow-right';
   arrow.setAttribute('aria-hidden', 'true');
   link.append(label, arrow);
-  link.addEventListener('click', () => {
-    viewMapInfo.close();
-    openProperty(property.slug);
-  });
   card.appendChild(link);
 
   viewMapInfo.setContent(card);
