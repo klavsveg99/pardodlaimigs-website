@@ -669,7 +669,7 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .view-switcher { width: 100%; }
   .view-switcher-button { flex: 1; }
   .view-switcher-block { width: 100%; flex-direction: column-reverse; align-items: stretch; gap: 10px; }
-  .map-hint { align-self: flex-end; display: flex; align-items: center; gap: 14px; padding: 0; }
+  .map-hint { align-self: flex-end; display: flex; align-items: center; gap: 14px; margin-right: 60px; padding: 0; }
   .map-hint-text { font-size: 22px; }
   .map-hint-arrow { position: static; flex: 0 0 auto; width: 42px; height: 33px; transform: scaleY(-1); }
   .property-map-canvas { height: 62vh; min-height: 360px; }
