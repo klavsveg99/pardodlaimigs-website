@@ -1456,6 +1456,7 @@ let viewMapClusterer = null;
 let viewMapLoading = null;
 let viewMapPin = null;
 let viewMapPanel = null;
+let mapSelection = null;
 
 /** How many map cards show under the map before "show more". */
 const MAP_RESULT_BATCH = 3;
@@ -1606,14 +1607,31 @@ function bindMapPanelGallery(panel, images, thumbs) {
   });
 }
 
-function closeMapPanel() {
-  viewMapPanel?.classList.remove('is-open');
-  viewMapMarkers.forEach((marker) => marker.setOpacity(1));
+/**
+ * Group bubbles are rendered by the cluster library, not held in
+ * viewMapMarkers, so they need their own pass to follow the selection.
+ */
+function clusterBubbles() {
+  return (viewMapClusterer?.clusters ?? [])
+    .filter((cluster) => cluster.markers.length > 1 && cluster.marker)
+    .map((cluster) => cluster.marker);
 }
 
-/** Dim every pin but the selected one while its sheet is open. */
+function applyMapMarkerOpacity() {
+  viewMapMarkers.forEach((marker) => marker.setOpacity(mapSelection && marker !== mapSelection ? 0.5 : 1));
+  clusterBubbles().forEach((marker) => marker.setOpacity(mapSelection ? 0.5 : 1));
+}
+
+function closeMapPanel() {
+  viewMapPanel?.classList.remove('is-open');
+  mapSelection = null;
+  applyMapMarkerOpacity();
+}
+
+/** Dim every pin and cluster bubble but the selected pin while its sheet is open. */
 function dimOtherMapMarkers(selected) {
-  viewMapMarkers.forEach((marker) => marker.setOpacity(marker === selected ? 1 : 0.5));
+  mapSelection = selected;
+  applyMapMarkerOpacity();
 }
 
 /**
@@ -1801,6 +1819,9 @@ async function showPropertyMap() {
       renderer: MAP_CLUSTER_RENDERER,
       algorithm: new SuperClusterAlgorithm({ radius: MAP_CLUSTER_RADIUS, maxZoom: MAP_CLUSTER_MAX_ZOOM }),
     });
+    // New bubble markers are created on every cluster re-render; keep them
+    // dimmed while a property sheet is open.
+    viewMapClusterer.addListener('clusteringend', () => { if (mapSelection) applyMapMarkerOpacity(); });
     viewMapMarkers = [];
     ensureMapPanel(canvas);
   }
