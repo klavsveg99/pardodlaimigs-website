@@ -1608,6 +1608,12 @@ function bindMapPanelGallery(panel, images, thumbs) {
 
 function closeMapPanel() {
   viewMapPanel?.classList.remove('is-open');
+  viewMapMarkers.forEach((marker) => marker.setOpacity(1));
+}
+
+/** Dim every pin but the selected one while its sheet is open. */
+function dimOtherMapMarkers(selected) {
+  viewMapMarkers.forEach((marker) => marker.setOpacity(marker === selected ? 1 : 0.5));
 }
 
 /**
@@ -1680,6 +1686,7 @@ function openMapProperty(property, marker) {
     </a>`;
   bindMapPanelGallery(panel, images, thumbs);
   panel.classList.add('is-open');
+  dimOtherMapMarkers(marker);
   panel.querySelector('.map-panel-close').focus({ preventScroll: true });
   requestAnimationFrame(() => centreMarkerAbovePanel(marker.getPosition()));
 }
