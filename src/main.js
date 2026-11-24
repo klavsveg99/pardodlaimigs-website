@@ -1671,7 +1671,8 @@ function centreMarkerAbovePanel(position) {
   }
   const scale = 2 ** viewMap.getZoom();
   const world = projection.fromLatLngToPoint(position);
-  const offset = (mapHeight - visibleHeight) / 2;
+  // Leave a little more map above the pin than the exact centre of the strip.
+  const offset = (mapHeight - visibleHeight) / 2 - 40;
   viewMap.panTo(projection.fromPointToLatLng(new google.maps.Point(world.x, world.y + offset / scale)));
 }
 
