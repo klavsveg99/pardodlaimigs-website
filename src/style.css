@@ -175,7 +175,7 @@ h1, h2, h3 { font-family: var(--serif); }
 #property-map-canvas .gm-style-iw-d { overflow: visible !important; }
 #property-map-canvas .gm-style-iw-chr { position: absolute; z-index: 3; top: -15px; right: -15px; display: block; width: 30px; height: 30px; }
 #property-map-canvas .gm-style-iw-ch { display: none; }
-#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect { display: grid !important; width: 30px !important; height: 30px !important; margin: 0 !important; place-items: center; border: 1px solid var(--line) !important; border-radius: 50%; background: #fff !important; box-shadow: 0 3px 10px rgb(12 30 26 / 24%); opacity: 1 !important; }
+#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect { display: grid !important; width: 30px !important; height: 30px !important; margin: 0 !important; place-items: center; border: 1px solid var(--line) !important; border-radius: 50%; background: #fff !important; opacity: 1 !important; }
 #property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:hover,
 #property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:focus-visible { border-color: var(--brand) !important; background: var(--brand) !important; }
 #property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect span { width: 13px !important; height: 13px !important; margin: 0 !important; opacity: 1 !important; background-color: var(--ink) !important; }
