@@ -153,7 +153,7 @@ const extendedTranslations = {
     enquiryLead: 'Aizpildiet formu, un aģents sazināsies ar Jums.', enquiryProperty: 'Īpašums', enquiryMessage: 'Ziņa', enquirySubmit: 'Nosūtīt pieprasījumu', enquirySuccess: 'Paldies! Aģents sazināsies ar Jums tuvākajā laikā.',
     reserved: 'Rezervēts',
     preciseLocation: 'Precīza atrašanās vieta', openInMaps: 'Atvērt Google Maps',
-    viewSwitcherLabel: 'Īpašumu skats', viewGrid: 'Saraksts', viewMap: 'Karte',
+    viewSwitcherLabel: 'Īpašumu skats', viewGrid: 'Saraksts', viewMap: 'Karte', mapHint: ['apskaties jauno', 'īpašumu karti'],
     mapLoading: 'Ielādē karti...', mapEmpty: 'Šobrīd nevienam īpašumam nav norādīta atrašanās vieta.', mapError: 'Karti neizdevās ielādēt.',
     allArticles: 'Visi raksti',
     teamLead: 'Pieredze, cilvēcīga attieksme un rūpes par katru detaļu - no pirmās sarunas līdz atslēgu nodošanai.',
@@ -177,7 +177,7 @@ const extendedTranslations = {
     enquiryLead: 'Fill in the form and the agent will get in touch.', enquiryProperty: 'Property', enquiryMessage: 'Message', enquirySubmit: 'Send enquiry', enquirySuccess: 'Thank you! The agent will contact you shortly.',
     reserved: 'Reserved',
     preciseLocation: 'Precise location', openInMaps: 'Open in Google Maps',
-    viewSwitcherLabel: 'Property view', viewGrid: 'List', viewMap: 'Map',
+    viewSwitcherLabel: 'Property view', viewGrid: 'List', viewMap: 'Map', mapHint: ['take a look at', 'the new property map'],
     mapLoading: 'Loading map...', mapEmpty: 'No properties have a location yet.', mapError: 'The map could not be loaded.',
     allArticles: 'All articles', teamLead: 'Experience, a personal approach and care for every detail, from the first conversation to handing over the keys.',
     articleTitles: ['The Land Register - the key document in real estate transactions', 'How much does farmland cost in Latvia? 2025 price review', 'The Saldus real estate market: current prices and opportunities'],
@@ -201,7 +201,7 @@ const extendedTranslations = {
     enquiryLead: 'Заполните форму, и агент свяжется с вами.', enquiryProperty: 'Объект', enquiryMessage: 'Сообщение', enquirySubmit: 'Отправить запрос', enquirySuccess: 'Спасибо! Агент свяжется с вами в ближайшее время.',
     reserved: 'Забронировано',
     preciseLocation: 'Точное местоположение', openInMaps: 'Открыть в Google Maps',
-    viewSwitcherLabel: 'Вид объектов', viewGrid: 'Список', viewMap: 'Карта',
+    viewSwitcherLabel: 'Вид объектов', viewGrid: 'Список', viewMap: 'Карта', mapHint: ['загляни на новую', 'карту объектов'],
     mapLoading: 'Загрузка карты...', mapEmpty: 'Пока ни у одного объекта не указано местоположение.', mapError: 'Не удалось загрузить карту.',
     allArticles: 'Все статьи', teamLead: 'Опыт, внимательное отношение и забота о каждой детали - от первого разговора до передачи ключей.',
     articleTitles: ['Земельная книга - главный документ в сделках с недвижимостью', 'Сколько стоит сельскохозяйственная земля в Латвии? Обзор цен за 2025 год', 'Рынок недвижимости в Салдусе: актуальные цены и возможности'],
@@ -225,7 +225,7 @@ const extendedTranslations = {
     enquiryLead: 'Füllen Sie das Formular aus und der Makler meldet sich bei Ihnen.', enquiryProperty: 'Immobilie', enquiryMessage: 'Nachricht', enquirySubmit: 'Anfrage senden', enquirySuccess: 'Vielen Dank! Der Makler meldet sich in Kürze bei Ihnen.',
     reserved: 'Reserviert',
     preciseLocation: 'Genauer Standort', openInMaps: 'In Google Maps öffnen',
-    viewSwitcherLabel: 'Objektansicht', viewGrid: 'Liste', viewMap: 'Karte',
+    viewSwitcherLabel: 'Objektansicht', viewGrid: 'Liste', viewMap: 'Karte', mapHint: ['schau dir die neue', 'Immobilienkarte an'],
     mapLoading: 'Karte wird geladen...', mapEmpty: 'Für noch kein Objekt ist ein Standort hinterlegt.', mapError: 'Die Karte konnte nicht geladen werden.',
     allArticles: 'Alle Artikel', teamLead: 'Erfahrung, persönliche Betreuung und Sorgfalt bei jedem Detail - vom ersten Gespräch bis zur Schlüsselübergabe.',
     articleTitles: ['Das Grundbuch - das wichtigste Dokument bei Immobiliengeschäften', 'Was kostet Ackerland in Lettland? Preisübersicht 2025', 'Der Immobilienmarkt in Saldus: aktuelle Preise und Möglichkeiten'],
@@ -859,6 +859,23 @@ function contactSection() {
       </section>`;
 }
 
+/**
+ * A handwritten nudge towards the map, shown until the visitor opens the map
+ * once. The choice is kept like the language one, so it never nags again.
+ */
+function mapHint() {
+  if (localStorage.getItem('map-hint-seen')) return '';
+  const lines = t('mapHint').map((line) => escapeHtml(line)).join('<br>');
+  return `
+    <div class="map-hint" id="map-hint" aria-hidden="true">
+      <span class="map-hint-text">${lines}</span>
+      <svg class="map-hint-arrow" viewBox="0 0 92 70" fill="none" focusable="false">
+        <path d="M7 11C34 2 64 8 69 27c4 15-14 25-24 16-8-7 2-19 14-17 14 3 20 17 16 30"/>
+        <path d="M66 48l9 9 9-10"/>
+      </svg>
+    </div>`;
+}
+
 function homeView() {
   const heroSlides = state.properties.filter((property) => property.hero_image);
   return `      <section class="hero-section">
@@ -906,9 +923,12 @@ function homeView() {
         <div class="container">
           <div class="section-heading section-heading-row reveal">
             <div><p class="eyebrow eyebrow-green" data-i18n="propertiesEyebrow"></p><h2 id="properties-title" data-i18n="propertiesTitle"></h2><p class="section-lead" data-i18n="propertiesLead"></p></div>
-            <div class="view-switcher" role="group" aria-label="${escapeHtml(t('viewSwitcherLabel'))}">
-              <button class="view-switcher-button is-active" type="button" data-property-view="grid" aria-pressed="true"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i><span>${escapeHtml(t('viewGrid'))}</span></button>
-              <button class="view-switcher-button" type="button" data-property-view="map" aria-pressed="false"><i class="fa-solid fa-map" aria-hidden="true"></i><span>${escapeHtml(t('viewMap'))}</span></button>
+            <div class="view-switcher-block">
+              ${mapHint()}
+              <div class="view-switcher" role="group" aria-label="${escapeHtml(t('viewSwitcherLabel'))}">
+                <button class="view-switcher-button is-active" type="button" data-property-view="grid" aria-pressed="true"><i class="fa-solid fa-table-cells-large" aria-hidden="true"></i><span>${escapeHtml(t('viewGrid'))}</span></button>
+                <button class="view-switcher-button" type="button" data-property-view="map" aria-pressed="false"><i class="fa-solid fa-map" aria-hidden="true"></i><span>${escapeHtml(t('viewMap'))}</span></button>
+              </div>
             </div>
           </div>
           <div class="results-line"><span id="property-count"></span><span id="filter-summary"></span></div>
@@ -1628,6 +1648,15 @@ function applyPropertyView() {
 
 function setPropertyView(view) {
   state.propertyView = view === 'map' ? 'map' : 'grid';
+
+  // The handwritten hint is a one-time nudge; retire it for good once used.
+  const hint = document.querySelector('#map-hint');
+  if (state.propertyView === 'map' && hint) {
+    localStorage.setItem('map-hint-seen', '1');
+    hint.classList.add('is-hidden');
+    window.setTimeout(() => hint.remove(), 450);
+  }
+
   applyPropertyView();
 }
 

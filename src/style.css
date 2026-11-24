@@ -157,6 +157,14 @@ h1, h2, h3 { font-family: var(--serif); }
    height of a short card collects. */
 .property-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 1fr; gap: 28px 20px; }
 .view-switcher { display: inline-flex; flex: 0 0 auto; gap: 6px; }
+.view-switcher-block { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+/* One-time handwritten nudge towards the map. Caveat plus a slight tilt keeps
+   it playful without competing with the section copy. */
+.map-hint { position: relative; padding-right: 44px; color: var(--brand); transform: rotate(-3.5deg); pointer-events: none; transition: opacity .4s ease, transform .4s ease; }
+.map-hint.is-hidden { opacity: 0; transform: rotate(-3.5deg) translateY(-4px); }
+.map-hint-text { display: block; font-family: 'Caveat', 'DM Sans', cursive; font-size: 24px; font-weight: 500; line-height: 1; letter-spacing: .01em; text-align: right; }
+.map-hint-arrow { position: absolute; right: 0; bottom: -14px; width: 48px; height: 38px; overflow: visible; }
+.map-hint-arrow path { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
 .view-switcher-button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 39px; padding: 0 17px; border: 0; cursor: pointer; color: var(--ink); background: transparent; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; transition: color .18s ease, background .18s ease; }
 .view-switcher-button i { color: var(--brand); font-size: 12px; }
 .view-switcher-button:hover { background: var(--brand-light); }
@@ -656,6 +664,10 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .properties-section .section-heading-row { flex-direction: column; align-items: flex-start; gap: 20px; }
   .view-switcher { width: 100%; }
   .view-switcher-button { flex: 1; }
+  .view-switcher-block { width: 100%; flex-direction: column-reverse; align-items: stretch; gap: 10px; }
+  .map-hint { align-self: flex-end; padding: 38px 44px 0 0; }
+  .map-hint-text { font-size: 22px; }
+  .map-hint-arrow { top: 0; bottom: auto; transform: scaleY(-1); }
   .property-map-canvas { height: 62vh; min-height: 360px; }
   .property-image-button { height: 180px; }
   .property-card-body { padding: 13px 12px; }
