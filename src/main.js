@@ -155,6 +155,8 @@ const extendedTranslations = {
     preciseLocation: 'Precīza atrašanās vieta', openInMaps: 'Atvērt Google Maps',
     viewSwitcherLabel: 'Īpašumu skats', viewGrid: 'Saraksts', viewMap: 'Karte', mapHint: ['apskaties jauno', 'īpašumu karti'],
     mapLoading: 'Ielādē karti...', mapEmpty: 'Šobrīd nevienam īpašumam nav norādīta atrašanās vieta.', mapError: 'Karti neizdevās ielādēt.',
+    mapLoadMore: 'Rādīt vairāk', mapNoResults: 'Neatradām īpašumus šajā pietuvinājumā.',
+    mapTypeLabel: 'Kartes veids', mapSatellite: 'Satelīts',
     allArticles: 'Visi raksti',
     teamLead: 'Pieredze, cilvēcīga attieksme un rūpes par katru detaļu - no pirmās sarunas līdz atslēgu nodošanai.',
     articleTitles: ['Zemesgrāmata - pats svarīgākais dokuments nekustamā īpašuma darījumos', 'Cik maksā lauksaimniecības zeme Latvijā? 2025. gada cenu apskats', 'Nekustamo īpašumu tirgus Saldū - aktuālākās cenas un iespējas'],
@@ -179,6 +181,8 @@ const extendedTranslations = {
     preciseLocation: 'Precise location', openInMaps: 'Open in Google Maps',
     viewSwitcherLabel: 'Property view', viewGrid: 'List', viewMap: 'Map', mapHint: ['take a look at', 'the new property map'],
     mapLoading: 'Loading map...', mapEmpty: 'No properties have a location yet.', mapError: 'The map could not be loaded.',
+    mapLoadMore: 'Show more', mapNoResults: 'No properties in this map view.',
+    mapTypeLabel: 'Map type', mapSatellite: 'Satellite',
     allArticles: 'All articles', teamLead: 'Experience, a personal approach and care for every detail, from the first conversation to handing over the keys.',
     articleTitles: ['The Land Register - the key document in real estate transactions', 'How much does farmland cost in Latvia? 2025 price review', 'The Saldus real estate market: current prices and opportunities'],
     reviews: [{ quote: 'I originally tried selling my property myself, without success. Roberts brought in a professional photographer, created a strong listing and sold the property quickly for the price I wanted. Thank you!', name: 'SIA Simra' }, { quote: 'Many thanks for the professional work! Roberts was responsive, communicative and knowledgeable. The process was quick, high-quality and stress-free. I highly recommend him.', name: 'Aivars Ikaunieks' }, { quote: 'Working with Roberts was excellent. The paperwork was prepared quickly, great photos were taken, and a buyer was found in no time. A punctual and responsible specialist.', name: 'Lāsma Sarksne' }],
@@ -203,6 +207,8 @@ const extendedTranslations = {
     preciseLocation: 'Точное местоположение', openInMaps: 'Открыть в Google Maps',
     viewSwitcherLabel: 'Вид объектов', viewGrid: 'Список', viewMap: 'Карта', mapHint: ['загляни на новую', 'карту объектов'],
     mapLoading: 'Загрузка карты...', mapEmpty: 'Пока ни у одного объекта не указано местоположение.', mapError: 'Не удалось загрузить карту.',
+    mapLoadMore: 'Показать ещё', mapNoResults: 'В этом масштабе объектов не найдено.',
+    mapTypeLabel: 'Тип карты', mapSatellite: 'Спутник',
     allArticles: 'Все статьи', teamLead: 'Опыт, внимательное отношение и забота о каждой детали - от первого разговора до передачи ключей.',
     articleTitles: ['Земельная книга - главный документ в сделках с недвижимостью', 'Сколько стоит сельскохозяйственная земля в Латвии? Обзор цен за 2025 год', 'Рынок недвижимости в Салдусе: актуальные цены и возможности'],
     reviews: [{ quote: 'Сначала я пыталась продать недвижимость самостоятельно, но безуспешно. Роберт пригласил профессионального фотографа, подготовил хорошее объявление и быстро продал недвижимость по желаемой цене. Спасибо!', name: 'SIA Simra' }, { quote: 'Большое спасибо за профессиональную работу! Роберт был отзывчивым, общительным и знающим. Все прошло быстро, качественно и без лишнего стресса. Рекомендую!', name: 'Aivars Ikaunieks' }, { quote: 'Сотрудничество с Робертом было отличным. Документы подготовили быстро, сделали хорошие фотографии и в кратчайший срок нашли покупателя. Ответственный и пунктуальный специалист.', name: 'Lāsma Sarksne' }],
@@ -227,6 +233,8 @@ const extendedTranslations = {
     preciseLocation: 'Genauer Standort', openInMaps: 'In Google Maps öffnen',
     viewSwitcherLabel: 'Objektansicht', viewGrid: 'Liste', viewMap: 'Karte', mapHint: ['schau dir die neue', 'Immobilienkarte an'],
     mapLoading: 'Karte wird geladen...', mapEmpty: 'Für noch kein Objekt ist ein Standort hinterlegt.', mapError: 'Die Karte konnte nicht geladen werden.',
+    mapLoadMore: 'Mehr anzeigen', mapNoResults: 'Keine Objekte in diesem Kartenausschnitt.',
+    mapTypeLabel: 'Kartenansicht', mapSatellite: 'Satellit',
     allArticles: 'Alle Artikel', teamLead: 'Erfahrung, persönliche Betreuung und Sorgfalt bei jedem Detail - vom ersten Gespräch bis zur Schlüsselübergabe.',
     articleTitles: ['Das Grundbuch - das wichtigste Dokument bei Immobiliengeschäften', 'Was kostet Ackerland in Lettland? Preisübersicht 2025', 'Der Immobilienmarkt in Saldus: aktuelle Preise und Möglichkeiten'],
     reviews: [{ quote: 'Zuerst habe ich versucht, meine Immobilie selbst zu verkaufen, leider ohne Erfolg. Roberts engagierte einen professionellen Fotografen, erstellte ein gutes Inserat und verkaufte die Immobilie schnell zum gewünschten Preis. Vielen Dank!', name: 'SIA Simra' }, { quote: 'Vielen Dank für die professionelle Arbeit! Roberts war sehr hilfsbereit, kommunikativ und kompetent. Der Ablauf war schnell, hochwertig und stressfrei. Ich empfehle ihn gerne weiter.', name: 'Aivars Ikaunieks' }, { quote: 'Die Zusammenarbeit mit Roberts war ausgezeichnet. Die Unterlagen wurden schnell vorbereitet, gute Fotos gemacht und in kürzester Zeit ein Käufer gefunden. Ein pünktlicher und verantwortungsvoller Spezialist.', name: 'Lāsma Sarksne' }],
@@ -937,6 +945,11 @@ function homeView() {
             <div class="property-map-canvas" id="property-map-canvas" role="region" aria-label="${escapeHtml(t('viewMap'))}"></div>
             <p class="property-map-status" id="property-map-status"></p>
           </div>
+          <div class="property-map-results" id="property-map-results" hidden>
+            <div class="property-grid" id="property-map-grid" aria-live="polite"></div>
+            <p class="property-map-empty" id="property-map-empty" hidden>${escapeHtml(t('mapNoResults'))}</p>
+            <div class="section-action"><button class="button button-outline" id="map-load-more" type="button"><span>${escapeHtml(t('mapLoadMore'))}</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
+          </div>
           <div class="section-action" id="properties-action"><button class="button button-outline" id="view-all" type="button"><span data-i18n="viewAll"></span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button></div>
         </div>
       </section>
@@ -1365,12 +1378,9 @@ function filteredProperties() {
   });
 }
 
-function renderProperties() {
-  const results = filteredProperties();
-  const shown = state.showAll ? results : results.slice(0, state.visibleCount);
-  const grid = document.querySelector('#property-grid');
-  if (!grid) return;
-  grid.innerHTML = shown.map((property, index) => `
+/** One listing card, shared by the page grid and the map's result grid. */
+function propertyCard(property, index) {
+  return `
     <article class="property-card" style="--card-index:${index}">
       <button class="property-image-button" type="button" data-property="${escapeHtml(property.slug)}" aria-label="${escapeHtml(t('details'))}: ${escapeHtml(property.title)}">
         <img src="${escapeHtml(assetUrl(property.image_local || property.image))}" alt="${escapeHtml(property.title)}" ${index < 3 ? 'fetchpriority="high"' : 'loading="lazy"'}>
@@ -1385,12 +1395,24 @@ function renderProperties() {
         ${property.facts?.length ? `<div class="property-facts">${property.facts.slice(0, 3).map((fact) => `<span>${escapeHtml(fact.value)} <small>${escapeHtml(factLabel(fact.label))}</small></span>`).join('')}</div>` : ''}
         <div class="property-card-bottom"><strong class="property-price">${escapeHtml(property.price || t('priceFrom'))}</strong><a class="arrow-button" href="${escapeHtml(siteUrl(`ipasums/${property.slug}/`))}" aria-label="${escapeHtml(t('details'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a></div>
       </div>
-    </article>`).join('');
+    </article>`;
+}
+
+function bindPropertyCards(root) {
+  root.querySelectorAll('[data-property]').forEach((button) => button.addEventListener('click', () => openProperty(button.dataset.property)));
+}
+
+function renderProperties() {
+  const results = filteredProperties();
+  const shown = state.showAll ? results : results.slice(0, state.visibleCount);
+  const grid = document.querySelector('#property-grid');
+  if (!grid) return;
+  grid.innerHTML = shown.map(propertyCard).join('');
   document.querySelector('#property-count').textContent = `${results.length} ${t('propertyCount')}`;
   document.querySelector('#filter-summary').textContent = results.length === 0 ? t('noResults') : '';
   const allShown = state.showAll || results.length <= state.visibleCount;
   document.querySelector('#view-all').hidden = allShown;
-  grid.querySelectorAll('[data-property]').forEach((button) => button.addEventListener('click', () => openProperty(button.dataset.property)));
+  bindPropertyCards(grid);
   if (state.propertyView === 'map') syncPropertyMapMarkers(results);
 }
 
@@ -1401,29 +1423,43 @@ function renderProperties() {
  */
 const MAP_STYLE = [
   { elementType: 'geometry', stylers: [{ color: '#f5f4ef' }] },
-  { elementType: 'labels.icon', stylers: [{ visibility: 'off' }] },
-  { elementType: 'labels.text.fill', stylers: [{ color: '#6f7873' }] },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#5b6963' }] },
   { elementType: 'labels.text.stroke', stylers: [{ color: '#fbfaf7' }] },
-  { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#e0e4de' }] },
+  { featureType: 'administrative', elementType: 'geometry.stroke', stylers: [{ color: '#dfe3dd' }] },
   { featureType: 'administrative.country', elementType: 'geometry.stroke', stylers: [{ color: '#9aa89f' }, { weight: 1.6 }] },
-  { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#f1f3ed' }] },
-  { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
-  { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#e4ede7' }] },
+  { featureType: 'landscape.natural', elementType: 'geometry', stylers: [{ color: '#eef1e8' }] },
+  { featureType: 'landscape.natural.landcover', elementType: 'geometry', stylers: [{ color: '#e7eee3' }] },
+  { featureType: 'landscape.natural.terrain', elementType: 'geometry', stylers: [{ color: '#eaf0e4' }] },
+  { featureType: 'landscape.man_made', elementType: 'geometry.fill', stylers: [{ color: '#f1f0eb' }] },
+  { featureType: 'landscape.man_made', elementType: 'geometry.stroke', stylers: [{ color: '#e4e1d8' }] },
+  /* Street names and, at the highest zooms, house numbers. */
   { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#ffffff' }] },
   { featureType: 'road', elementType: 'geometry.stroke', stylers: [{ color: '#e7e9e4' }] },
-  { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#efe9df' }] },
-  { featureType: 'road', elementType: 'labels', stylers: [{ visibility: 'off' }] },
-  { featureType: 'transit', stylers: [{ visibility: 'off' }] },
-  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#bcd5cd' }] },
-  { featureType: 'water', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+  { featureType: 'road.highway', elementType: 'geometry', stylers: [{ color: '#f1eadf' }] },
+  { featureType: 'road', elementType: 'labels.text.fill', stylers: [{ color: '#59665f' }] },
+  { featureType: 'road', elementType: 'labels.text.stroke', stylers: [{ color: '#ffffff' }] },
+  /* Calm landmark labels: schools, shops and transit stops get muted text,
+     while their small default icons stay so each place stays recognisable. */
+  { featureType: 'poi', elementType: 'labels.text.fill', stylers: [{ color: '#75817a' }] },
+  { featureType: 'poi', elementType: 'labels.text.stroke', stylers: [{ color: '#fbfaf7' }] },
+  { featureType: 'poi.park', elementType: 'geometry', stylers: [{ color: '#dfeade' }] },
+  { featureType: 'transit.line', elementType: 'geometry', stylers: [{ color: '#dfe3dd' }] },
+  { featureType: 'transit.line', elementType: 'labels', stylers: [{ visibility: 'on' }] },
+  { featureType: 'transit.station', elementType: 'labels.text.fill', stylers: [{ color: '#6f7c75' }] },
+  { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#c3d9d1' }] },
+  { featureType: 'water', elementType: 'labels.text.fill', stylers: [{ color: '#7d9a92' }] },
 ];
 
 let viewMap = null;
-let viewMapInfo = null;
 let viewMapMarkers = [];
 let viewMapClusterer = null;
 let viewMapLoading = null;
 let viewMapPin = null;
+let viewMapPanel = null;
+
+/** How many map cards show under the map before "show more". */
+const MAP_RESULT_BATCH = 3;
+let mapResultCount = MAP_RESULT_BATCH;
 
 /**
  * A tight radius keeps most pins individual at the fitted country view, where
@@ -1499,55 +1535,116 @@ function loadGoogleMaps() {
   return viewMapLoading;
 }
 
+/** Builds (once per map) the bottom sheet that replaces Google's InfoWindow. */
+function ensureMapPanel(canvas) {
+  // Inside Google's own layer, so the logo and attribution stay above the
+  // sheet (their control layer would otherwise sit behind it in fullscreen
+  // and in the normal view alike).
+  const layer = canvas.querySelector('.gm-style') ?? canvas;
+  if (viewMapPanel && viewMapPanel.parentElement === layer) return viewMapPanel;
+  viewMapPanel = document.createElement('aside');
+  viewMapPanel.className = 'map-panel';
+  viewMapPanel.setAttribute('aria-label', t('viewMap'));
+  viewMapPanel.innerHTML = `<button class="map-panel-close" type="button" aria-label="${escapeHtml(t('close'))}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><a class="map-panel-card"></a>`;
+  viewMapPanel.querySelector('.map-panel-close').addEventListener('click', closeMapPanel);
+  layer.appendChild(viewMapPanel);
+  return viewMapPanel;
+}
+
+function closeMapPanel() {
+  viewMapPanel?.classList.remove('is-open');
+}
+
+/**
+ * The Karte / Satelīts switch. Google's built-in map type control is not
+ * translated, so this keeps it inside the map (top-left) with the brand
+ * styling and the labels of the visitor's language.
+ */
+function mapTypeToggle() {
+  const toggle = document.createElement('div');
+  toggle.className = 'map-type-toggle';
+  toggle.setAttribute('role', 'group');
+  toggle.setAttribute('aria-label', t('mapTypeLabel'));
+  toggle.innerHTML = `<button type="button" data-map-type="roadmap" aria-pressed="true">${escapeHtml(t('viewMap'))}</button><button type="button" data-map-type="satellite" aria-pressed="false">${escapeHtml(t('mapSatellite'))}</button>`;
+  toggle.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-map-type]');
+    if (button) viewMap.setMapTypeId(button.dataset.mapType);
+  });
+  viewMap.addListener('maptypeid_changed', () => {
+    const type = viewMap.getMapTypeId();
+    toggle.querySelectorAll('[data-map-type]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.mapType === type)));
+  });
+  return toggle;
+}
+
+/**
+ * The panel covers the lower 60% of the map, so centre the pin in the strip
+ * that stays visible above it instead of under it.
+ */
+function centreMarkerAbovePanel(position) {
+  if (!viewMap || !viewMapPanel) return;
+  const projection = viewMap.getProjection();
+  const mapHeight = viewMap.getDiv().offsetHeight;
+  const visibleHeight = Math.max(mapHeight - viewMapPanel.offsetHeight, 80);
+  if (!projection) {
+    viewMap.panTo(position);
+    return;
+  }
+  const scale = 2 ** viewMap.getZoom();
+  const world = projection.fromLatLngToPoint(position);
+  const offset = (mapHeight - visibleHeight) / 2;
+  viewMap.panTo(projection.fromPointToLatLng(new google.maps.Point(world.x, world.y + offset / scale)));
+}
+
 function openMapProperty(property, marker) {
-  // The whole card is one link to the listing page; the "view property" row is
-  // its visual cue rather than a second control.
-  const card = document.createElement('a');
-  card.className = 'property-map-card';
+  const canvas = viewMap?.getDiv();
+  if (!canvas) return;
+  const panel = ensureMapPanel(canvas);
+  const card = panel.querySelector('.map-panel-card');
+  const image = assetUrl(property.image_local || property.image);
   card.href = siteUrl(`ipasums/${property.slug}/`);
   card.setAttribute('aria-label', `${t('details')}: ${property.title}`);
+  panel.setAttribute('aria-label', property.title);
+  card.innerHTML = `${image ? `<img class="map-panel-image" src="${escapeHtml(image)}" alt="" loading="lazy">` : ''}
+    <div class="map-panel-body">
+      ${property.price ? `<p class="map-panel-price">${escapeHtml(property.price)}</p>` : ''}
+      <strong class="map-panel-title">${escapeHtml(property.title)}</strong>
+      ${property.address ? `<span class="map-panel-address">${escapeHtml(property.address)}</span>` : ''}
+      <span class="map-panel-link"><span>${escapeHtml(t('details'))}</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
+    </div>`;
+  panel.classList.add('is-open');
+  panel.querySelector('.map-panel-close').focus({ preventScroll: true });
+  requestAnimationFrame(() => centreMarkerAbovePanel(marker.getPosition()));
+}
 
-  const image = assetUrl(property.image);
-  if (image) {
-    const photo = document.createElement('img');
-    photo.className = 'property-map-card-image';
-    photo.src = image;
-    photo.alt = '';
-    photo.loading = 'lazy';
-    card.appendChild(photo);
+/** Properties whose pin is inside the current map viewport, in listing order. */
+function visibleMapProperties() {
+  if (!viewMap) return [];
+  const bounds = viewMap.getBounds();
+  if (!bounds) return [];
+  return viewMapMarkers
+    .filter((marker) => bounds.contains(marker.getPosition()))
+    .map((marker) => marker.property);
+}
+
+/** The card grid under the map: what is on screen right now, a batch at a time. */
+function renderMapResults() {
+  const results = document.querySelector('#property-map-results');
+  const grid = document.querySelector('#property-map-grid');
+  if (!results || !grid) return;
+  if (state.propertyView !== 'map' || !viewMap || !viewMapMarkers.length) {
+    results.hidden = true;
+    return;
   }
-
-  if (property.price) {
-    const price = document.createElement('p');
-    price.className = 'property-map-card-price';
-    price.textContent = property.price;
-    card.appendChild(price);
-  }
-
-  const title = document.createElement('strong');
-  title.className = 'property-map-card-title';
-  title.textContent = property.title;
-  card.appendChild(title);
-
-  if (property.address) {
-    const address = document.createElement('span');
-    address.className = 'property-map-card-address';
-    address.textContent = property.address;
-    card.appendChild(address);
-  }
-
-  const link = document.createElement('span');
-  link.className = 'property-map-card-link';
-  const label = document.createElement('span');
-  label.textContent = t('details');
-  const arrow = document.createElement('i');
-  arrow.className = 'fa-solid fa-arrow-right';
-  arrow.setAttribute('aria-hidden', 'true');
-  link.append(label, arrow);
-  card.appendChild(link);
-
-  viewMapInfo.setContent(card);
-  viewMapInfo.open({ map: viewMap, anchor: marker });
+  const visible = visibleMapProperties();
+  results.hidden = false;
+  grid.hidden = visible.length === 0;
+  grid.innerHTML = visible.slice(0, mapResultCount).map(propertyCard).join('');
+  bindPropertyCards(grid);
+  const empty = document.querySelector('#property-map-empty');
+  if (empty) empty.hidden = visible.length > 0;
+  const more = document.querySelector('#map-load-more');
+  if (more) more.closest('.section-action').hidden = visible.length <= mapResultCount;
 }
 
 function syncPropertyMapMarkers(properties) {
@@ -1555,14 +1652,19 @@ function syncPropertyMapMarkers(properties) {
 
   viewMapClusterer.clearMarkers();
   viewMapMarkers = [];
+  closeMapPanel();
+  mapResultCount = MAP_RESULT_BATCH;
 
   const located = properties.filter((property) => Number.isFinite(property.lat) && Number.isFinite(property.lng));
+  const results = document.querySelector('#property-map-results');
   if (!properties.length) {
     setMapStatus(t('noResults'));
+    if (results) results.hidden = true;
     return;
   }
   if (!located.length) {
     setMapStatus(t('mapEmpty'));
+    if (results) results.hidden = true;
     return;
   }
   setMapStatus('');
@@ -1571,6 +1673,7 @@ function syncPropertyMapMarkers(properties) {
   located.forEach((property) => {
     const position = { lat: property.lat, lng: property.lng };
     const marker = new google.maps.Marker({ position, title: property.title, icon: propertyPinIcon() });
+    marker.property = property;
     marker.addListener('click', () => openMapProperty(property, marker));
     viewMapMarkers.push(marker);
     bounds.extend(position);
@@ -1580,11 +1683,13 @@ function syncPropertyMapMarkers(properties) {
   if (located.length === 1) {
     viewMap.setCenter(bounds.getCenter());
     viewMap.setZoom(13);
+    renderMapResults();
     return;
   }
 
   viewMap.fitBounds(bounds, { top: 48, right: 48, bottom: 48, left: 48 });
   if (viewMap.getZoom() > 13) viewMap.setZoom(13);
+  renderMapResults();
 }
 
 async function showPropertyMap() {
@@ -1609,17 +1714,21 @@ async function showPropertyMap() {
       backgroundColor: '#eef0ec',
       clickableIcons: false,
       fullscreenControl: true,
+      fullscreenControlOptions: { position: google.maps.ControlPosition.TOP_RIGHT },
       mapTypeControl: false,
       streetViewControl: false,
       styles: MAP_STYLE,
     });
-    viewMapInfo = new google.maps.InfoWindow({ maxWidth: 260 });
+    viewMap.addListener('idle', renderMapResults);
+    viewMap.addListener('click', closeMapPanel);
+    viewMap.controls[google.maps.ControlPosition.TOP_LEFT].push(mapTypeToggle());
     viewMapClusterer = new MarkerClusterer({
       map: viewMap,
       renderer: MAP_CLUSTER_RENDERER,
       algorithm: new SuperClusterAlgorithm({ radius: MAP_CLUSTER_RADIUS, maxZoom: MAP_CLUSTER_MAX_ZOOM }),
     });
     viewMapMarkers = [];
+    ensureMapPanel(canvas);
   }
 
   setMapStatus('');
@@ -1641,9 +1750,11 @@ function applyPropertyView() {
   grid.hidden = isMap;
   const action = document.querySelector('#properties-action');
   if (action) action.hidden = isMap;
+  const results = document.querySelector('#property-map-results');
+  if (results) results.hidden = true;
 
   if (isMap) showPropertyMap();
-  else viewMapInfo?.close();
+  else closeMapPanel();
 }
 
 function setPropertyView(view) {
@@ -2212,6 +2323,7 @@ function bindEvents() {
     document.querySelector('#ipasumi')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
   on('#view-all', 'click', () => { state.showAll = true; renderProperties(); });
+  on('#map-load-more', 'click', () => { mapResultCount += MAP_RESULT_BATCH; renderMapResults(); });
   document.querySelectorAll('[data-property-view]').forEach((button) => button.addEventListener('click', () => setPropertyView(button.dataset.propertyView)));
 
   on('#review-prev', 'click', () => { state.review = (state.review + reviews.length - 1) % reviews.length; renderReview(); });

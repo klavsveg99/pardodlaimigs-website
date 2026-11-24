@@ -160,7 +160,7 @@ h1, h2, h3 { font-family: var(--serif); }
 .view-switcher-block { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
 /* One-time handwritten nudge towards the map. Caveat plus a slight tilt keeps
    it playful without competing with the section copy. */
-.map-hint { position: relative; padding-right: 44px; color: var(--brand); transform: rotate(-3.5deg); pointer-events: none; transition: opacity .4s ease, transform .4s ease; }
+.map-hint { position: relative; margin-right: 20px; padding-right: 64px; color: var(--brand); transform: rotate(-3.5deg); pointer-events: none; transition: opacity .4s ease, transform .4s ease; }
 .map-hint.is-hidden { opacity: 0; transform: rotate(-3.5deg) translateY(-4px); }
 .map-hint-text { display: block; font-family: 'Caveat', 'DM Sans', cursive; font-size: 24px; font-weight: 500; line-height: 1; letter-spacing: .01em; text-align: right; }
 .map-hint-arrow { position: absolute; right: 0; bottom: -14px; width: 48px; height: 38px; overflow: visible; }
@@ -172,31 +172,35 @@ h1, h2, h3 { font-family: var(--serif); }
 .view-switcher-button.is-active { color: #fff; background: var(--brand); }
 .view-switcher-button.is-active i { color: #fff; }
 .property-map-view { position: relative; margin: 0 0 15px; border: 1px solid var(--line); background: #eef0ec; }
-.property-map-canvas { height: clamp(420px, 52vw, 600px); background: #eef0ec; }
+.property-map-canvas { position: relative; height: clamp(420px, 52vw, 600px); overflow: hidden; background: #eef0ec; }
 .property-map-status { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; padding: 20px; color: var(--muted); background: #eef0ec; font-size: 13px; text-align: center; }
 /* display on these classes beats the hidden attribute, so spell it out. */
-.property-map-view[hidden], .property-map-status[hidden], .property-grid[hidden], .section-action[hidden] { display: none; }
-.property-map-card { display: grid; width: 232px; gap: 4px; }
-/* Google's close row reserves 48px at the top and floats its button over the
-   photo. Drop the row from the layout and pin its own button to the bubble's
-   top-right corner instead, so the card keeps the same padding on every side. */
-#property-map-canvas .gm-style-iw-c { overflow: visible !important; padding: 12px !important; }
-#property-map-canvas .gm-style-iw-d { overflow: visible !important; }
-#property-map-canvas .gm-style-iw-chr { position: absolute; z-index: 3; top: -15px; right: -15px; display: block; width: 30px; height: 30px; }
-#property-map-canvas .gm-style-iw-ch { display: none; }
-#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect { display: grid !important; width: 30px !important; height: 30px !important; margin: 0 !important; place-items: center; border: 1px solid var(--line) !important; border-radius: 50%; background: #fff !important; opacity: 1 !important; }
-#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:hover,
-#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:focus-visible { border-color: var(--brand) !important; background: var(--brand) !important; }
-#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect span { width: 13px !important; height: 13px !important; margin: 0 !important; opacity: 1 !important; background-color: var(--ink) !important; }
-#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:hover span,
-#property-map-canvas .gm-style-iw-chr button.gm-ui-hover-effect:focus-visible span { background-color: #fff !important; }
-.property-map-card { display: grid; width: 232px; gap: 4px; color: inherit; }
-.property-map-card-image { width: 100%; height: 128px; margin: 0 0 4px; object-fit: cover; background: #e8ebe6; }
-.property-map-card-price { margin: 0; color: var(--brand); font-size: 14px; font-weight: 700; }
-.property-map-card-title { font-size: 14px; line-height: 1.35; }
-.property-map-card-address { color: var(--muted); font-size: 12px; line-height: 1.4; }
-.property-map-card-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 6px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
-.property-map-card:hover .property-map-card-link { color: var(--brand); }
+.property-map-view[hidden], .property-map-status[hidden], .property-grid[hidden], .property-map-results[hidden], .section-action[hidden] { display: none; }
+.property-map-results { margin-top: 28px; }
+.property-map-empty { margin: 0; padding: 30px 0; color: var(--muted); font-size: 14px; text-align: center; }
+/* The pin popup: a bottom sheet inside the map, so it also slides over the
+   map in fullscreen. The photo is full-bleed; the copy keeps a small inset. */
+.map-panel { position: absolute; z-index: 5; right: 0; bottom: 0; left: 0; display: flex; max-height: 60%; flex-direction: column; visibility: hidden; transform: translateY(102%); background: #fff; box-shadow: 0 -12px 32px rgb(20 34 31 / 16%); pointer-events: none; font-family: 'DM Sans', 'Source Sans Pro', Arial, sans-serif; transition: transform .26s cubic-bezier(.22, .61, .36, 1), visibility 0s linear .26s; }
+.map-panel.is-open { visibility: visible; transform: translateY(0); pointer-events: auto; transition: transform .26s cubic-bezier(.22, .61, .36, 1); }
+.map-panel-card { display: flex; min-height: 0; flex-direction: column; overflow-y: auto; color: inherit; }
+.map-panel-image { display: block; flex: none; width: 100%; height: 158px; object-fit: cover; background: #e8ebe6; }
+.map-panel-body { display: grid; gap: 3px; padding: 12px 18px 36px; }
+.map-panel-price { margin: 0; color: var(--brand); font-size: 14px; font-weight: 700; }
+.map-panel-title { font-size: 15px; line-height: 1.35; }
+.map-panel-address { color: var(--muted); font-size: 12px; line-height: 1.4; }
+.map-panel-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 5px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.map-panel-card:hover .map-panel-link { color: var(--brand); }
+.map-panel-close { position: absolute; z-index: 2; top: 10px; right: 10px; display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; color: var(--ink); background: #fff; box-shadow: 0 1px 4px rgb(20 34 31 / 18%); }
+.map-panel-close:hover, .map-panel-close:focus-visible { color: #fff; border-color: var(--brand); background: var(--brand); }
+.map-panel-close i { font-size: 12px; }
+/* The in-map Karte / Satelīts switch (a Google control, so it also appears in
+   fullscreen). Google's own toggle is not translated, hence the custom one. */
+.map-type-toggle { display: inline-flex; margin: 10px; border: 1px solid var(--line); background: #fff; box-shadow: 0 1px 4px rgb(20 34 31 / 18%); }
+.map-type-toggle button { min-height: 34px; padding: 0 13px; border: 0; cursor: pointer; color: var(--ink); background: transparent; font-family: 'DM Sans', 'Source Sans Pro', Arial, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.map-type-toggle button + button { border-left: 1px solid var(--line); }
+.map-type-toggle button[aria-pressed="true"] { color: #fff; background: var(--brand); }
+.map-type-toggle button:hover:not([aria-pressed="true"]) { background: var(--brand-light); }
+.map-type-toggle button:focus-visible { outline: 2px solid var(--brand); outline-offset: -2px; }
 .property-card { min-width: 0; display: flex; flex-direction: column; background: #fff; animation: card-in .35s both; animation-delay: calc(var(--card-index) * 35ms); }
 @keyframes card-in { from { opacity: .35; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 .property-image-button { position: relative; display: block; flex: none; width: 100%; height: 224px; overflow: hidden; border: 0; padding: 0; cursor: pointer; background: #e8e9e4; text-align: left; }
@@ -665,9 +669,9 @@ dialog::backdrop { background: rgb(17 31 28 / 62%); }
   .view-switcher { width: 100%; }
   .view-switcher-button { flex: 1; }
   .view-switcher-block { width: 100%; flex-direction: column-reverse; align-items: stretch; gap: 10px; }
-  .map-hint { align-self: flex-end; padding: 38px 44px 0 0; }
+  .map-hint { align-self: flex-end; display: flex; align-items: center; gap: 14px; padding: 0; }
   .map-hint-text { font-size: 22px; }
-  .map-hint-arrow { top: 0; bottom: auto; transform: scaleY(-1); }
+  .map-hint-arrow { position: static; flex: 0 0 auto; width: 42px; height: 33px; transform: scaleY(-1); }
   .property-map-canvas { height: 62vh; min-height: 360px; }
   .property-image-button { height: 180px; }
   .property-card-body { padding: 13px 12px; }
