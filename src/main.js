@@ -1545,10 +1545,65 @@ function ensureMapPanel(canvas) {
   viewMapPanel = document.createElement('aside');
   viewMapPanel.className = 'map-panel';
   viewMapPanel.setAttribute('aria-label', t('viewMap'));
-  viewMapPanel.innerHTML = `<button class="map-panel-close" type="button" aria-label="${escapeHtml(t('close'))}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><a class="map-panel-card"></a>`;
+  viewMapPanel.innerHTML = `<button class="map-panel-close" type="button" aria-label="${escapeHtml(t('close'))}"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button><div class="map-panel-content"></div>`;
   viewMapPanel.querySelector('.map-panel-close').addEventListener('click', closeMapPanel);
   layer.appendChild(viewMapPanel);
   return viewMapPanel;
+}
+
+/** Gallery switcher inside the map sheet: thumbnails, arrows and a loader. */
+function bindMapPanelGallery(panel, images, thumbs) {
+  const main = panel.querySelector('.map-panel-image');
+  if (!main) return;
+  const media = panel.querySelector('.map-panel-media');
+  const loader = panel.querySelector('.property-photo-loader');
+  const counter = panel.querySelector('.map-panel-position');
+  const strip = panel.querySelector('.map-panel-thumbs');
+  const buttons = [...panel.querySelectorAll('[data-map-gallery-index]')];
+  let index = 0;
+  let touchStart = null;
+
+  const hideLoader = () => { if (loader) loader.hidden = true; };
+  main.addEventListener('load', hideLoader);
+  main.addEventListener('error', hideLoader);
+
+  const centerThumb = (position) => {
+    const thumb = buttons[position];
+    if (!strip || !thumb) return;
+    const stripRect = strip.getBoundingClientRect();
+    const thumbRect = thumb.getBoundingClientRect();
+    const left = strip.scrollLeft + (thumbRect.left - stripRect.left) - (stripRect.width - thumbRect.width) / 2;
+    strip.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+  };
+
+  const show = (next) => {
+    index = ((next % images.length) + images.length) % images.length;
+    const source = assetUrl(images[index]);
+    if (loader && source !== main.getAttribute('src')) loader.hidden = false;
+    main.src = source;
+    if (main.complete && main.naturalWidth > 0) hideLoader();
+    if (counter) counter.textContent = `${index + 1} / ${images.length}`;
+    buttons.forEach((button, position) => {
+      button.classList.toggle('is-active', position === index);
+      button.setAttribute('aria-pressed', String(position === index));
+    });
+    centerThumb(index);
+  };
+
+  buttons.forEach((button) => button.addEventListener('click', () => show(Number(button.dataset.mapGalleryIndex))));
+  panel.querySelectorAll('[data-map-gallery-step]').forEach((button) => button.addEventListener('click', () => show(index + Number(button.dataset.mapGalleryStep))));
+
+  if (images.length < 2 || !media) return;
+  const isControl = (target) => target instanceof Element && !!target.closest('.map-panel-nav, .map-panel-thumbs');
+  media.addEventListener('touchstart', (event) => {
+    touchStart = isControl(event.target) ? null : event.changedTouches[0].clientX;
+  }, { passive: true });
+  media.addEventListener('touchend', (event) => {
+    if (touchStart === null) return;
+    const delta = event.changedTouches[0].clientX - touchStart;
+    touchStart = null;
+    if (Math.abs(delta) > 40) show(index + (delta < 0 ? 1 : -1));
+  });
 }
 
 function closeMapPanel() {
@@ -1600,18 +1655,30 @@ function openMapProperty(property, marker) {
   const canvas = viewMap?.getDiv();
   if (!canvas) return;
   const panel = ensureMapPanel(canvas);
-  const card = panel.querySelector('.map-panel-card');
-  const image = assetUrl(property.image_local || property.image);
-  card.href = siteUrl(`ipasums/${property.slug}/`);
-  card.setAttribute('aria-label', `${t('details')}: ${property.title}`);
+  const content = panel.querySelector('.map-panel-content');
+  const images = galleryOf(property);
+  const hasGallery = images.length > 1;
+  const thumbs = property.gallery_thumbs?.length === images.length ? property.gallery_thumbs : images;
+  const href = siteUrl(`ipasums/${property.slug}/`);
   panel.setAttribute('aria-label', property.title);
-  card.innerHTML = `${image ? `<img class="map-panel-image" src="${escapeHtml(image)}" alt="" loading="lazy">` : ''}
-    <div class="map-panel-body">
+  content.innerHTML = `
+    ${images.length ? `<div class="map-panel-media">
+      <img class="map-panel-image" src="${escapeHtml(assetUrl(images[0]))}" alt="">
+      ${hasGallery ? `<div class="property-photo-loader" hidden><span class="property-photo-spinner" aria-hidden="true"></span><span class="sr-only">${escapeHtml(t('photoLoading'))}</span></div>
+        <button class="map-panel-nav map-panel-nav-prev" type="button" data-map-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+        <button class="map-panel-nav map-panel-nav-next" type="button" data-map-gallery-step="1" aria-label="${escapeHtml(t('nextSlide'))}"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+        <span class="map-panel-position">1 / ${images.length}</span>
+        <div class="map-panel-thumbs" role="group" aria-label="${escapeHtml(t('galleryLabel'))}">
+          ${images.map((image, index) => `<button type="button" class="map-panel-thumb${index === 0 ? ' is-active' : ''}" data-map-gallery-index="${index}" aria-pressed="${index === 0}" aria-label="${escapeHtml(`${t('photo')} ${index + 1}`)}"><img src="${escapeHtml(assetUrl(thumbs[index] || image))}" alt="" loading="lazy"></button>`).join('')}
+        </div>` : ''}
+    </div>` : ''}
+    <a class="map-panel-body" href="${escapeHtml(href)}" aria-label="${escapeHtml(`${t('details')}: ${property.title}`)}">
       ${property.price ? `<p class="map-panel-price">${escapeHtml(property.price)}</p>` : ''}
       <strong class="map-panel-title">${escapeHtml(property.title)}</strong>
       ${property.address ? `<span class="map-panel-address">${escapeHtml(property.address)}</span>` : ''}
       <span class="map-panel-link"><span>${escapeHtml(t('details'))}</span><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></span>
-    </div>`;
+    </a>`;
+  bindMapPanelGallery(panel, images, thumbs);
   panel.classList.add('is-open');
   panel.querySelector('.map-panel-close').focus({ preventScroll: true });
   requestAnimationFrame(() => centreMarkerAbovePanel(marker.getPosition()));
