@@ -149,7 +149,7 @@ const extendedTranslations = {
     navFaq: 'BUJ', faqEyebrow: 'BUJ', privacyLabel: 'Privātuma politika', googleReviews: 'Google atsauksmes',
     heroCarouselLabel: 'Īpašumu attēlu galerija', previousSlide: 'Iepriekšējais attēls', nextSlide: 'Nākamais attēls',
     legalEyebrow: 'Papildu pakalpojumi', legalLead: 'Kad darījums nav vienkāršs, palīdzam arī ar juridiskiem jautājumiem - no dokumentu izpētes līdz reģistrācijai Zemesgrāmatā.',
-    photos: 'foto', photo: 'Attēls', galleryLabel: 'Īpašuma attēli', viewFullscreen: 'Rādīt pilnekrāna režīmā', exitFullscreen: 'Iziet no pilnekrāna režīma', enquire: 'Sazināties par īpašumu', fullListing: 'Atvērt sludinājumu',
+    photos: 'foto', photo: 'Attēls', galleryLabel: 'Īpašuma attēli', photoLoading: 'Ielādē attēlu...', viewFullscreen: 'Rādīt pilnekrāna režīmā', exitFullscreen: 'Iziet no pilnekrāna režīma', enquire: 'Sazināties par īpašumu', fullListing: 'Atvērt sludinājumu',
     enquiryLead: 'Aizpildiet formu, un aģents sazināsies ar Jums.', enquiryProperty: 'Īpašums', enquiryMessage: 'Ziņa', enquirySubmit: 'Nosūtīt pieprasījumu', enquirySuccess: 'Paldies! Aģents sazināsies ar Jums tuvākajā laikā.',
     reserved: 'Rezervēts',
     preciseLocation: 'Precīza atrašanās vieta', openInMaps: 'Atvērt Google Maps',
@@ -173,7 +173,7 @@ const extendedTranslations = {
     navFaq: 'FAQ', faqEyebrow: 'FAQ', privacyLabel: 'Privacy policy', googleReviews: 'Google reviews',
     heroCarouselLabel: 'Property image gallery', previousSlide: 'Previous image', nextSlide: 'Next image',
     legalEyebrow: 'Additional services', legalLead: 'When a transaction is not straightforward, we also help with legal matters, from reviewing documents to registering them in the Land Register.',
-    photos: 'photos', photo: 'Image', galleryLabel: 'Property images', viewFullscreen: 'View fullscreen', exitFullscreen: 'Exit fullscreen', enquire: 'Enquire about this property', fullListing: 'Open full listing',
+    photos: 'photos', photo: 'Image', galleryLabel: 'Property images', photoLoading: 'Loading image...', viewFullscreen: 'View fullscreen', exitFullscreen: 'Exit fullscreen', enquire: 'Enquire about this property', fullListing: 'Open full listing',
     enquiryLead: 'Fill in the form and the agent will get in touch.', enquiryProperty: 'Property', enquiryMessage: 'Message', enquirySubmit: 'Send enquiry', enquirySuccess: 'Thank you! The agent will contact you shortly.',
     reserved: 'Reserved',
     preciseLocation: 'Precise location', openInMaps: 'Open in Google Maps',
@@ -197,7 +197,7 @@ const extendedTranslations = {
     navFaq: 'FAQ', faqEyebrow: 'Вопросы', privacyLabel: 'Политика конфиденциальности', googleReviews: 'Отзывы Google',
     heroCarouselLabel: 'Галерея изображений объектов', previousSlide: 'Предыдущее изображение', nextSlide: 'Следующее изображение',
     legalEyebrow: 'Дополнительные услуги', legalLead: 'Если сделка непростая, мы помогаем и с юридическими вопросами - от проверки документов до регистрации в Земельной книге.',
-    photos: 'фото', photo: 'Изображение', galleryLabel: 'Изображения объекта', viewFullscreen: 'Открыть на весь экран', exitFullscreen: 'Выйти из полноэкранного режима', enquire: 'Связаться по объекту', fullListing: 'Открыть объявление',
+    photos: 'фото', photo: 'Изображение', galleryLabel: 'Изображения объекта', photoLoading: 'Загрузка изображения...', viewFullscreen: 'Открыть на весь экран', exitFullscreen: 'Выйти из полноэкранного режима', enquire: 'Связаться по объекту', fullListing: 'Открыть объявление',
     enquiryLead: 'Заполните форму, и агент свяжется с вами.', enquiryProperty: 'Объект', enquiryMessage: 'Сообщение', enquirySubmit: 'Отправить запрос', enquirySuccess: 'Спасибо! Агент свяжется с вами в ближайшее время.',
     reserved: 'Забронировано',
     preciseLocation: 'Точное местоположение', openInMaps: 'Открыть в Google Maps',
@@ -221,7 +221,7 @@ const extendedTranslations = {
     navFaq: 'FAQ', faqEyebrow: 'FAQ', privacyLabel: 'Datenschutzerklärung', googleReviews: 'Google-Bewertungen',
     heroCarouselLabel: 'Bildergalerie der Immobilien', previousSlide: 'Vorheriges Bild', nextSlide: 'Nächstes Bild',
     legalEyebrow: 'Zusätzliche Leistungen', legalLead: 'Wenn ein Geschäft nicht einfach ist, helfen wir auch bei rechtlichen Fragen - von der Prüfung der Unterlagen bis zur Eintragung ins Grundbuch.',
-    photos: 'Fotos', photo: 'Bild', galleryLabel: 'Bilder der Immobilie', viewFullscreen: 'Vollbild anzeigen', exitFullscreen: 'Vollbild beenden', enquire: 'Zur Immobilie anfragen', fullListing: 'Inserat öffnen',
+    photos: 'Fotos', photo: 'Bild', galleryLabel: 'Bilder der Immobilie', photoLoading: 'Bild wird geladen...', viewFullscreen: 'Vollbild anzeigen', exitFullscreen: 'Vollbild beenden', enquire: 'Zur Immobilie anfragen', fullListing: 'Inserat öffnen',
     enquiryLead: 'Füllen Sie das Formular aus und der Makler meldet sich bei Ihnen.', enquiryProperty: 'Immobilie', enquiryMessage: 'Nachricht', enquirySubmit: 'Anfrage senden', enquirySuccess: 'Vielen Dank! Der Makler meldet sich in Kürze bei Ihnen.',
     reserved: 'Reserviert',
     preciseLocation: 'Genauer Standort', openInMaps: 'In Google Maps öffnen',
@@ -583,6 +583,7 @@ function propertyDetailHtml(property, { heading = 'h2', fullText = false } = {})
       <div class="property-detail-media">
         <div class="property-detail-photo">
           <img id="property-detail-image" src="${escapeHtml(assetUrl(images[0]))}" alt="${escapeHtml(property.title)}">
+          <div class="property-photo-loader" id="property-photo-loader" role="status" hidden><span class="property-photo-spinner" aria-hidden="true"></span><span class="sr-only">${escapeHtml(t('photoLoading'))}</span></div>
           <button class="property-gallery-fullscreen" type="button" id="property-gallery-fullscreen" data-gallery-fullscreen aria-label="${escapeHtml(t('viewFullscreen'))}" aria-pressed="false"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
           ${images.length > 1 ? `
             <button class="property-nav property-nav-prev" type="button" data-gallery-step="-1" aria-label="${escapeHtml(t('previousSlide'))}"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
@@ -625,8 +626,15 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
   const counter = document.querySelector('#property-gallery-position');
   const thumbs = [...document.querySelectorAll('[data-gallery-index]')];
   const strip = document.querySelector('.property-detail-thumbs');
+  const loader = document.querySelector('#property-photo-loader');
   const scrollBehavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   let index = 0;
+
+  const clearLoader = () => {
+    if (loader) loader.hidden = true;
+  };
+  main.addEventListener('load', clearLoader);
+  main.addEventListener('error', clearLoader);
 
   /** Keep the selected thumbnail visible as the gallery moves. */
   const centerThumb = (position) => {
@@ -640,7 +648,10 @@ function bindPropertyDetail(property, { keyboard = false } = {}) {
 
   const show = (next) => {
     index = ((next % images.length) + images.length) % images.length;
-    main.src = assetUrl(images[index]);
+    const source = assetUrl(images[index]);
+    if (loader && source !== main.getAttribute('src')) loader.hidden = false;
+    main.src = source;
+    if (main.complete && main.naturalWidth > 0) clearLoader();
     if (counter) counter.textContent = `${index + 1} / ${images.length}`;
     thumbs.forEach((thumb, position) => thumb.classList.toggle('is-active', position === index));
     centerThumb(index);
